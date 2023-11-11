@@ -1,0 +1,1 @@
+export { FiSrTrash } from "./FiSrTrash";

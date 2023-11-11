@@ -1,0 +1,1 @@
+export { FiSrMenuDotsVertical } from "./FiSrMenuDotsVertical";

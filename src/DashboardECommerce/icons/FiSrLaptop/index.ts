@@ -1,1 +1,0 @@
-export { FiSrLaptop } from "./FiSrLaptop";

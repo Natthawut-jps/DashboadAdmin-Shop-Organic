@@ -1,1 +1,0 @@
-export { FiRrCaretLeft } from "./FiRrCaretLeft";

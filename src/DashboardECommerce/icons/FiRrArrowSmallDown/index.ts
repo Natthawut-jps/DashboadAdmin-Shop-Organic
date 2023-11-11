@@ -1,1 +1,0 @@
-export { FiRrArrowSmallDown } from "./FiRrArrowSmallDown";

@@ -1,1 +1,0 @@
-export { FiSrMoney } from "./FiSrMoney";

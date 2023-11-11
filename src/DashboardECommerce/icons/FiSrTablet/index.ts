@@ -1,1 +1,0 @@
-export { FiSrTablet } from "./FiSrTablet";

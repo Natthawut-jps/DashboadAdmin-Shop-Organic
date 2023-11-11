@@ -1,1 +1,0 @@
-export { FiSrCalendar } from "./FiSrCalendar";

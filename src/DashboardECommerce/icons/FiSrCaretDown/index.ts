@@ -1,1 +1,0 @@
-export { FiSrCaretDown } from "./FiSrCaretDown";

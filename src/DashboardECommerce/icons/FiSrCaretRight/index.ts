@@ -1,1 +1,0 @@
-export { FiSrCaretRight } from "./FiSrCaretRight";

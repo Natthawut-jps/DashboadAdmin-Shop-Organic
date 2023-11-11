@@ -1,1 +1,0 @@
-export { FiSrMouse } from "./FiSrMouse";

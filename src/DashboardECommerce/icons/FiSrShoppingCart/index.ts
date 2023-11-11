@@ -1,1 +1,0 @@
-export { FiSrShoppingCart } from "./FiSrShoppingCart";

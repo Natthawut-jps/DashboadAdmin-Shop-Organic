@@ -1,1 +1,0 @@
-export { FiSrBell } from "./FiSrBell";

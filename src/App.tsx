@@ -1,32 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Route, Routes } from 'react-router-dom'
+import DashboardECommerce from './pages/DashboardECommerce'
+import Product from './pages/Product'
+import Categories from './pages/Categories'
+import Order from './pages/Order'
+import Customer from './pages/Customer'
+import { Sidebar } from './pages/utities/Sidebar'
+import EditProduct from './pages/EditProduct'
+import AddProduct from './pages/AddProduct'
+import AddCategory from './pages/AddCategory'
+import EditCategory from './pages/EditCategory'
+import OrderDetails from './pages/OrderDetails'
+import CustomerDetails from './pages/CustomerDetails'
+import { NoPage } from './pages/utities/NoPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className=' flex '>
+        <Sidebar />
+        <Routes>
+          <Route index element={<DashboardECommerce />} />
+          <Route path='/Dashboad/Product' >
+            <Route index element={<Product />} />
+            <Route path='Add' element={<AddProduct />} />
+            <Route path='Edit' element={<EditProduct />} />
+          </Route>
+          <Route path='/Dashboad/Categories' >
+            <Route index element={<Categories />} />
+            <Route path='Add' element={<AddCategory />} />
+            <Route path='Edit' element={<EditCategory />} />
+          </Route>
+          <Route path='/Dashboad/Order' >
+            <Route index element={<Order />} />
+            <Route path='Detail' element={<OrderDetails />} />
+          </Route>
+          <Route path='/Dashboad/Customer' >
+            <Route index element={<Customer />} />
+            <Route path='Detail-Customer' element={<CustomerDetails />} />
+          </Route>
+          <Route path='*' element={ <NoPage />}/>
+        </Routes>
+      </div >
+
     </>
   )
 }

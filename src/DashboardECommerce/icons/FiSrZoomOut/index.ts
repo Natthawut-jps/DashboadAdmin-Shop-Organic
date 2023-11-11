@@ -1,1 +1,0 @@
-export { FiSrZoomOut } from "./FiSrZoomOut";

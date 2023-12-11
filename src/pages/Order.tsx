@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import Excel from "./utities/Excel";
 
 const Order: FunctionComponent = () => {
   return (
@@ -103,7 +104,7 @@ const Order: FunctionComponent = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row items-start justify-start gap-[16px] text-sm text-primary-primary-500">
+          <div onClick={Excel} className=" cursor-pointer flex flex-row items-start justify-start gap-[16px] text-sm text-primary-primary-500">
             <div className="rounded-lg bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px]">
               <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
                 <img

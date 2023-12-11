@@ -38,7 +38,7 @@ function App() {
             <Route index element={<Customer />} />
             <Route path='Detail-Customer' element={<CustomerDetails />} />
           </Route>
-          <Route path='*' element={ <NoPage />}/>
+          <Route path='*' element={<NoPage />} />
         </Routes>
       </div >
 

@@ -1,11 +1,22 @@
 import { FunctionComponent } from "react";
-import NotoSansThai from './Fonts//Noto_Sans_Thai/static/NotoSansThai-Regular.ttf';
+import THSarabunNew from './Fonts/THSarabunNew/THSarabunNew.ttf';
+import THSarabunNew_Bold from './Fonts/THSarabunNew/THSarabunNew Bold.ttf';
+import THSarabunNew_Italic from './Fonts/THSarabunNew/THSarabunNew Italic.ttf';
+import THSarabunNew_BoldItalic from './Fonts/THSarabunNew/THSarabunNew BoldItalic.ttf';
 import { Document, Page, View, Text, StyleSheet, Font } from "@react-pdf/renderer";
+
 const Pdf: FunctionComponent = () => {
-    Font.register({ family: 'NotoSansThai', src: NotoSansThai, fontWeight: 'normal', fontStyle: 'normal', })
+    Font.register({
+        family: 'THSarabunNew', fonts: [
+            { src: THSarabunNew, fontStyle: 'normal', fontWeight: 400 },
+            { src: THSarabunNew_Bold, fontStyle: 'Boldnormal', fontWeight: 700 },
+            { src: THSarabunNew_Italic, fontStyle: 'italic', fontWeight: 400 },
+            { src: THSarabunNew_BoldItalic, fontStyle: 'Bolditalic', fontWeight: 700 },
+        ]
+    })
     const styles = StyleSheet.create({
         page: {
-            fontFamily: 'NotoSansThai',
+            fontFamily: 'THSarabunNew',
             flex: 'row',
             backgroundColor: '#ffffff',
         },
@@ -25,6 +36,7 @@ const Pdf: FunctionComponent = () => {
                         <Text>งานวิจัย</Text>
                     </View>
                     <View style={styles.section}>
+                        <Text>งานวิจัย</Text>
                         <Text>Section#2</Text>
                     </View>
                 </Page>

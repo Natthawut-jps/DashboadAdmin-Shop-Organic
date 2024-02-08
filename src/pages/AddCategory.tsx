@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 
+
 const AddCategory: FunctionComponent = () => {
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-regular">

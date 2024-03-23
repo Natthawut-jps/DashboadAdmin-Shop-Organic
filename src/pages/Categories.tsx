@@ -1,10 +1,30 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { Sidebar } from "./utities/Sidebar";
+import instance_auth from "./utities/instance_auth";
 
 const Categories: FunctionComponent = () => {
+  const get_category = async () => {
+    try {
+    await instance_auth({
+      method: "get",
+      url: "/categories/get_data",
+      responseType: "json",
+    }).then((res) => {
+      if (res.status === 200) {
+        console.log(res.data);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+   }
+  };
+  useEffect(() => {
+    get_category();
+  }, []);
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-semibold">
-
+      <Sidebar />
       <div className="self-stretch flex-1 flex flex-col items-start justify-start py-8 px-6 gap-[24px] text-neutral-gray-gray-400">
         <div className="self-stretch flex flex-row items-center justify-start gap-[32px] z-[2]">
           <div className="flex-1 rounded-lg overflow-hidden flex flex-row items-center justify-start py-2 pr-3 pl-2 gap-[8px]">
@@ -118,7 +138,10 @@ const Categories: FunctionComponent = () => {
                 Export
               </div>
             </div>
-            <NavLink to={'/Dashboad/Categories/Add'} className=" no-underline rounded-lg bg-primary-primary-500 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] text-neutral-white">
+            <NavLink
+              to={"/Dashboad/Categories/Add"}
+              className=" no-underline rounded-lg bg-primary-primary-500 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] text-neutral-white"
+            >
               <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"

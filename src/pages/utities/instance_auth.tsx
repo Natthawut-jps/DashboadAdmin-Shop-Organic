@@ -33,7 +33,7 @@ try {
           try {
             await axios({
               method: "post",
-              url: "http://localhost:8080/admin/refresh_token",
+              url: "http://localhost:8080/admin_authRefreshToken/refresh_token",
               data: { massage: "Authorize" },
               headers: {
                 Authorization: `Bearer ${_ur}`,

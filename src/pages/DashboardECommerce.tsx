@@ -10,7 +10,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-[18.02px] h-[18.02px]"
                 alt=""
-                src="/firrsearch.svg"
+                src="/img/firrsearch.svg"
               />
             </div>
             <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -24,7 +24,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrcalendar.svg"
+                    src="/img/fisrcalendar.svg"
                   />
                 </div>
               </div>
@@ -33,7 +33,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
                     alt=""
-                    src="/fisrbell.svg"
+                    src="/img/fisrbell.svg"
                   />
                   <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
                     <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
@@ -47,7 +47,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
                     alt=""
-                    src="/fisrenvelope.svg"
+                    src="/img/fisrenvelope.svg"
                   />
                   <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
                     <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
@@ -60,7 +60,7 @@ const DashboardECommerce: FunctionComponent = () => {
                 <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-7 h-7" />
               </div>
             </div>
-            <img className="relative w-px h-10" alt="" src="/divider.svg" />
+            <img className="relative w-px h-10" alt="" src="/img/divider.svg" />
             <div className="self-stretch flex flex-row items-center justify-start gap-[12px] text-sm text-neutral-black-black-500 font-text-s-regular">
               <div className="flex flex-col items-end justify-start relative">
                 <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-8 h-8 z-[0]" />
@@ -78,7 +78,7 @@ const DashboardECommerce: FunctionComponent = () => {
                 <img
                   className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcaretdown.svg"
+                  src="/img/fisrcaretdown.svg"
                 />
               </div>
             </div>
@@ -98,7 +98,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrcalendar1.svg"
+                src="/img/fisrcalendar1.svg"
               />
             </div>
             <div className="relative tracking-[0.01em] leading-[20px]">
@@ -112,7 +112,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                 alt=""
-                src="/fisrmoney.svg"
+                src="/img/fisrmoney.svg"
               />
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-[8px] z-[1]">
@@ -133,7 +133,7 @@ const DashboardECommerce: FunctionComponent = () => {
             <img
               className="absolute my-0 mx-[!important] h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full z-[0]"
               alt=""
-              src="/ornament.svg"
+              src="/img/ornament.svg"
             />
           </div>
           <div className="flex-1 rounded-xl bg-primary-primary-500 shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-start justify-start p-5 relative gap-[16px]">
@@ -141,7 +141,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                 alt=""
-                src="/fisrcreditcard.svg"
+                src="/img/fisrcreditcard.svg"
               />
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-[8px] z-[1]">
@@ -162,7 +162,7 @@ const DashboardECommerce: FunctionComponent = () => {
             <img
               className="absolute my-0 mx-[!important] h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full z-[0]"
               alt=""
-              src="/ornament1.svg"
+              src="/img/ornament1.svg"
             />
           </div>
           <div className="flex-1 rounded-xl bg-secondary-blue-blue-500 shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-start justify-start p-5 relative gap-[16px]">
@@ -170,7 +170,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                 alt=""
-                src="/fisruseradd.svg"
+                src="/img/fisruseradd.svg"
               />
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-[8px] z-[1]">
@@ -191,7 +191,7 @@ const DashboardECommerce: FunctionComponent = () => {
             <img
               className="absolute my-0 mx-[!important] h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full z-[0]"
               alt=""
-              src="/ornament2.svg"
+              src="/img/ornament2.svg"
             />
           </div>
           <div className="flex-1 rounded-xl bg-secondary-cyan-cyan-500 shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-start justify-start p-5 relative gap-[16px] text-gray-300">
@@ -199,7 +199,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                 alt=""
-                src="/fisrbox.svg"
+                src="/img/fisrbox.svg"
               />
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-[8px] z-[1]">
@@ -220,7 +220,7 @@ const DashboardECommerce: FunctionComponent = () => {
             <img
               className="absolute my-0 mx-[!important] h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full z-[0]"
               alt=""
-              src="/ornament3.svg"
+              src="/img/ornament3.svg"
             />
           </div>
         </div>
@@ -238,7 +238,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrmenudotsvertical.svg"
+                src="/img/fisrmenudotsvertical.svg"
               />
             </div>
             <div className="flex flex-col items-center justify-start gap-[16px] z-[0] text-9xl">
@@ -246,12 +246,12 @@ const DashboardECommerce: FunctionComponent = () => {
                 <img
                   className="absolute h-[109.09%] w-[104.55%] top-[-4.55%] right-[-2.27%] bottom-[-4.55%] left-[-2.27%] max-w-full overflow-hidden max-h-full"
                   alt=""
-                  src="/track.svg"
+                  src="/img/track.svg"
                 />
                 <img
                   className="absolute h-[109.09%] w-[89.76%] top-[-4.55%] right-[12.52%] bottom-[-4.55%] left-[-2.27%] max-w-full overflow-hidden max-h-full"
                   alt=""
-                  src="/progress.svg"
+                  src="/img/progress.svg"
                 />
                 <div className="absolute h-[44.7%] w-[70.59%] top-[38.68%] right-[14.71%] bottom-[16.62%] left-[14.71%] flex flex-col items-center justify-center gap-[4px]">
                   <div className="relative tracking-[0.01em] font-semibold">
@@ -282,7 +282,7 @@ const DashboardECommerce: FunctionComponent = () => {
                       <img
                         className="relative w-5 h-5 overflow-hidden shrink-0"
                         alt=""
-                        src="/firrarrowsmalldown.svg"
+                        src="/img/firrarrowsmalldown.svg"
                       />
                     </div>
                   </div>
@@ -297,7 +297,7 @@ const DashboardECommerce: FunctionComponent = () => {
                       <img
                         className="relative w-5 h-5 overflow-hidden shrink-0"
                         alt=""
-                        src="/firrarrowsmallup.svg"
+                        src="/img/firrarrowsmallup.svg"
                       />
                     </div>
                   </div>
@@ -312,7 +312,7 @@ const DashboardECommerce: FunctionComponent = () => {
                       <img
                         className="relative w-5 h-5 overflow-hidden shrink-0"
                         alt=""
-                        src="/firrarrowsmallup.svg"
+                        src="/img/firrarrowsmallup.svg"
                       />
                     </div>
                   </div>
@@ -355,7 +355,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="flex-1 relative max-w-full overflow-hidden h-px"
                       alt=""
-                      src="/line.svg"
+                      src="/img/line.svg"
                     />
                   </div>
                   <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -365,7 +365,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="flex-1 relative max-w-full overflow-hidden h-px"
                       alt=""
-                      src="/line.svg"
+                      src="/img/line.svg"
                     />
                   </div>
                   <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -375,7 +375,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="flex-1 relative max-w-full overflow-hidden h-px"
                       alt=""
-                      src="/line.svg"
+                      src="/img/line.svg"
                     />
                   </div>
                   <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -385,7 +385,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="flex-1 relative max-w-full overflow-hidden h-px"
                       alt=""
-                      src="/line.svg"
+                      src="/img/line.svg"
                     />
                   </div>
                   <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -395,7 +395,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="flex-1 relative max-w-full overflow-hidden h-px"
                       alt=""
-                      src="/line.svg"
+                      src="/img/line.svg"
                     />
                   </div>
                   <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -405,7 +405,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="flex-1 relative max-w-full overflow-hidden h-px"
                       alt=""
-                      src="/line.svg"
+                      src="/img/line.svg"
                     />
                   </div>
                   <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -415,7 +415,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="flex-1 relative max-w-full overflow-hidden h-px"
                       alt=""
-                      src="/line.svg"
+                      src="/img/line.svg"
                     />
                   </div>
                 </div>
@@ -461,7 +461,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="absolute my-0 mx-[!important] h-[calc(100%_-_36px)] w-[calc(100%_-_48px)] top-[9px] right-[0px] bottom-[27px] left-[48px] max-w-full overflow-hidden max-h-full z-[1]"
                 alt=""
-                src="/line1.svg"
+                src="/img/line1.svg"
               />
               <div className="my-0 mx-[!important] absolute top-[0px] left-[calc(50%_-_74px)] h-[225px] flex flex-col items-center justify-start gap-[4px] z-[2] text-left text-neutral-white-base-color">
                 <div className="rounded-lg bg-neutral-black-black-500 shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-start justify-start py-3 px-4 gap-[6px]">
@@ -494,7 +494,7 @@ const DashboardECommerce: FunctionComponent = () => {
                 <img
                   className="flex-1 relative max-h-full w-px"
                   alt=""
-                  src="/line2.svg"
+                  src="/img/line2.svg"
                 />
               </div>
             </div>
@@ -509,7 +509,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrmenudotsvertical.svg"
+                src="/img/fisrmenudotsvertical.svg"
               />
             </div>
             <div className="self-stretch flex flex-col items-center justify-center gap-[14px] z-[0] text-9xl">
@@ -517,7 +517,7 @@ const DashboardECommerce: FunctionComponent = () => {
                 <img
                   className="relative w-[252px] h-[252px] z-[0]"
                   alt=""
-                  src="/chart.svg"
+                  src="/img/chart.svg"
                 />
                 <div className="my-0 mx-[!important] absolute top-[calc(50%_-_29.5px)] left-[calc(50%_-_49px)] flex flex-col items-center justify-center gap-[4px] z-[1]">
                   <div className="relative tracking-[0.01em] font-semibold">
@@ -591,7 +591,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrmenudotsvertical.svg"
+                src="/img/fisrmenudotsvertical.svg"
               />
             </div>
             <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[16px] z-[0] text-sm">
@@ -729,7 +729,7 @@ const DashboardECommerce: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrmenudotsvertical.svg"
+                src="/img/fisrmenudotsvertical.svg"
               />
             </div>
             <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[16px] z-[0] text-sm">
@@ -739,7 +739,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrsmartphone.svg"
+                      src="/img/fisrsmartphone.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center">
@@ -765,7 +765,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrtablet.svg"
+                      src="/img/fisrtablet.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center">
@@ -791,7 +791,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrheadphones.svg"
+                      src="/img/fisrheadphones.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center">
@@ -817,7 +817,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrlaptop.svg"
+                      src="/img/fisrlaptop.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center">
@@ -841,7 +841,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrmouse.svg"
+                      src="/img/fisrmouse.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center">
@@ -867,7 +867,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrusbpendrive.svg"
+                      src="/img/fisrusbpendrive.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center">
@@ -891,7 +891,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrcamera.svg"
+                      src="/img/fisrcamera.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center">
@@ -932,7 +932,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrcalendar1.svg"
+                    src="/img/fisrcalendar1.svg"
                   />
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px]">
@@ -944,7 +944,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrsettingssliders.svg"
+                    src="/img/fisrsettingssliders.svg"
                   />
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -966,7 +966,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrcaretdown1.svg"
+                    src="/img/fisrcaretdown1.svg"
                   />
                 </div>
                 <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -1104,7 +1104,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrcaretdown1.svg"
+                    src="/img/fisrcaretdown1.svg"
                   />
                 </div>
                 <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -1151,7 +1151,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrcaretdown1.svg"
+                    src="/img/fisrcaretdown1.svg"
                   />
                 </div>
                 <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -1211,26 +1211,12 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisreye.svg"
+                      src="/img/fisreye.svg"
                     />
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrtrash.svg"
-                    />
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/fisreye.svg"
-                    />
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/fisrtrash.svg"
+                      src="/img/fisrtrash.svg"
                     />
                   </div>
                 </div>
@@ -1239,26 +1225,12 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisreye.svg"
+                      src="/img/fisreye.svg"
                     />
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrtrash.svg"
-                    />
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/fisreye.svg"
-                    />
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/fisrtrash.svg"
+                      src="/img/fisrtrash.svg"
                     />
                   </div>
                 </div>
@@ -1267,12 +1239,40 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisreye.svg"
+                      src="/img/fisreye.svg"
                     />
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrtrash.svg"
+                      src="/img/fisrtrash.svg"
+                    />
+                  </div>
+                </div>
+                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
+                    <img
+                      className="relative w-4 h-4 overflow-hidden shrink-0"
+                      alt=""
+                      src="/img/fisreye.svg"
+                    />
+                    <img
+                      className="relative w-4 h-4 overflow-hidden shrink-0"
+                      alt=""
+                      src="/img/fisrtrash.svg"
+                    />
+                  </div>
+                </div>
+                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
+                    <img
+                      className="relative w-4 h-4 overflow-hidden shrink-0"
+                      alt=""
+                      src="/img/fisreye.svg"
+                    />
+                    <img
+                      className="relative w-4 h-4 overflow-hidden shrink-0"
+                      alt=""
+                      src="/img/fisrtrash.svg"
                     />
                   </div>
                 </div>
@@ -1288,7 +1288,7 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/firrcaretleft.svg"
+                      src="/img/firrcaretleft.svg"
                     />
                   </div>
                 </div>
@@ -1317,198 +1317,11 @@ const DashboardECommerce: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrcaretright.svg"
+                      src="/img/fisrcaretright.svg"
                     />
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="self-stretch rounded-lg bg-neutral-white-base-color shadow-[0px_4px_30px_rgba(131,_98,_234,_0.05)] w-[360px] overflow-hidden shrink-0 flex flex-col items-start justify-start p-6 box-border relative gap-[22px] text-xl">
-            <div className="self-stretch flex flex-row items-start justify-start gap-[12px] z-[0]">
-              <div className="flex-1 flex flex-col items-start justify-start gap-[2px]">
-                <div className="self-stretch relative tracking-[0.01em] leading-[30px] font-semibold">
-                  Customer Growth
-                </div>
-                <div className="relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
-                  Based on Country
-                </div>
-              </div>
-              <img
-                className="relative w-4 h-4 overflow-hidden shrink-0"
-                alt=""
-                src="/fisrmenudotsvertical.svg"
-              />
-            </div>
-            <div className="relative rounded-lg bg-neutral-gray-gray-25 w-[312px] h-[180px] overflow-hidden shrink-0 z-[1] text-xs text-neutral-white-base-color">
-              <img
-                className="absolute top-[calc(50%_-_63px)] left-[0px] w-[575px] h-[246px] overflow-hidden"
-                alt=""
-                src="/world.svg"
-              />
-              <div className="absolute top-[12px] left-[95px] rounded-lg bg-neutral-black-black-500 shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-start justify-start py-3 px-4 gap-[4px]">
-                <div className="flex flex-row items-center justify-start gap-[6px]">
-                  <div className="relative tracking-[0.01em] leading-[18px] text-neutral-black-black-100 inline-block w-[42px] shrink-0">
-                    Cust
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px]">
-                    :
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    1,240
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-start gap-[6px]">
-                  <div className="relative tracking-[0.01em] leading-[18px] text-neutral-black-black-100 inline-block w-[42px] shrink-0">
-                    Growth
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px]">
-                    :
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    30%
-                  </div>
-                </div>
-              </div>
-              <div className="absolute bottom-[8px] left-[8px] flex flex-row items-start justify-start gap-[8px]">
-                <div className="rounded-lg bg-neutral-gray-gray-100 overflow-hidden flex flex-row items-center justify-center p-1.5">
-                  <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/fisrzoomin.svg"
-                    />
-                  </div>
-                </div>
-                <div className="rounded-lg bg-neutral-gray-gray-100 overflow-hidden flex flex-row items-center justify-center p-1.5">
-                  <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/fisrzoomout.svg"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex-1 w-[312px] overflow-hidden flex flex-col items-start justify-start gap-[18px] z-[2] text-sm">
-              <div className="w-[312px] flex flex-row items-center justify-center gap-[12px]">
-                <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-10 h-10" />
-                <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                  <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                    USA
-                  </div>
-                  <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                    1,240 Customers
-                  </div>
-                </div>
-                <div className="w-[100px] flex flex-row items-center justify-start gap-[8px] text-center text-xs text-neutral-gray-gray-400">
-                  <div className="flex-1 relative rounded-81xl bg-neutral-gray-gray-100 h-2 overflow-hidden">
-                    <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] rounded-3xs bg-secondary-green-green-500 w-[54px]" />
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    80%
-                  </div>
-                </div>
-              </div>
-              <div className="w-[312px] flex flex-row items-center justify-center gap-[12px]">
-                <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-10 h-10" />
-                <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                  <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                    Japan
-                  </div>
-                  <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                    1,240 Customers
-                  </div>
-                </div>
-                <div className="w-[100px] flex flex-row items-center justify-start gap-[8px] text-center text-xs text-neutral-gray-gray-400">
-                  <div className="flex-1 relative rounded-81xl bg-neutral-gray-gray-100 h-2 overflow-hidden">
-                    <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] rounded-3xs bg-secondary-orange-orange-500 w-[45px]" />
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    60%
-                  </div>
-                </div>
-              </div>
-              <div className="w-[312px] flex flex-row items-center justify-center gap-[12px]">
-                <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-10 h-10" />
-                <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                  <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                    France
-                  </div>
-                  <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                    1,240 Customers
-                  </div>
-                </div>
-                <div className="w-[100px] flex flex-row items-center justify-start gap-[8px] text-center text-xs text-neutral-gray-gray-400">
-                  <div className="flex-1 relative rounded-81xl bg-neutral-gray-gray-100 h-2 overflow-hidden">
-                    <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] rounded-3xs bg-secondary-yellow-yellow-500 w-9" />
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    49%
-                  </div>
-                </div>
-              </div>
-              <div className="w-[312px] flex flex-row items-center justify-center gap-[12px]">
-                <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-10 h-10" />
-                <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                  <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                    Germany
-                  </div>
-                  <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                    1,240 Customers
-                  </div>
-                </div>
-                <div className="w-[100px] flex flex-row items-center justify-start gap-[8px] text-center text-xs text-neutral-gray-gray-400">
-                  <div className="flex-1 relative rounded-81xl bg-neutral-gray-gray-100 h-2 overflow-hidden">
-                    <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] rounded-3xs bg-primary-primary-500 w-[65px]" />
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    100%
-                  </div>
-                </div>
-              </div>
-              <div className="w-[312px] flex flex-row items-center justify-center gap-[12px]">
-                <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-10 h-10" />
-                <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                  <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                    South Korea
-                  </div>
-                  <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-black-black-400">
-                    1,240
-                  </div>
-                </div>
-                <div className="w-[100px] flex flex-row items-center justify-start gap-[8px] text-center text-xs text-neutral-gray-gray-400">
-                  <div className="flex-1 relative rounded-81xl bg-neutral-gray-gray-100 h-2.5 overflow-hidden">
-                    <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] rounded-3xs bg-secondary-red-red-500 w-[13px]" />
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    50%
-                  </div>
-                </div>
-              </div>
-              <div className="w-[312px] flex flex-row items-center justify-center gap-[12px]">
-                <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-10 h-10" />
-                <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                  <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                    China
-                  </div>
-                  <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                    1,240 Customers
-                  </div>
-                </div>
-                <div className="w-[100px] flex flex-row items-center justify-start gap-[8px] text-center text-xs text-neutral-gray-gray-400">
-                  <div className="flex-1 relative rounded-81xl bg-neutral-gray-gray-100 h-2 overflow-hidden">
-                    <div className="absolute h-full top-[0px] bottom-[0px] left-[0px] rounded-3xs bg-secondary-red-red-500 w-[17px]" />
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    20%
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="my-0 mx-[!important] absolute h-[calc(100%_-_324px)] top-[300px] right-[0px] bottom-[24px] bg-neutral-gray-gray-50 overflow-hidden flex flex-col items-start justify-start z-[3]">
-              <div className="relative bg-primary-primary-500 w-1 h-[156px]" />
             </div>
           </div>
         </div>

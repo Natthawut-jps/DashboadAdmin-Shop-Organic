@@ -11,7 +11,7 @@ const Product: FunctionComponent = () => {
               <img
                 className="relative w-[18.02px] h-[18.02px]"
                 alt=""
-                src="/firrsearch.svg"
+                src="/img/firrsearch.svg"
               />
             </div>
             <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -25,7 +25,7 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrcalendar.svg"
+                    src="/img/fisrcalendar.svg"
                   />
                 </div>
               </div>
@@ -34,7 +34,7 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
                     alt=""
-                    src="/fisrbell.svg"
+                    src="/img/fisrbell.svg"
                   />
                   <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
                     <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
@@ -48,7 +48,7 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
                     alt=""
-                    src="/fisrenvelope.svg"
+                    src="/img/fisrenvelope.svg"
                   />
                   <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
                     <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
@@ -61,7 +61,7 @@ const Product: FunctionComponent = () => {
                 <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-7 h-7" />
               </div>
             </div>
-            <img className="relative w-px h-10" alt="" src="/divider.svg" />
+            <img className="relative w-px h-10" alt="" src="/img/divider.svg" />
             <div className="self-stretch flex flex-row items-center justify-start gap-[12px] text-sm text-neutral-black-black-500 font-text-m-semibold">
               <div className="flex flex-col items-end justify-start relative">
                 <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-8 h-8 z-[0]" />
@@ -79,7 +79,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcaretdown1.svg"
+                  src="/img/fisrcaretdown1.svg"
                 />
               </div>
             </div>
@@ -97,7 +97,7 @@ const Product: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrcaretright.svg"
+                src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
                 Product List
@@ -110,7 +110,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrdownload.svg"
+                  src="/img/fisrdownload.svg"
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
@@ -122,7 +122,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/firrplus.svg"
+                  src="/img/firrplus.svg"
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
@@ -160,7 +160,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/firrsearch1.svg"
+                  src="/img/firrsearch1.svg"
                 />
               </div>
               <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
@@ -174,7 +174,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcalendar1.svg"
+                  src="/img/fisrcalendar1.svg"
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px]">
@@ -186,7 +186,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrsettingssliders.svg"
+                  src="/img/fisrsettingssliders.svg"
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -204,7 +204,7 @@ const Product: FunctionComponent = () => {
                   <img
                     className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] max-w-full overflow-hidden max-h-full"
                     alt=""
-                    src="/minus.svg"
+                    src="/img/minus.svg"
                   />
                 </div>
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
@@ -213,7 +213,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcaretdown2.svg"
+                  src="/img/fisrcaretdown2.svg"
                 />
               </div>
               <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -222,7 +222,7 @@ const Product: FunctionComponent = () => {
                   <img
                     className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] max-w-full overflow-hidden max-h-full"
                     alt=""
-                    src="/check.svg"
+                    src="/img/check.svg"
                   />
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[8px]">
@@ -243,7 +243,7 @@ const Product: FunctionComponent = () => {
                   <img
                     className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] max-w-full overflow-hidden max-h-full"
                     alt=""
-                    src="/check.svg"
+                    src="/img/check.svg"
                   />
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[8px]">
@@ -567,7 +567,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcaretdown3.svg"
+                  src="/img/fisrcaretdown3.svg"
                 />
               </div>
               <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -649,7 +649,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcaretdown2.svg"
+                  src="/img/fisrcaretdown2.svg"
                 />
               </div>
               <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -731,7 +731,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcaretdown4.svg"
+                  src="/img/fisrcaretdown4.svg"
                 />
               </div>
               <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-left text-secondary-orange-orange-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -833,7 +833,7 @@ const Product: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcaretdown4.svg"
+                  src="/img/fisrcaretdown4.svg"
                 />
               </div>
               <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -938,17 +938,17 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrpencil.svg"
+                    src="/img/fisrpencil.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisreye.svg"
+                    src="/img/fisreye.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrtrash.svg"
+                    src="/img/fisrtrash.svg"
                   />
                 </div>
               </div>
@@ -957,36 +957,17 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrpencil1.svg"
+                    src="/img/fisrpencil1.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisreye1.svg"
+                    src="/img/fisreye1.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrtrash.svg"
-                  />
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisrpencil1.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisreye1.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisrtrash.svg"
+                    src="/img/fisrtrash.svg"
                   />
                 </div>
               </div>
@@ -995,36 +976,17 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrpencil2.svg"
+                    src="/img/fisrpencil1.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisreye1.svg"
+                    src="/img/fisreye1.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrtrash.svg"
-                  />
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisrpencil2.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisreye1.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisrtrash.svg"
+                    src="/img/fisrtrash.svg"
                   />
                 </div>
               </div>
@@ -1033,36 +995,17 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrpencil2.svg"
+                    src="/img/fisrpencil2.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisreye1.svg"
+                    src="/img/fisreye1.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrtrash.svg"
-                  />
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisrpencil3.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisreye2.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisrtrash.svg"
+                    src="/img/fisrtrash.svg"
                   />
                 </div>
               </div>
@@ -1071,36 +1014,17 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrpencil3.svg"
+                    src="/img/fisrpencil2.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisreye2.svg"
+                    src="/img/fisreye1.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrtrash.svg"
-                  />
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisrpencil3.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisreye2.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/fisrtrash.svg"
+                    src="/img/fisrtrash.svg"
                   />
                 </div>
               </div>
@@ -1109,17 +1033,93 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrpencil3.svg"
+                    src="/img/fisrpencil2.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisreye2.svg"
+                    src="/img/fisreye1.svg"
                   />
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrtrash.svg"
+                    src="/img/fisrtrash.svg"
+                  />
+                </div>
+              </div>
+              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+                <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisrpencil3.svg"
+                  />
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisreye2.svg"
+                  />
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisrtrash.svg"
+                  />
+                </div>
+              </div>
+              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+                <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisrpencil3.svg"
+                  />
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisreye2.svg"
+                  />
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisrtrash.svg"
+                  />
+                </div>
+              </div>
+              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+                <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisrpencil3.svg"
+                  />
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisreye2.svg"
+                  />
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisrtrash.svg"
+                  />
+                </div>
+              </div>
+              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+                <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisrpencil3.svg"
+                  />
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisreye2.svg"
+                  />
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisrtrash.svg"
                   />
                 </div>
               </div>
@@ -1135,7 +1135,7 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/firrcaretleft.svg"
+                    src="/img/firrcaretleft.svg"
                   />
                 </div>
               </div>
@@ -1174,7 +1174,7 @@ const Product: FunctionComponent = () => {
                   <img
                     className="relative w-4 h-4 overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrcaretright1.svg"
+                    src="/img/fisrcaretright1.svg"
                   />
                 </div>
               </div>

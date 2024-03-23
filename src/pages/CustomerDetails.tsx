@@ -10,7 +10,7 @@ const CustomerDetails: FunctionComponent = () => {
               <img
                 className="relative w-[18.02px] h-[18.02px]"
                 alt=""
-                src="/firrsearch.svg"
+                src="/img/firrsearch.svg"
               />
             </div>
             <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -24,7 +24,7 @@ const CustomerDetails: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrcalendar.svg"
+                    src="/img/fisrcalendar.svg"
                   />
                 </div>
               </div>
@@ -33,7 +33,7 @@ const CustomerDetails: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
                     alt=""
-                    src="/fisrbell.svg"
+                    src="/img/fisrbell.svg"
                   />
                   <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
                     <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
@@ -47,7 +47,7 @@ const CustomerDetails: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
                     alt=""
-                    src="/fisrenvelope.svg"
+                    src="/img/fisrenvelope.svg"
                   />
                   <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
                     <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
@@ -60,7 +60,7 @@ const CustomerDetails: FunctionComponent = () => {
                 <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-7 h-7" />
               </div>
             </div>
-            <img className="relative w-px h-10" alt="" src="/divider.svg" />
+            <img className="relative w-px h-10" alt="" src="/img/divider.svg" />
             <div className="self-stretch flex flex-row items-center justify-start gap-[12px] text-sm text-neutral-black-black-500 font-text-m-semibold">
               <div className="flex flex-col items-end justify-start relative">
                 <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-8 h-8 z-[0]" />
@@ -78,7 +78,7 @@ const CustomerDetails: FunctionComponent = () => {
                 <img
                   className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcaretdown1.svg"
+                  src="/img/fisrcaretdown1.svg"
                 />
               </div>
             </div>
@@ -96,7 +96,7 @@ const CustomerDetails: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrcaretright.svg"
+                src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                 Customer List
@@ -104,7 +104,7 @@ const CustomerDetails: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrcaretright.svg"
+                src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
                 Customer Details
@@ -133,12 +133,12 @@ const CustomerDetails: FunctionComponent = () => {
               <img
                 className="self-stretch relative max-w-full overflow-hidden h-px shrink-0 z-[2]"
                 alt=""
-                src="/divider1.svg"
+                src="/img/divider1.svg"
               />
               <img
                 className="absolute my-0 mx-[!important] top-[8px] left-[8px] rounded w-[344px] h-[148px] object-cover z-[1]"
                 alt=""
-                src="/background@2x.png"
+                src="/img/background@2x.png"
               />
               <div className="flex flex-col items-start justify-start gap-[18px] z-[0] text-left text-sm text-neutral-gray-gray-500">
                 <div className="w-[312px] flex flex-row items-start justify-start gap-[8px]">
@@ -146,7 +146,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisridbadge.svg"
+                      src="/img/fisridbadge.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
@@ -163,7 +163,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrenvelope1.svg"
+                      src="/img/fisrenvelope1.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
@@ -180,7 +180,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrmarker.svg"
+                      src="/img/fisrmarker.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
@@ -197,7 +197,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrsmartphone.svg"
+                      src="/img/fisrsmartphone.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
@@ -214,7 +214,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrshoppingcartcheck.svg"
+                      src="/img/fisrshoppingcartcheck.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
@@ -231,7 +231,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrtimecheck.svg"
+                      src="/img/fisrtimecheck.svg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
@@ -262,7 +262,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrshoppingcartcheck1.svg"
+                      src="/img/fisrshoppingcartcheck1.svg"
                     />
                   </div>
                 </div>
@@ -274,7 +274,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/firrcaretup.svg"
+                      src="/img/firrcaretup.svg"
                     />
                   </div>
                   <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-400">
@@ -296,7 +296,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrmoney.svg"
+                      src="/img/fisrmoney.svg"
                     />
                   </div>
                 </div>
@@ -308,7 +308,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/firrcaretup1.svg"
+                      src="/img/firrcaretup1.svg"
                     />
                   </div>
                   <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-400">
@@ -330,7 +330,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrtrophy.svg"
+                      src="/img/fisrtrophy.svg"
                     />
                   </div>
                 </div>
@@ -342,7 +342,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/firrcaretup2.svg"
+                      src="/img/firrcaretup2.svg"
                     />
                   </div>
                   <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-400">
@@ -363,7 +363,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrcalendar1.svg"
+                      src="/img/fisrcalendar1.svg"
                     />
                   </div>
                   <div className="relative tracking-[0.01em] leading-[20px]">
@@ -375,7 +375,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrsettingssliders.svg"
+                      src="/img/fisrsettingssliders.svg"
                     />
                   </div>
                   <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -500,7 +500,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrcaretdown2.svg"
+                      src="/img/fisrcaretdown2.svg"
                     />
                   </div>
                   <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -547,7 +547,7 @@ const CustomerDetails: FunctionComponent = () => {
                     <img
                       className="relative w-4 h-4 overflow-hidden shrink-0"
                       alt=""
-                      src="/fisrcaretdown2.svg"
+                      src="/img/fisrcaretdown2.svg"
                     />
                   </div>
                   <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -649,7 +649,7 @@ const CustomerDetails: FunctionComponent = () => {
                       <img
                         className="relative w-4 h-4 overflow-hidden shrink-0"
                         alt=""
-                        src="/firrcaretleft.svg"
+                        src="/img/firrcaretleft.svg"
                       />
                     </div>
                   </div>
@@ -678,7 +678,7 @@ const CustomerDetails: FunctionComponent = () => {
                       <img
                         className="relative w-4 h-4 overflow-hidden shrink-0"
                         alt=""
-                        src="/fisrcaretright1.svg"
+                        src="/img/fisrcaretright1.svg"
                       />
                     </div>
                   </div>

@@ -10,7 +10,7 @@ export const Sidebar:FunctionComponent = () => {
                     <img
                         className="relative w-[205px] h-[58px] overflow-hidden shrink-0"
                         alt=""
-                        src="/logo-1.svg"
+                        src="/img/Logo.png"
                     />
                 </div>
                 <div className="self-stretch flex-1 flex flex-col items-start justify-start py-4 px-0 gap-[8px]">
@@ -19,7 +19,7 @@ export const Sidebar:FunctionComponent = () => {
                             <img
                                 className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                                 alt=""
-                                src="/fisrapps.svg"
+                                src="/img/fisrapps.svg"
                             />
                         </div>
                         <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
@@ -63,7 +63,7 @@ export const Sidebar:FunctionComponent = () => {
                                     <img
                                         className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                                         alt=""
-                                        src="/fisrcaretdown.svg"
+                                        src="/img/fisrcaretdown.svg"
                                     />
                                 </div>
                             }
@@ -73,7 +73,7 @@ export const Sidebar:FunctionComponent = () => {
                                     <img
                                         className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                                         alt=""
-                                        src="/fisrshoppingcart.svg"
+                                        src="/img/fisrshoppingcart.svg"
                                     />
                                 </div>
                                 <b className="flex-1 relative tracking-[0.01em] leading-[20px]">
@@ -130,62 +130,19 @@ export const Sidebar:FunctionComponent = () => {
                             <img
                                 className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                                 alt=""
-                                src="/fisrfilecheck.svg"
-                            />
-                        </div>
-                        <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-                            Project
-                        </div>
-                    </div>
-                    <div className="self-stretch rounded-lg h-12 flex flex-row items-center justify-start py-3 px-6 box-border gap-[8px]">
-                        <div className="w-6 h-6 flex flex-row items-center justify-center">
-                            <img
-                                className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                                alt=""
-                                src="/fisrcommentuser.svg"
+                                src="/img/fisrcommentuser.svg"
                             />
                         </div>
                         <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
                             Contact
                         </div>
-                        <div className="w-6 h-6 flex flex-row items-center justify-center">
-                            <img
-                                className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                                alt=""
-                                src="/fisrcaretdown.svg"
-                            />
-                        </div>
                     </div>
                     <div className="self-stretch rounded-lg h-12 flex flex-row items-center justify-start py-3 px-6 box-border gap-[8px]">
                         <div className="w-6 h-6 flex flex-row items-center justify-center">
                             <img
                                 className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                                 alt=""
-                                src="/fisrfolder.svg"
-                            />
-                        </div>
-                        <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-                            File Manager
-                        </div>
-                    </div>
-                    <div className="self-stretch rounded-lg h-12 flex flex-row items-center justify-start py-3 px-6 box-border gap-[8px]">
-                        <div className="w-6 h-6 flex flex-row items-center justify-center">
-                            <img
-                                className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                                alt=""
-                                src="/fisrcommentalt.svg"
-                            />
-                        </div>
-                        <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-                            Chat
-                        </div>
-                    </div>
-                    <div className="self-stretch rounded-lg h-12 flex flex-row items-center justify-start py-3 px-6 box-border gap-[8px]">
-                        <div className="w-6 h-6 flex flex-row items-center justify-center">
-                            <img
-                                className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                                alt=""
-                                src="/fisrcalendar.svg"
+                                src="/img/fisrcalendar.svg"
                             />
                         </div>
                         <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">

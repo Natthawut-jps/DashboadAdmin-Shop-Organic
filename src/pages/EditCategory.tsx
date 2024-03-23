@@ -10,7 +10,7 @@ const EditCategory: FunctionComponent = () => {
               <img
                 className="relative w-[18.02px] h-[18.02px]"
                 alt=""
-                src="/firrsearch.svg"
+                src="/img/firrsearch.svg"
               />
             </div>
             <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -24,7 +24,7 @@ const EditCategory: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                     alt=""
-                    src="/fisrcalendar1.svg"
+                    src="/img/fisrcalendar1.svg"
                   />
                 </div>
               </div>
@@ -33,7 +33,7 @@ const EditCategory: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
                     alt=""
-                    src="/fisrbell.svg"
+                    src="/img/fisrbell.svg"
                   />
                   <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
                     <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
@@ -47,7 +47,7 @@ const EditCategory: FunctionComponent = () => {
                   <img
                     className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
                     alt=""
-                    src="/fisrenvelope.svg"
+                    src="/img/fisrenvelope.svg"
                   />
                   <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
                     <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
@@ -60,7 +60,7 @@ const EditCategory: FunctionComponent = () => {
                 <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-7 h-7" />
               </div>
             </div>
-            <img className="relative w-px h-10" alt="" src="/divider.svg" />
+            <img className="relative w-px h-10" alt="" src="/img/divider.svg" />
             <div className="self-stretch flex flex-row items-center justify-start gap-[12px] text-sm text-neutral-black-black-500 font-text-m-regular">
               <div className="flex flex-col items-end justify-start relative">
                 <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-8 h-8 z-[0]" />
@@ -78,7 +78,7 @@ const EditCategory: FunctionComponent = () => {
                 <img
                   className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcaretdown1.svg"
+                  src="/img/fisrcaretdown1.svg"
                 />
               </div>
             </div>
@@ -96,7 +96,7 @@ const EditCategory: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrcaretright.svg"
+                src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                 Categories
@@ -104,7 +104,7 @@ const EditCategory: FunctionComponent = () => {
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
                 alt=""
-                src="/fisrcaretright.svg"
+                src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
                 Edit Category
@@ -117,7 +117,7 @@ const EditCategory: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrcross.svg"
+                  src="/img/fisrcross.svg"
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
@@ -129,7 +129,7 @@ const EditCategory: FunctionComponent = () => {
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
                   alt=""
-                  src="/fisrdisk.svg"
+                  src="/img/fisrdisk.svg"
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
@@ -157,7 +157,7 @@ const EditCategory: FunctionComponent = () => {
                       <img
                         className="relative w-2.5 h-2.5 overflow-hidden shrink-0"
                         alt=""
-                        src="/firrcheck.svg"
+                        src="/img/firrcheck.svg"
                       />
                     </div>
                   </div>

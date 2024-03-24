@@ -143,8 +143,7 @@ const AddCategory: FunctionComponent = () => {
               </div>
             </div>
           </div>
-          <div className=" text-secondary-red-red-500 text-[16px]">{err}</div>
-          <div className=" relative top-[450px] right-[50px] flex flex-row items-start justify-start gap-[16px] text-sm text-neutral-gray-gray-400">
+          <div className=" relative top-[0px] right-[50px] flex flex-row items-start justify-start gap-[16px] text-sm text-neutral-gray-gray-400">
             <a
               href="/Dashboad/Categories"
               className=" no-underline rounded-lg overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] border-[1px] border-solid border-neutral-gray-gray-400"
@@ -227,7 +226,7 @@ const AddCategory: FunctionComponent = () => {
                       type="file"
                       name="category_image"
                       accept="image/png, image/jpg, image/jpeg"
-                      className="cursor-pointer file:hidden absolute w-full pt-[35px] file:border-none file:m-0 file:p-0 file:bg-transparent file:text-transparent  "
+                      className="cursor-pointer file:hidden absolute w-full pt-[35px] file:border-none file:m-0 file:p-0 file:bg-transparent file:text-transparent"
                       required
                     />
                     <span className="">Add Image</span>
@@ -244,7 +243,7 @@ const AddCategory: FunctionComponent = () => {
               <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                 <div className="self-stretch flex flex-row items-start justify-start">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Category Name
+                    Category Name <span className=" text-secondary-red-red-500 relative left-[30px]">{err}</span>
                   </div>
                 </div>
                 <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
@@ -261,7 +260,7 @@ const AddCategory: FunctionComponent = () => {
                         type="text"
                         name="category_name"
                         placeholder="Type category name here. . ."
-                        className=" focus:outline-none w-[865px] h-[34px] text-[16px]"
+                        className=" focus:outline-none w-[865px] h-[34px] bg-transparent"
                         required
                       />
                     </div>
@@ -286,7 +285,7 @@ const AddCategory: FunctionComponent = () => {
                           })
                         }
                         name="description"
-                        className=" w-[865px] h-[130px] resize-none focus:outline-none"
+                        className=" w-[865px] h-[130px] resize-none focus:outline-none bg-transparent"
                         placeholder="Type category description here. . ."
                       ></textarea>
                     </div>

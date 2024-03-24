@@ -1,20 +1,58 @@
-import { FormEvent, FunctionComponent, useEffect, useState } from "react";
+import React, {
+  FormEvent,
+  FunctionComponent,
+  useEffect,
+  useState,
+} from "react";
 import { Sidebar } from "./utities/Sidebar";
 import instance_auth from "./utities/instance_auth";
 
 const AddProduct: FunctionComponent = () => {
-  const [preview_image, setPreview_Image] = useState<File | null>();
+  interface product_Type {
+    name: string;
+    price: number;
+    categories: string;
+    product_image: File;
+    description: string;
+    quantity: number;
+    status: number;
+  }
+  const [product, setProduct] = useState<product_Type>({} as product_Type);
+  const [error_product, setErrorProduct] = useState<string | null>(null);
+  // add products
   const handleSubmitAddProduct = async (e: FormEvent) => {
     e.preventDefault();
-    const data: HTMLFormElement = document.querySelector("#product")!;
-    const form = new FormData(data);
-    for (const item of form.entries()) {
-      console.log(item);
+    const keys = Object.keys(product);
+    const values = Object(product);
+    const form = new FormData();
+    const result = keys.map((item) => {
+      form.append(item, values[item]);
+    });
+    for (let p of form) {
+      console.log(p);
+    }
+    if (result) {
+      await instance_auth({
+        method: "post",
+        url: "/products/add",
+        responseType: "json",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        data: form,
+      }).then((res) => {
+        if (res.status === 200) {
+          location.href = "/Dashboad/Product";
+        } else {
+          setErrorProduct(res.data);
+        }
+      });
     }
   };
+  // categories
   interface categories_Type {
     id: number;
-    category_name	: string;
+    category_name: string;
     description: string;
     imgURL: string;
   }
@@ -28,13 +66,13 @@ const AddProduct: FunctionComponent = () => {
       }).then((res) => {
         if (res.status === 200) {
           setCategories(res.data);
-          console.log(res.data);
         }
       });
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     get_category();
   }, []);
@@ -191,13 +229,18 @@ const AddProduct: FunctionComponent = () => {
                 <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Product Name
+                      Product Name <span className=" text-secondary-red-red-500">{error_product}</span>
                     </div>
                   </div>
                   <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
                     <div className="flex-1 h-6 flex flex-row items-center justify-start">
                       <div className="relative tracking-[0.01em] leading-[20px]">
                         <input
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            setProduct({ ...product, name: e.target.value });
+                          }}
                           form="product"
                           name="name"
                           type="text"
@@ -219,6 +262,14 @@ const AddProduct: FunctionComponent = () => {
                     <div className="flex-1 h-[140px] overflow-hidden flex flex-row items-start justify-start">
                       <div className="flex-1 relative tracking-[0.01em] leading-[20px]">
                         <textarea
+                          onChange={(
+                            e: React.ChangeEvent<HTMLTextAreaElement>
+                          ) => {
+                            setProduct({
+                              ...product,
+                              description: e.target.value,
+                            });
+                          }}
                           name="description"
                           form="product"
                           placeholder="Type product description here. . ."
@@ -241,7 +292,7 @@ const AddProduct: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-col items-center justify-center py-6 px-3 gap-[16px] text-neutral-gray-gray-400 border-[1px] border-dashed border-neutral-gray-gray-100">
-                  {preview_image ? (
+                  {product.product_image ? (
                     <div className="rounded-lg w-full h-full overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
                       <img
                         className="relative overflow-hidden shrink-0"
@@ -249,8 +300,8 @@ const AddProduct: FunctionComponent = () => {
                         width={300}
                         height={300}
                         src={
-                          preview_image &&
-                          URL.createObjectURL(new Blob([preview_image]))
+                          product.product_image &&
+                          URL.createObjectURL(new Blob([product.product_image]))
                         }
                       />
                     </div>
@@ -263,7 +314,7 @@ const AddProduct: FunctionComponent = () => {
                       />
                     </div>
                   )}
-                  {preview_image ? null : (
+                  {product.product_image ? null : (
                     <div className="relative tracking-[0.01em] leading-[20px]">
                       Drag and drop image here, or click add image size 600x600
                     </div>
@@ -275,11 +326,11 @@ const AddProduct: FunctionComponent = () => {
                           if (!e.target.files?.item(0)) return;
                           const file: File | null = e.target.files.item(0);
                           if (file) {
-                            setPreview_Image(file);
+                            setProduct({ ...product, product_image: file });
                           }
                         }}
                         type="file"
-                        name="file"
+                        name="product_image"
                         form="product"
                         accept="image/png, image/jpg, image/jpeg"
                         className="cursor-pointer file:hidden absolute w-full pt-[35px] file:border-none file:m-0 file:p-0 file:bg-transparent file:text-transparent  "
@@ -309,6 +360,14 @@ const AddProduct: FunctionComponent = () => {
                     <div className="flex-1 h-6 flex flex-row items-center justify-start">
                       <div className="relative tracking-[0.01em] leading-[20px]">
                         <input
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            setProduct({
+                              ...product,
+                              price: e.target.valueAsNumber,
+                            });
+                          }}
                           type="number"
                           name="price"
                           form="product"
@@ -337,6 +396,14 @@ const AddProduct: FunctionComponent = () => {
                     <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
                       <div className="relative tracking-[0.01em] leading-[20px]">
                         <input
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            setProduct({
+                              ...product,
+                              quantity: e.target.valueAsNumber,
+                            });
+                          }}
                           type="number"
                           name="quatity"
                           form="product"
@@ -366,6 +433,12 @@ const AddProduct: FunctionComponent = () => {
                   <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px]">
                       <select
+                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                          setProduct({
+                            ...product,
+                            categories: e.target.value,
+                          });
+                        }}
                         name="categories"
                         form="product"
                         className=" w-[200px] h-[30px] rounded-sm focus:outline-none cursor-pointer rounded-b-sm"
@@ -375,7 +448,9 @@ const AddProduct: FunctionComponent = () => {
                           Select a category
                         </option>
                         {categories.map((item, index) => (
-                          <option key={index} value={item.category_name}>{item.category_name}</option>
+                          <option key={index} value={item.category_name}>
+                            {item.category_name}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -403,6 +478,12 @@ const AddProduct: FunctionComponent = () => {
                 <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
                     <select
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                        setProduct({
+                          ...product,
+                          status: parseInt(e.target.value),
+                        });
+                      }}
                       form="product"
                       name="status"
                       className=" w-[200px] h-[30px] rounded-sm focus:outline-none cursor-pointer rounded-b-sm"

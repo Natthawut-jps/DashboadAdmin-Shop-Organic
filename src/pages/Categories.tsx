@@ -2,6 +2,7 @@ import { FunctionComponent, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { Sidebar } from "./utities/Sidebar";
 import instance_auth from "./utities/instance_auth";
+import Header from "./utities/Header";
 
 const Categories: FunctionComponent = () => {
   const get_category = async () => {
@@ -26,86 +27,7 @@ const Categories: FunctionComponent = () => {
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-semibold">
       <Sidebar />
       <div className="self-stretch flex-1 flex flex-col items-start justify-start py-8 px-6 gap-[24px] text-neutral-gray-gray-400">
-        <div className="self-stretch flex flex-row items-center justify-start gap-[32px] z-[2]">
-          <div className="flex-1 rounded-lg overflow-hidden flex flex-row items-center justify-start py-2 pr-3 pl-2 gap-[8px]">
-            <div className="w-6 h-6 flex flex-row items-center justify-center">
-              <img
-                className="relative w-[18.02px] h-[18.02px]"
-                alt=""
-                src="/img/firrsearch.svg"
-              />
-            </div>
-            <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-              Search
-            </div>
-          </div>
-          <div className="flex flex-row items-center justify-start gap-[16px] text-3xs text-neutral-white font-inter">
-            <div className="flex flex-row items-center justify-start gap-[16px]">
-              <div className="self-stretch rounded-lg flex flex-row items-center justify-start p-2">
-                <div className="w-6 h-6 flex flex-row items-center justify-center">
-                  <img
-                    className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrcalendar.svg"
-                  />
-                </div>
-              </div>
-              <div className="self-stretch rounded-lg flex flex-row items-center justify-start p-2">
-                <div className="w-6 h-6 flex flex-row items-center justify-center relative gap-[8px]">
-                  <img
-                    className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
-                    alt=""
-                    src="/img/fisrbell.svg"
-                  />
-                  <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
-                    <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
-                      2
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch rounded-lg flex flex-row items-center justify-start p-2">
-                <div className="w-6 h-6 flex flex-row items-center justify-center relative gap-[8px]">
-                  <img
-                    className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
-                    alt=""
-                    src="/img/fisrenvelope.svg"
-                  />
-                  <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
-                    <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
-                      2
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-lg w-10 h-10 flex flex-row items-center justify-center p-2 box-border">
-                <div className="relative rounded-81xl bg-gainsboro w-7 h-7" />
-              </div>
-            </div>
-            <img className="relative w-px h-10" alt="" src="/img/divider.svg" />
-            <div className="self-stretch flex flex-row items-center justify-start gap-[12px] text-sm text-neutral-black-black-500 font-text-m-semibold">
-              <div className="flex flex-col items-end justify-start relative">
-                <div className="relative rounded-81xl bg-gainsboro w-8 h-8 z-[0]" />
-                <div className="absolute my-0 mx-[!important] right-[-2px] bottom-[-2px] rounded-[50%] bg-secondary-green-green-500 box-border w-3.5 h-3.5 z-[1] border-[2px] border-solid border-neutral-white" />
-              </div>
-              <div className="flex flex-col items-start justify-center gap-[2px]">
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  Jay Hargudson
-                </div>
-                <div className="relative text-xs tracking-[0.01em] leading-[18px] font-medium text-neutral-black-black-400">
-                  Manager
-                </div>
-              </div>
-              <div className="w-6 h-6 flex flex-row items-center justify-center">
-                <img
-                  className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                  alt=""
-                  src="/img/fisrcaretdown1.svg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        <Header/>
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[1] text-5xl text-neutral-black-black-500">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <h2 className="m-0 self-stretch relative text-inherit tracking-[0.01em] leading-[32px] font-semibold font-inherit">

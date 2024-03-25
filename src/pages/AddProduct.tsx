@@ -6,6 +6,14 @@ import React, {
 } from "react";
 import { Sidebar } from "./utities/Sidebar";
 import instance_auth from "./utities/instance_auth";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import Header from "./utities/Header";
 
 const AddProduct: FunctionComponent = () => {
   interface product_Type {
@@ -19,34 +27,39 @@ const AddProduct: FunctionComponent = () => {
   }
   const [product, setProduct] = useState<product_Type>({} as product_Type);
   const [error_product, setErrorProduct] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   // add products
   const handleSubmitAddProduct = async (e: FormEvent) => {
     e.preventDefault();
-    const keys = Object.keys(product);
-    const values = Object(product);
-    const form = new FormData();
-    const result = keys.map((item) => {
-      form.append(item, values[item]);
-    });
-    for (let p of form) {
-      console.log(p);
-    }
-    if (result) {
-      await instance_auth({
-        method: "post",
-        url: "/products/add",
-        responseType: "json",
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        data: form,
-      }).then((res) => {
-        if (res.status === 200) {
-          location.href = "/Dashboad/Product";
-        } else {
-          setErrorProduct(res.data);
-        }
+    if (product.categories && product.status) {
+      const keys = Object.keys(product);
+      const values = Object(product);
+      const form = new FormData();
+      const result = keys.map((item) => {
+        form.append(item, values[item]);
       });
+      for (let p of form) {
+        console.log(p);
+      }
+      if (result) {
+        await instance_auth({
+          method: "post",
+          url: "/products/add",
+          responseType: "json",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          data: form,
+        }).then((res) => {
+          if (res.status === 200) {
+            location.href = "/Dashboad/Product";
+          } else {
+            setErrorProduct(res.data);
+          }
+        });
+      }
+    } else {
+     setError('"Categories" and "Status" required')
     }
   };
   // categories
@@ -80,86 +93,7 @@ const AddProduct: FunctionComponent = () => {
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-medium">
       <Sidebar />
       <div className="self-stretch flex-1 flex flex-col items-start justify-start py-8 px-6 gap-[24px] text-neutral-black-black-500">
-        <div className="self-stretch flex flex-row items-center justify-start gap-[32px] z-[2] text-neutral-gray-gray-400">
-          <div className="flex-1 rounded-lg overflow-hidden flex flex-row items-center justify-start py-2 pr-3 pl-2 gap-[8px]">
-            <div className="w-6 h-6 flex flex-row items-center justify-center">
-              <img
-                className="relative w-[18.02px] h-[18.02px]"
-                alt=""
-                src="/img/firrsearch.svg"
-              />
-            </div>
-            <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-              Search
-            </div>
-          </div>
-          <div className="flex flex-row items-center justify-start gap-[16px] text-3xs text-neutral-white font-inter">
-            <div className="flex flex-row items-center justify-start gap-[16px]">
-              <div className="self-stretch rounded-lg flex flex-row items-center justify-start p-2">
-                <div className="w-6 h-6 flex flex-row items-center justify-center">
-                  <img
-                    className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrcalendar.svg"
-                  />
-                </div>
-              </div>
-              <div className="self-stretch rounded-lg flex flex-row items-center justify-start p-2">
-                <div className="w-6 h-6 flex flex-row items-center justify-center relative gap-[8px]">
-                  <img
-                    className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
-                    alt=""
-                    src="/img/fisrbell.svg"
-                  />
-                  <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
-                    <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
-                      2
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch rounded-lg flex flex-row items-center justify-start p-2">
-                <div className="w-6 h-6 flex flex-row items-center justify-center relative gap-[8px]">
-                  <img
-                    className="relative w-[18px] h-[18px] overflow-hidden shrink-0 z-[0]"
-                    alt=""
-                    src="/img/fisrenvelope.svg"
-                  />
-                  <div className="my-0 mx-[!important] absolute top-[-8px] left-[13px] rounded bg-secondary-cyan-cyan-500 flex flex-col items-center justify-center py-0.5 px-1.5 z-[1]">
-                    <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
-                      2
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-lg w-10 h-10 flex flex-row items-center justify-center p-2 box-border">
-                <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-7 h-7" />
-              </div>
-            </div>
-            <img className="relative w-px h-10" alt="" src="/img/divider.svg" />
-            <div className="self-stretch flex flex-row items-center justify-start gap-[12px] text-sm text-neutral-black-black-500 font-text-m-medium">
-              <div className="flex flex-col items-end justify-start relative">
-                <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-8 h-8 z-[0]" />
-                <div className="absolute my-0 mx-[!important] right-[-2px] bottom-[-2px] rounded-[50%] bg-secondary-green-green-500 box-border w-3.5 h-3.5 z-[1] border-[2px] border-solid border-neutral-white" />
-              </div>
-              <div className="flex flex-col items-start justify-center gap-[2px]">
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  Jay Hargudson
-                </div>
-                <div className="relative text-xs tracking-[0.01em] leading-[18px] font-medium text-neutral-black-black-400">
-                  Manager
-                </div>
-              </div>
-              <div className="w-6 h-6 flex flex-row items-center justify-center">
-                <img
-                  className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                  alt=""
-                  src="/img/fisrcaretdown1.svg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        <Header/>
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[1] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
@@ -187,6 +121,7 @@ const AddProduct: FunctionComponent = () => {
               </div>
             </div>
           </div>
+          <span className=" text-secondary-red-red-500 relative right-[50px] text-[16px]">{error}</span>
           <div className="flex flex-row items-start justify-start gap-[16px] text-sm text-neutral-gray-gray-400">
             <a
               href={"/Dashboad/Product"}
@@ -229,7 +164,10 @@ const AddProduct: FunctionComponent = () => {
                 <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Product Name <span className=" text-secondary-red-red-500">{error_product}</span>
+                      Product Name{" "}
+                      <span className=" text-secondary-red-red-500">
+                        {error_product}
+                      </span>
                     </div>
                   </div>
                   <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
@@ -333,7 +271,7 @@ const AddProduct: FunctionComponent = () => {
                         name="product_image"
                         form="product"
                         accept="image/png, image/jpg, image/jpeg"
-                        className="cursor-pointer file:hidden absolute w-full pt-[35px] file:border-none file:m-0 file:p-0 file:bg-transparent file:text-transparent  "
+                        className="cursor-pointer file:hidden absolute w-full pt-[35px] file:border-none file:m-0 file:p-0 file:bg-transparent file:text-transparent text-transparent bg-transparent"
                         required
                       />
                       <span>Add Image</span>
@@ -430,29 +368,45 @@ const AddProduct: FunctionComponent = () => {
                       Product Category
                     </div>
                   </div>
-                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
+                  <div className="">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px]">
-                      <select
-                        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                          setProduct({
-                            ...product,
-                            categories: e.target.value,
-                          });
+                      <FormControl
+                        size="small"
+                        sx={{
+                          width: 200,
+                          m: 1,
+                          "& .MuiInputLabel-root.Mui-focused": {
+                            color: "black",
+                          },
                         }}
-                        name="categories"
-                        form="product"
-                        className=" w-[200px] h-[30px] rounded-sm focus:outline-none cursor-pointer rounded-b-sm"
-                        required
                       >
-                        <option value="" hidden selected>
+                        <InputLabel id="categories">
                           Select a category
-                        </option>
-                        {categories.map((item, index) => (
-                          <option key={index} value={item.category_name}>
-                            {item.category_name}
-                          </option>
-                        ))}
-                      </select>
+                        </InputLabel>
+                        <Select
+                          required
+                          sx={{
+                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                              borderColor: "rgba(228, 219, 233, 1)",
+                            },
+                          }}
+                          name="categories"
+                          labelId="categories"
+                          label="Select a category"
+                          onChange={(e: SelectChangeEvent) => {
+                            setProduct({
+                              ...product,
+                              categories: e.target.value,
+                            });
+                          }}
+                        >
+                          {categories.map((item, index) => (
+                            <MenuItem key={index} value={item.category_name}>
+                              {item.category_name}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
                     </div>
                   </div>
                 </div>
@@ -475,28 +429,41 @@ const AddProduct: FunctionComponent = () => {
                     Product Status
                   </div>
                 </div>
-                <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
+                <div className="">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    <select
-                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                        setProduct({
-                          ...product,
-                          status: parseInt(e.target.value),
-                        });
+                    <FormControl
+                      size="small"
+                      sx={{
+                        width: 200,
+                        m: 1,
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: "black",
+                        },
                       }}
-                      form="product"
-                      name="status"
-                      className=" w-[200px] h-[30px] rounded-sm focus:outline-none cursor-pointer rounded-b-sm"
-                      required
                     >
-                      <option value="" hidden selected>
-                        Select a Draft
-                      </option>
-                      <option value="0">Darft</option>
-                      <option value="1">Out Stock</option>
-                      <option value="2">Processing</option>
-                      <option value="3">Published</option>
-                    </select>
+                      <InputLabel id="status">Select a Draft</InputLabel>
+                      <Select
+                        sx={{
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(228, 219, 233, 1)",
+                          },
+                        }}
+                        name="status"
+                        labelId="status"
+                        label="Select a Darft"
+                        onChange={(e: SelectChangeEvent) => {
+                          setProduct({
+                            ...product,
+                            status: parseInt(e.target.value),
+                          });
+                        }}
+                      >
+                        <MenuItem value={0}>Darft</MenuItem>
+                        <MenuItem value={1}>Out Stock</MenuItem>
+                        <MenuItem value={2}>Processing</MenuItem>
+                        <MenuItem value={3}>Published</MenuItem>
+                      </Select>
+                    </FormControl>
                   </div>
                 </div>
               </div>

@@ -6,7 +6,7 @@ const Protect_route: FunctionComponent<{ allow: boolean }> = (props) => {
     if(props.allow) {
         return <Outlet/>
     } else {
-        // return <NoPage/>
+        return <NoPage/>
     }
 }
 

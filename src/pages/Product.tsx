@@ -10,7 +10,7 @@ interface product_Type {
   name: string;
   price: number;
   categories: string;
-  product_image: File;
+  imgURL: string;
   description: string;
   quantity: number;
   status: number;
@@ -26,7 +26,7 @@ const Product: FunctionComponent = () => {
   const get_order_admin = async () => {
     await instance_auth({
       method: "get",
-      url: "/orders/get_orders",
+      url: "/products/get_products",
       responseType: "json",
     }).then((res) => {
       if (res.status === 200) {
@@ -182,25 +182,28 @@ const Product: FunctionComponent = () => {
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
                   Product
                 </div>
-                <img
-                  className="relative w-4 h-4 overflow-hidden shrink-0"
-                  alt=""
-                  src="/img/fisrcaretdown2.svg"
-                />
               </div>
-              <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="flex flex-row items-center justify-start gap-[8px]">
-                  <div className="relative rounded-lg bg-neutral-gray-gray-100 w-11 h-11" />
-                  <div className="flex flex-col items-start justify-start gap-[4px]">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      Handmade Pouch
-                    </div>
-                    <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                      3 Variants
+              {products.map((item, index) => (
+                <div key={index} className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+                  <div className="flex flex-row items-center justify-start gap-[8px]">
+                    <img
+                      src={`${import.meta.env.VITE_BASE_API}/img/${
+                        item.imgURL
+                      }`}
+                      alt=""
+                      className="relative rounded-lg bg-neutral-gray-gray-100 w-11 h-11"
+                    />
+                    <div className="flex flex-col items-start justify-start gap-[4px]">
+                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                        {item.name}
+                      </div>
+                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
+                        {item.description}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
             <div className="flex flex-col items-start justify-start text-primary-primary-500">
               <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -208,13 +211,15 @@ const Product: FunctionComponent = () => {
                   SKU
                 </div>
               </div>
-              <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+              {products.map((item, index) => (
+              <div key={index} className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="h-11 flex flex-row items-center justify-center">
                   <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                    302012
+                    {item.id}
                   </div>
                 </div>
               </div>
+              ))}
             </div>
             <div className="flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -440,7 +445,6 @@ const Product: FunctionComponent = () => {
           </div>
         </div>
       </div>
-      <Outlet />
     </div>
   );
 };

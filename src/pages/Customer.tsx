@@ -21,7 +21,7 @@ const Customer: FunctionComponent = () => {
   const get_customer_admin = async () => {
     await instance_auth({
       method: "get",
-      url: "/orders/get_orders",
+      url: "/customers/get_customers",
       responseType: "json",
     }).then((res) => {
       if (res.status === 200) {
@@ -43,7 +43,6 @@ const Customer: FunctionComponent = () => {
   useEffect(() => {
     get_customer_admin();
   }, []);
-  const test = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-semibold">
@@ -127,17 +126,21 @@ const Customer: FunctionComponent = () => {
           </div>
         </div>
         <div className="flex gap-y-[40px] gap-x-[40px] justify-start w-full flex-wrap">
-          {test.map((item, index) => (
+          {customers.map((item, index) => (
             <div
               key={index}
               className="flex flex-col items-start justify-start gap-[24px] z-[3] text-center"
             >
               <div className="flex-1 rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start  relative gap-[16px] border-[1px] border-solid border-primary-primary-500 px-[50px] py-[20px]">
                 <div className="self-stretch flex flex-col items-center justify-start gap-[16px] z-[0]">
-                  <div className="relative rounded-81xl bg-neutral-gray-gray-100 w-20 h-20 " />
+                  <img
+                    src={`${import.meta.env.VITE_BASE_API}/img/${item.imgURL}`}
+                    alt=""
+                    className="relative rounded-81xl bg-neutral-gray-gray-100 w-20 h-20 "
+                  />
                   <div className="self-stretch flex flex-col items-center justify-center gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-semibold">
-                      John Bushmill
+                      {item.first_name}&nbsp;{item.last_name}
                     </div>
                     <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-xs text-secondary-green-green-600">
                       <div className="relative tracking-[0.01em] leading-[18px] font-semibold">

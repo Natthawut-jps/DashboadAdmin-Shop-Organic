@@ -22,9 +22,9 @@ function App() {
     <>
       <Routes>
         <Route path="/admin/login" element={<Login />} />
-        {/* <Route
-          element={<Protect_route allow={cookie.get("_ut") ? true : false} />}
-        > */}
+        <Route
+          element={<Protect_route allow={cookie.get("_ur") ? true : false} />}
+        >
           <Route index element={<DashboardECommerce />} />
           <Route path="/Dashboad/Product">
             <Route index element={<Product />} />
@@ -45,7 +45,7 @@ function App() {
             <Route path="Detail-Customer" element={<CustomerDetails />} />
           </Route>
           <Route path="*" element={<NoPage />} />
-        {/* </Route> */}
+        </Route>
       </Routes>
     </>
   );

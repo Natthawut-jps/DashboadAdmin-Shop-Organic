@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { Sidebar } from "./utities/Sidebar";
 import instance_auth from "./utities/instance_auth";
 import Header from "./utities/Header";
@@ -13,7 +13,40 @@ interface category_Typee {
   createdAt: Date;
   updatedAt: Date;
 }
+interface order_Type {
+  id: number;
+  referent: string;
+  payment_menthod: string;
+  amount_total: number;
+  status: number;
+  quantity: number;
+  user_id: string;
+  address_id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 const Categories: FunctionComponent = () => {
+  const [pageCount, setPageCount] = useState<number>(1);
+  const [page, setPage] = useState<number>(1);
+  const [data, setData] = useState<category_Typee[]>([]);
+  const [categories, setCategories] = useState<category_Typee[]>([]);
+  const [order, setOrder] = useState<order_Type[]>([]);
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   const get_category = async () => {
     try {
       await instance_auth({
@@ -22,17 +55,13 @@ const Categories: FunctionComponent = () => {
         responseType: "json",
       }).then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
+          setData(res.data);
         }
       });
     } catch (error) {
       console.log(error);
     }
   };
-  const [pageCount, setPageCount] = useState<number>(1);
-  const [page, setPage] = useState<number>(1);
-  const [data, setData] = useState<category_Typee[]>([]);
-  const [categories, setCategories] = useState<category_Typee[]>([]);
 
   const get_order_admin = async () => {
     await instance_auth({
@@ -41,10 +70,15 @@ const Categories: FunctionComponent = () => {
       responseType: "json",
     }).then((res) => {
       if (res.status === 200) {
-        setData(res.data);
+        setOrder(res.data);
       }
     });
   };
+
+  useEffect(() => {
+    get_order_admin();
+    get_category();
+  }, []);
 
   useEffect(() => {
     const sortByLstest = data.sort(
@@ -56,11 +90,6 @@ const Categories: FunctionComponent = () => {
     setCategories(sortByLstest.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(sortByLstest.length / 10));
   }, [page, pageCount, data]);
-
-  useEffect(() => {
-    get_order_admin();
-    get_category();
-  }, []);
 
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-semibold">
@@ -131,23 +160,29 @@ const Categories: FunctionComponent = () => {
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
                   Category Name
                 </div>
-                <img
-                  className="relative w-4 h-4 overflow-hidden shrink-0"
-                  alt=""
-                  src="/img/fisrcaretdown2.svg"
-                />
               </div>
-              <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="flex flex-row items-center justify-start gap-[8px]">
-                  <div className="relative rounded-lg bg-gainsboro w-11 h-11" />
-                  <div className="flex flex-col items-start justify-start gap-[4px]">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">{`Bag & Pouch`}</div>
-                    <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                      Great fashion, great selections, great prices.
+              {categories.map((item, index) => (
+                <div
+                  key={index}
+                  className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                >
+                  <div className="flex flex-row items-center justify-start gap-[8px]">
+                    <img
+                      src={`${import.meta.env.VITE_BASE_API}/img/${
+                        item.imgURL
+                      }`}
+                      alt=""
+                      className="relative rounded-lg bg-gainsboro w-11 h-11"
+                    />
+                    <div className="flex flex-col items-start justify-start gap-[4px]">
+                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">{`${item.category_name}`}</div>
+                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
+                        {item.description}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -179,13 +214,18 @@ const Categories: FunctionComponent = () => {
                   src="/img/fisrcaretdown4.svg"
                 />
               </div>
-              <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    10
+              {categories.map((item, index) => (
+                <div
+                  key={index}
+                  className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                >
+                  <div className="h-11 flex flex-row items-center justify-center">
+                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                      {item.id}
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -198,15 +238,22 @@ const Categories: FunctionComponent = () => {
                   src="/img/fisrcaretdown4.svg"
                 />
               </div>
-              <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-start">
-                  <div className="flex flex-col items-start justify-start">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      29 Dec 2022
+              {categories.map((item, index) => (
+                <div
+                  key={index}
+                  className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                >
+                  <div className="h-11 flex flex-row items-center justify-start">
+                    <div className="flex flex-col items-start justify-start">
+                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                        {`${new Date(item.createdAt).getDate()} ${
+                          months[new Date(item.createdAt).getMonth()]
+                        } ${new Date(item.createdAt).getFullYear()}`}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
             <div className="flex flex-col items-start justify-start text-right text-neutral-black-black-500">
               <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -214,25 +261,36 @@ const Categories: FunctionComponent = () => {
                   Action
                 </div>
               </div>
-              <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrpencil.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisreye.svg"
-                  />
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrtrash.svg"
-                  />
+              {categories.map((item, index) => (
+                <div
+                  key={index}
+                  className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                >
+                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
+                    <Link to={"/Dashboad/Categories"}>
+                      <img
+                        className="relative w-4 h-4 overflow-hidden shrink-0"
+                        alt=""
+                        src="/img/fisrpencil.svg"
+                      />
+                    </Link>
+                    <Link to={"/Dashboad/Categories"}>
+                      <img
+                        className="relative w-4 h-4 overflow-hidden shrink-0"
+                        alt=""
+                        src="/img/fisreye.svg"
+                      />
+                    </Link>
+                    <Link to={"/Dashboad/Categories"}>
+                      <img
+                        className="relative w-4 h-4 overflow-hidden shrink-0"
+                        alt=""
+                        src="/img/fisrtrash.svg"
+                      />
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
           <div className="self-stretch bg-neutral-white flex flex-row items-center justify-center py-[18px] px-6 gap-[12px] z-[0]">
@@ -255,7 +313,6 @@ const Categories: FunctionComponent = () => {
           </div>
         </a>
       </div>
-      <Outlet />
     </div>
   );
 };

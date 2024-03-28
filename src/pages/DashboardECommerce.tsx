@@ -1,8 +1,44 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Sidebar } from "./utities/Sidebar";
 import Header from "./utities/Header";
+import { LineChart } from "@mui/x-charts/LineChart";
+import instance_auth from "./utities/instance_auth";
 
+interface sale_Type {
+  Jan: number;
+  Feb: number;
+  Mar: number;
+  Apr: number;
+  May: number;
+  Jun: number;
+  Jul: number;
+  Aug: number;
+  Sep: number;
+  Oct: number;
+  Nov: number;
+  Dec: number;
+}
 const DashboardECommerce: FunctionComponent = () => {
+  const [data_sales, setSales] = useState<sale_Type>({} as sale_Type);
+  const [year, setYear] = useState<number>(2024);
+  const sale = async () => {
+    await instance_auth({
+      method: "get",
+      params: {year: year},
+      url: "/dashboads/sales",
+      responseType: "json",
+    }).then((res) => {
+      if (res.status === 200) {
+        setSales(res.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    sale();
+  }, []);
+  console.log(data_sales);
+
   return (
     <div className="relative bg-neutral-white-base-color w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-s-regular">
       <Sidebar />
@@ -245,180 +281,65 @@ const DashboardECommerce: FunctionComponent = () => {
             </div>
           </div>
           <div className="flex-1 rounded-xl bg-neutral-white-base-color shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] flex flex-col items-start justify-start p-6 gap-[20px] border-[1px] border-solid border-neutral-gray-gray-50">
-            <div className="self-stretch flex flex-row items-end justify-start gap-[12px] z-[1]">
+            <div className="self-stretch flex flex-col items-start justify-start gap-[12px] z-[1]">
               <div className="flex-1 flex flex-col items-start justify-start gap-[2px]">
                 <div className="self-stretch relative tracking-[0.01em] leading-[30px] font-semibold">
                   Statistic
                 </div>
                 <div className="relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
-                  Revenue and Sales
+                  Sales&nbsp;{year}
                 </div>
               </div>
               <div className="flex flex-row items-start justify-start gap-[16px] text-xs text-neutral-gray-gray-500">
-                <div className="flex flex-row items-center justify-start gap-[6px]">
-                  <div className="relative rounded-[50%] bg-primary-primary-500 w-3 h-3" />
-                  <div className="relative tracking-[0.01em] leading-[18px] font-medium">
-                    Revenue
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-start gap-[6px]">
-                  <div className="relative rounded-[50%] bg-secondary-orange-orange-500 w-3 h-3" />
-                  <div className="relative tracking-[0.01em] leading-[18px] font-medium">
-                    Sales
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-[696px] overflow-hidden flex flex-col items-end justify-start relative z-[0] text-right text-xs text-neutral-gray-gray-500">
-              <div className="self-stretch flex flex-col items-end justify-start z-[0]">
-                <div className="self-stretch flex flex-col items-start justify-start gap-[18px]">
-                  <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] flex items-center w-10 shrink-0">
-                      $1.2k
-                    </div>
-                    <img
-                      className="flex-1 relative max-w-full overflow-hidden h-px"
-                      alt=""
-                      src="/img/line.svg"
-                    />
-                  </div>
-                  <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] flex items-center w-10 shrink-0">
-                      $1k
-                    </div>
-                    <img
-                      className="flex-1 relative max-w-full overflow-hidden h-px"
-                      alt=""
-                      src="/img/line.svg"
-                    />
-                  </div>
-                  <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] flex items-center w-10 shrink-0">
-                      $800
-                    </div>
-                    <img
-                      className="flex-1 relative max-w-full overflow-hidden h-px"
-                      alt=""
-                      src="/img/line.svg"
-                    />
-                  </div>
-                  <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] flex items-center w-10 shrink-0">
-                      $600
-                    </div>
-                    <img
-                      className="flex-1 relative max-w-full overflow-hidden h-px"
-                      alt=""
-                      src="/img/line.svg"
-                    />
-                  </div>
-                  <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] flex items-center w-10 shrink-0">
-                      $400
-                    </div>
-                    <img
-                      className="flex-1 relative max-w-full overflow-hidden h-px"
-                      alt=""
-                      src="/img/line.svg"
-                    />
-                  </div>
-                  <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] flex items-center w-10 shrink-0">
-                      $200
-                    </div>
-                    <img
-                      className="flex-1 relative max-w-full overflow-hidden h-px"
-                      alt=""
-                      src="/img/line.svg"
-                    />
-                  </div>
-                  <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] flex items-center w-10 shrink-0">
-                      0
-                    </div>
-                    <img
-                      className="flex-1 relative max-w-full overflow-hidden h-px"
-                      alt=""
-                      src="/img/line.svg"
-                    />
-                  </div>
-                </div>
-                <div className="self-stretch flex flex-row items-start justify-start py-0 pr-0 pl-12 gap-[4px] text-center">
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Jan
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Feb
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Mar
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Apr
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    May
-                  </div>
-                  <b className="flex-1 relative tracking-[0.01em] leading-[18px] text-primary-primary-500">
-                    Jun
-                  </b>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Jul
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Aug
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Sep
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Nov
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Oct
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[18px]">
-                    Dec
-                  </div>
-                </div>
-              </div>
-              <img
-                className="absolute my-0 mx-[!important] h-[calc(100%_-_36px)] w-[calc(100%_-_48px)] top-[9px] right-[0px] bottom-[27px] left-[48px] max-w-full overflow-hidden max-h-full z-[1]"
-                alt=""
-                src="/img/line1.svg"
-              />
-              <div className="my-0 mx-[!important] absolute top-[0px] left-[calc(50%_-_74px)] h-[225px] flex flex-col items-center justify-start gap-[4px] z-[2] text-left text-neutral-white-base-color">
-                <div className="rounded-lg bg-neutral-black-black-500 shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-start justify-start py-3 px-4 gap-[6px]">
-                  <div className="flex flex-row items-center justify-start gap-[6px]">
-                    <div className="relative rounded-[50%] bg-primary-primary-500 w-2.5 h-2.5" />
-                    <div className="relative tracking-[0.01em] leading-[18px] text-neutral-black-black-100 inline-block w-12 shrink-0">
-                      Revenue
-                    </div>
-                    <div className="relative tracking-[0.01em] leading-[18px]">
-                      :
-                    </div>
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      1,240
-                    </div>
-                  </div>
-                  <div className="flex flex-row items-center justify-start gap-[6px]">
-                    <div className="relative rounded-[50%] bg-secondary-orange-orange-500 w-2.5 h-2.5" />
-                    <div className="relative tracking-[0.01em] leading-[18px] text-neutral-black-black-100 inline-block w-12 shrink-0">
-                      Sales
-                    </div>
-                    <div className="relative tracking-[0.01em] leading-[18px]">
-                      :
-                    </div>
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      30%
-                    </div>
-                  </div>
-                </div>
-                <div className="relative rounded-[50%] bg-primary-primary-500 box-border w-3 h-3 border-[2px] border-solid border-neutral-white-base-color" />
-                <img
-                  className="flex-1 relative max-h-full w-px"
-                  alt=""
-                  src="/img/line2.svg"
+                <LineChart
+                  xAxis={[
+                    {
+                      data: [
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec",
+                      ],
+                      scaleType: "band",
+                      valueFormatter: (month: string) =>
+                        month ? month.toString() : "",
+                    },
+                  ]}
+                  series={[
+                    {
+                      data: [
+                        data_sales.Jan,
+                        data_sales.Feb,
+                        data_sales.Mar,
+                        data_sales.Apr,
+                        data_sales.May,
+                        data_sales.Jun,
+                        data_sales.Jul,
+                        data_sales.Aug,
+                        data_sales.Sep,
+                        data_sales.Oct,
+                        data_sales.Nov,
+                        data_sales.Dec,
+                      ],
+                      color: 'rgb(248 102 36)',
+                      label: `Sales ${year}`,
+                      showMark: false,
+                      valueFormatter: new Intl.NumberFormat("th", {
+                        style: "currency",
+                        currency: "THB",
+                      }).format,
+                    },
+                  ]}
+                  width={780}
+                  height={400}
                 />
               </div>
             </div>

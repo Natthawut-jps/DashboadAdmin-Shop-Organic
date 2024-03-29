@@ -64,15 +64,19 @@ const Categories: FunctionComponent = () => {
   };
 
   const get_order_admin = async () => {
-    await instance_auth({
-      method: "get",
-      url: "/orders/get_orders",
-      responseType: "json",
-    }).then((res) => {
-      if (res.status === 200) {
-        setOrder(res.data);
-      }
-    });
+    try {
+      await instance_auth({
+        method: "get",
+        url: "/orders/get_orders",
+        responseType: "json",
+      }).then((res) => {
+        if (res.status === 200) {
+          setOrder(res.data);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

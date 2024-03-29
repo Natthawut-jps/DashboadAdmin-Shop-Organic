@@ -200,7 +200,7 @@ const Order: FunctionComponent = () => {
                 >
                   <div className="h-11 flex flex-row items-center justify-center">
                     <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      {item.id}
+                      #{item.id}
                     </div>
                   </div>
                 </div>

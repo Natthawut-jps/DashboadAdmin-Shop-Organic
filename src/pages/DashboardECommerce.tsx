@@ -3,6 +3,8 @@ import { Sidebar } from "./utities/Sidebar";
 import Header from "./utities/Header";
 import { LineChart } from "@mui/x-charts/LineChart";
 import instance_auth from "./utities/instance_auth";
+import { axisClasses } from "@mui/x-charts";
+import { Pagination } from "@mui/material";
 
 interface sale_Type {
   Jan: number;
@@ -18,13 +20,57 @@ interface sale_Type {
   Nov: number;
   Dec: number;
 }
+interface order_Type {
+  id: number;
+  referent: string;
+  payment_menthod: string;
+  amount_total: number;
+  status: number;
+  quantity: number;
+  customer_name: string;
+  user_id: string;
+  address_id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 const DashboardECommerce: FunctionComponent = () => {
   const [data_sales, setSales] = useState<sale_Type>({} as sale_Type);
   const [year, setYear] = useState<number>(2024);
+  const [pageCount, setPageCount] = useState<number>(1);
+  const [page, setPage] = useState<number>(1);
+  const [data, setData] = useState<order_Type[]>([]);
+  const [order, setOrder] = useState<order_Type[]>([]);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const get_order_admin = async () => {
+    await instance_auth({
+      method: "get",
+      url: "/orders/get_orders",
+      responseType: "json",
+    }).then((res) => {
+      if (res.status === 200) {
+        setData(res.data);
+      }
+    });
+  };
+
   const sale = async () => {
     await instance_auth({
       method: "get",
-      params: {year: year},
+      params: { year: year },
       url: "/dashboads/sales",
       responseType: "json",
     }).then((res) => {
@@ -35,7 +81,18 @@ const DashboardECommerce: FunctionComponent = () => {
   };
 
   useEffect(() => {
+    const sortByLstest = data.sort(
+      (a: order_Type, b: order_Type) => b.id - a.id
+    );
+    const itemOffset = ((page - 1) * 10) % sortByLstest.length;
+    const endOffset = itemOffset + 10;
+    setOrder(sortByLstest.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(sortByLstest.length / 10));
+  }, [page, pageCount, data]);
+
+  useEffect(() => {
     sale();
+    get_order_admin();
   }, []);
   console.log(data_sales);
 
@@ -66,36 +123,7 @@ const DashboardECommerce: FunctionComponent = () => {
             </div>
           </div>
         </div>
-        <div className="self-stretch flex flex-row items-start justify-start gap-[24px] z-[3] text-base text-gray-100">
-          <div className="flex-1 rounded-xl bg-neutral-black-black-500 shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-start justify-start p-5 relative gap-[16px]">
-            <div className="rounded-lg bg-gray-200 w-9 h-9 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border z-[2]">
-              <img
-                className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                alt=""
-                src="/img/fisrmoney.svg"
-              />
-            </div>
-            <div className="self-stretch flex flex-col items-start justify-start gap-[8px] z-[1]">
-              <div className="self-stretch relative tracking-[0.01em] leading-[24px] font-medium">
-                Total Revenue
-              </div>
-              <div className="flex flex-row items-center justify-center gap-[8px] text-9xl text-neutral-white-base-color">
-                <div className="relative tracking-[0.01em] font-semibold">
-                  $75,500
-                </div>
-                <div className="rounded bg-gray-400 flex flex-col items-center justify-center py-0.5 px-1.5 text-center text-xs">
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    +10%
-                  </div>
-                </div>
-              </div>
-            </div>
-            <img
-              className="absolute my-0 mx-[!important] h-full w-full top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full overflow-hidden max-h-full z-[0]"
-              alt=""
-              src="/img/ornament.svg"
-            />
-          </div>
+        <div className="self-stretch flex flex-row items-start justify-start gap-[60px] z-[3] text-base text-gray-100 mx-[40px]">
           <div className="flex-1 rounded-xl bg-primary-primary-500 shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-start justify-start p-5 relative gap-[16px]">
             <div className="rounded-lg bg-gray-200 w-9 h-9 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border z-[2]">
               <img
@@ -139,7 +167,7 @@ const DashboardECommerce: FunctionComponent = () => {
               </div>
               <div className="flex flex-row items-center justify-center gap-[8px] text-9xl text-neutral-white-base-color">
                 <div className="relative tracking-[0.01em] font-semibold">
-                  $24,500
+                  ฿24,500
                 </div>
                 <div className="rounded bg-gray-400 flex flex-col items-center justify-center py-0.5 px-1.5 text-center text-xs">
                   <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
@@ -185,103 +213,8 @@ const DashboardECommerce: FunctionComponent = () => {
           </div>
         </div>
         <div className="self-stretch flex flex-row items-start justify-start gap-[24px] z-[2] text-xl">
-          <div className="rounded-lg bg-neutral-white-base-color shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] w-[360px] overflow-hidden shrink-0 flex flex-col items-center justify-start p-6 box-border gap-[24px]">
-            <div className="self-stretch flex flex-row items-start justify-start gap-[12px] z-[1]">
-              <div className="flex-1 flex flex-col items-start justify-start gap-[2px]">
-                <div className="self-stretch relative tracking-[0.01em] leading-[30px] font-semibold">
-                  Target
-                </div>
-                <div className="relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
-                  Revenue Target
-                </div>
-              </div>
-              <img
-                className="relative w-4 h-4 overflow-hidden shrink-0"
-                alt=""
-                src="/img/fisrmenudotsvertical.svg"
-              />
-            </div>
-            <div className="flex flex-col items-center justify-start gap-[16px] z-[0] text-9xl">
-              <div className="relative w-[264px] h-[132px]">
-                <img
-                  className="absolute h-[109.09%] w-[104.55%] top-[-4.55%] right-[-2.27%] bottom-[-4.55%] left-[-2.27%] max-w-full overflow-hidden max-h-full"
-                  alt=""
-                  src="/img/track.svg"
-                />
-                <img
-                  className="absolute h-[109.09%] w-[89.76%] top-[-4.55%] right-[12.52%] bottom-[-4.55%] left-[-2.27%] max-w-full overflow-hidden max-h-full"
-                  alt=""
-                  src="/img/progress.svg"
-                />
-                <div className="absolute h-[44.7%] w-[70.59%] top-[38.68%] right-[14.71%] bottom-[16.62%] left-[14.71%] flex flex-col items-center justify-center gap-[4px]">
-                  <div className="relative tracking-[0.01em] font-semibold">
-                    75.55%
-                  </div>
-                  <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-green-green-600">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      +10%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col items-center justify-start gap-[8px] text-center text-sm text-neutral-gray-gray-500">
-                <div className="relative tracking-[0.01em] leading-[20px] inline-block w-[324px]">
-                  <span>{`You succeed earn `}</span>
-                  <span className="text-neutral-black-black-500">{`$240 `}</span>
-                  <span>today, its higher than yesterday</span>
-                </div>
-                <div className="flex flex-row items-start justify-start gap-[18px] text-xs">
-                  <div className="flex flex-col items-center justify-start gap-[4px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-medium">
-                      Target
-                    </div>
-                    <div className="flex flex-row items-center justify-center gap-[4px] text-left text-xl text-neutral-black-black-500">
-                      <div className="relative tracking-[0.01em] leading-[30px] font-semibold">
-                        $20k
-                      </div>
-                      <img
-                        className="relative w-5 h-5 overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/firrarrowsmalldown.svg"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center justify-start gap-[4px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-medium">
-                      Revenue
-                    </div>
-                    <div className="flex flex-row items-center justify-center gap-[4px] text-left text-xl text-neutral-black-black-500">
-                      <div className="relative tracking-[0.01em] leading-[30px] font-semibold">
-                        $16k
-                      </div>
-                      <img
-                        className="relative w-5 h-5 overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/firrarrowsmallup.svg"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center justify-start gap-[4px]">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-medium">
-                      Today
-                    </div>
-                    <div className="flex flex-row items-center justify-center gap-[4px] text-left text-xl text-neutral-black-black-500">
-                      <div className="relative tracking-[0.01em] leading-[30px] font-semibold">
-                        $1.5k
-                      </div>
-                      <img
-                        className="relative w-5 h-5 overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/firrarrowsmallup.svg"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div className="flex-1 rounded-xl bg-neutral-white-base-color shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] flex flex-col items-start justify-start p-6 gap-[20px] border-[1px] border-solid border-neutral-gray-gray-50">
-            <div className="self-stretch flex flex-col items-start justify-start gap-[12px] z-[1]">
+            <div className="self-stretch flex flex-col items-start justify-start gap-[12px] z-[1] w-full">
               <div className="flex-1 flex flex-col items-start justify-start gap-[2px]">
                 <div className="self-stretch relative tracking-[0.01em] leading-[30px] font-semibold">
                   Statistic
@@ -290,7 +223,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   Sales&nbsp;{year}
                 </div>
               </div>
-              <div className="flex flex-row items-start justify-start gap-[16px] text-xs text-neutral-gray-gray-500">
+              <div className=" flex justify-center w-full">
                 <LineChart
                   xAxis={[
                     {
@@ -313,6 +246,14 @@ const DashboardECommerce: FunctionComponent = () => {
                         month ? month.toString() : "",
                     },
                   ]}
+                  yAxis={[
+                    {
+                      valueFormatter: new Intl.NumberFormat("th", {
+                        style: "currency",
+                        currency: "THB",
+                      }).format,
+                    },
+                  ]}
                   series={[
                     {
                       data: [
@@ -329,7 +270,7 @@ const DashboardECommerce: FunctionComponent = () => {
                         data_sales.Nov,
                         data_sales.Dec,
                       ],
-                      color: 'rgb(248 102 36)',
+                      color: "rgb(248 102 36)",
                       label: `Sales ${year}`,
                       showMark: false,
                       valueFormatter: new Intl.NumberFormat("th", {
@@ -338,7 +279,12 @@ const DashboardECommerce: FunctionComponent = () => {
                       }).format,
                     },
                   ]}
-                  width={780}
+                  sx={{
+                    [`& .${axisClasses.left} .${axisClasses.label}`]: {
+                      transform: "translateX(-65px)",
+                    },
+                  }}
+                  width={1000}
                   height={400}
                 />
               </div>
@@ -346,83 +292,6 @@ const DashboardECommerce: FunctionComponent = () => {
           </div>
         </div>
         <div className="self-stretch flex flex-row items-start justify-start gap-[24px] z-[1] text-xl">
-          <div className="flex-1 rounded-xl bg-neutral-white-base-color shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-center p-6 gap-[16px]">
-            <div className="self-stretch flex flex-row items-start justify-start gap-[12px] z-[1]">
-              <div className="flex-1 relative tracking-[0.01em] leading-[30px] font-semibold">
-                Sales Source
-              </div>
-              <img
-                className="relative w-4 h-4 overflow-hidden shrink-0"
-                alt=""
-                src="/img/fisrmenudotsvertical.svg"
-              />
-            </div>
-            <div className="self-stretch flex flex-col items-center justify-center gap-[14px] z-[0] text-9xl">
-              <div className="flex flex-col items-center justify-start relative">
-                <img
-                  className="relative w-[252px] h-[252px] z-[0]"
-                  alt=""
-                  src="/img/chart.svg"
-                />
-                <div className="my-0 mx-[!important] absolute top-[calc(50%_-_29.5px)] left-[calc(50%_-_49px)] flex flex-col items-center justify-center gap-[4px] z-[1]">
-                  <div className="relative tracking-[0.01em] font-semibold">
-                    $75.5k
-                  </div>
-                  <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-green-green-600">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      +10%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col items-start justify-start gap-[14px] text-sm text-neutral-black-black-400">
-                <div className="w-[312px] flex flex-row items-center justify-start gap-[8px]">
-                  <div className="relative rounded-3xs bg-primary-primary-500 w-3 h-3" />
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Official Website
-                  </div>
-                  <div className="flex flex-row items-center justify-start text-base text-neutral-black-black-500">
-                    <div className="relative tracking-[0.01em] leading-[24px] font-medium">
-                      $10,000
-                    </div>
-                  </div>
-                </div>
-                <div className="w-[312px] flex flex-row items-center justify-start gap-[8px]">
-                  <div className="relative rounded-3xs bg-secondary-cyan-cyan-500 w-3 h-3" />
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Offline Store
-                  </div>
-                  <div className="flex flex-row items-center justify-start text-base text-neutral-black-black-500">
-                    <div className="relative tracking-[0.01em] leading-[24px] font-medium">
-                      $10,000
-                    </div>
-                  </div>
-                </div>
-                <div className="w-[312px] flex flex-row items-center justify-start gap-[8px]">
-                  <div className="relative rounded-3xs bg-secondary-yellow-yellow-500 w-3 h-3" />
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Amazon Store
-                  </div>
-                  <div className="flex flex-row items-center justify-start text-base text-neutral-black-black-500">
-                    <div className="relative tracking-[0.01em] leading-[24px] font-medium">
-                      $10,000
-                    </div>
-                  </div>
-                </div>
-                <div className="w-[312px] flex flex-row items-center justify-start gap-[8px]">
-                  <div className="relative rounded-3xs bg-secondary-orange-orange-500 w-3 h-3" />
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Reseller
-                  </div>
-                  <div className="flex flex-row items-center justify-start text-base text-neutral-black-black-500">
-                    <div className="relative tracking-[0.01em] leading-[24px] font-medium">
-                      $10,000
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div className="flex-1 rounded-xl bg-neutral-white-base-color shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[22px]">
             <div className="self-stretch flex flex-row items-start justify-start gap-[12px] z-[1]">
               <div className="flex-1 flex flex-col items-start justify-start gap-[2px]">
@@ -453,7 +322,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  $1,240
+                  1,240
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
@@ -469,7 +338,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  $1,189
+                  1,189
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
@@ -485,7 +354,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  $1,100
+                  1,100
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
@@ -502,7 +371,7 @@ const DashboardECommerce: FunctionComponent = () => {
                 </div>
                 <div className="flex flex-row items-center justify-center gap-[8px]">
                   <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    $908
+                    908
                   </div>
                   <div className="rounded-md bg-secondary-green-green-50 hidden flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-green-green-600">
                     <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
@@ -524,7 +393,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  $900
+                  900
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
@@ -540,7 +409,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  $870
+                  870
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
@@ -556,7 +425,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  $870
+                  870
                 </div>
               </div>
             </div>
@@ -803,201 +672,127 @@ const DashboardECommerce: FunctionComponent = () => {
               </div>
             </div>
             <div className="self-stretch overflow-hidden flex flex-row items-start justify-start z-[1]">
-              <div className="flex flex-col items-start justify-start">
-                <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+              <div className="flex flex-col items-start justify-start text-purple-800">
+                <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Product
+                    Order ID
                   </div>
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrcaretdown1.svg"
-                  />
                 </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative rounded-lg bg-neutral-gray-gray-100 w-11 h-11" />
-                    <div className="flex flex-col items-start justify-start gap-[4px]">
+                {order.map((item, index) => (
+                  <div
+                    key={index}
+                    className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                  >
+                    <div className="h-11 flex flex-row items-center justify-center">
                       <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Handmade Pouch
-                      </div>
-                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                        +3 other products
+                        #{item.id}
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative rounded-lg bg-neutral-gray-gray-100 w-11 h-11" />
-                    <div className="flex flex-col items-start justify-start gap-[4px]">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Smartwatch E2
-                      </div>
-                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                        +1 other products
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative rounded-lg bg-neutral-gray-gray-100 w-11 h-11" />
-                    <div className="flex flex-col items-start justify-start">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Smartwatch E1
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative rounded-lg bg-neutral-gray-gray-100 w-11 h-11" />
-                    <div className="flex flex-col items-start justify-start gap-[4px]">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Headphone G1 Pro
-                      </div>
-                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                        +1 other products
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="flex flex-row items-center justify-start gap-[8px]">
-                    <div className="relative rounded-lg bg-neutral-gray-gray-100 w-11 h-11" />
-                    <div className="flex flex-col items-start justify-start">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Iphone X
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col items-start justify-start">
-                <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Customer
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-start">
-                    <div className="flex flex-col items-start justify-center gap-[4px]">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        John Bushmill
-                      </div>
-                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                        Johnb@mail.com
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-start">
-                    <div className="flex flex-col items-start justify-center gap-[4px]">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Ilham Budi Agung
-                      </div>
-                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                        ilahmbudi@mail.com
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-start">
-                    <div className="flex flex-col items-start justify-center gap-[4px]">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Mohammad Karim
-                      </div>
-                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                        m_karim@mail.com
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-start">
-                    <div className="flex flex-col items-start justify-center gap-[4px]">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Linda Blair
-                      </div>
-                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                        lindablair@mail.com
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-start">
-                    <div className="flex flex-col items-start justify-center gap-[4px]">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Josh Adam
-                      </div>
-                      <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                        josh_adam@mail.com
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
               <div className="flex-1 flex flex-col items-start justify-start text-neutral-gray-gray-500">
                 <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
+                    Date
+                  </div>
+                </div>
+                {order.map((item, index) => (
+                  <div
+                    key={index}
+                    className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                  >
+                    <div className="h-11 flex flex-row items-center justify-center">
+                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                        {`${new Date(item.createdAt).getDate()} ${
+                          months[new Date(item.createdAt).getMonth()]
+                        } ${new Date(item.createdAt).getFullYear()}`}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex-1 flex flex-col items-start justify-start text-neutral-gray-gray-500">
+                <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
+                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
+                    Customer
+                  </div>
+                </div>
+                {order.map((item, index) => (
+                  <div
+                    key={index}
+                    className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                  >
+                    <div className="h-11 flex flex-row items-center justify-center">
+                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                        {item.customer_name}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col items-start justify-start text-neutral-gray-gray-500">
+                <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
+                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
+                    Quantity
+                  </div>
+                </div>
+                {order.map((item, index) => (
+                  <div
+                    key={index}
+                    className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                  >
+                    <div className="h-11 flex flex-row items-center justify-center">
+                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                        {item.quantity}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col items-start justify-start text-neutral-gray-gray-500">
+                <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
+                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
                     Total
                   </div>
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrcaretdown1.svg"
-                  />
                 </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      $121.00
+                {order.map((item, index) => (
+                  <div
+                    key={index}
+                    className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                  >
+                    <div className="h-11 flex flex-row items-center justify-center">
+                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                        ฿{item.amount_total}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      $590.00
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      $125.00
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      $348.00
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      $607.00
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
-              <div className="flex flex-col items-start justify-start text-secondary-orange-orange-500">
+              <div className="flex flex-col items-start justify-start text-neutral-gray-gray-500">
+                <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
+                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
+                    Payment
+                  </div>
+                </div>
+                {order.map((item, index) => (
+                  <div
+                    key={index}
+                    className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                  >
+                    <div className="h-11 flex flex-row items-center justify-center">
+                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                        {item.payment_menthod}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex-1 flex flex-col items-start justify-start text-secondary-orange-orange-500">
                 <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
                     Status
                   </div>
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrcaretdown1.svg"
-                  />
                 </div>
                 <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
                   <div className="h-11 flex flex-row items-center justify-center">
@@ -1051,122 +846,36 @@ const DashboardECommerce: FunctionComponent = () => {
                     Action
                   </div>
                 </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisreye.svg"
-                    />
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrtrash.svg"
-                    />
+                {order.map((item, index) => (
+                  <div key={index} className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-center py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+                    <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
+                      <img
+                        className="relative w-4 h-4 overflow-hidden shrink-0"
+                        alt=""
+                        src="/img/fisreye.svg"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisreye.svg"
-                    />
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrtrash.svg"
-                    />
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisreye.svg"
-                    />
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrtrash.svg"
-                    />
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisreye.svg"
-                    />
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrtrash.svg"
-                    />
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisreye.svg"
-                    />
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrtrash.svg"
-                    />
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-            <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-6 gap-[12px] z-[0] text-neutral-gray-gray-500">
-              <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                Showing 1-5 from 100
-              </div>
-              <div className="flex flex-row items-start justify-start gap-[8px] text-center text-primary-primary-500">
-                <div className="rounded-lg bg-primary-primary-50 w-8 h-8 overflow-hidden shrink-0 flex flex-row items-center justify-center p-1.5 box-border">
-                  <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/firrcaretleft.svg"
-                    />
-                  </div>
-                </div>
-                <div className="rounded-lg bg-primary-primary-500 w-8 h-8 overflow-hidden shrink-0 flex flex-row items-center justify-center p-1.5 box-border text-neutral-white-base-color">
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-                    1
-                  </div>
-                </div>
-                <div className="rounded-lg bg-primary-primary-50 w-8 h-8 overflow-hidden shrink-0 flex flex-row items-center justify-center p-1.5 box-border">
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-                    2
-                  </div>
-                </div>
-                <div className="rounded-lg bg-primary-primary-50 w-8 h-8 overflow-hidden shrink-0 flex flex-row items-center justify-center p-1.5 box-border">
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-                    3
-                  </div>
-                </div>
-                <div className="rounded-lg bg-primary-primary-50 w-8 h-8 overflow-hidden shrink-0 flex flex-row items-center justify-center p-1.5 box-border">
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-                    ...
-                  </div>
-                </div>
-                <div className="rounded-lg bg-primary-primary-50 w-8 h-8 overflow-hidden shrink-0 flex flex-row items-center justify-center p-1.5 box-border">
-                  <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrcaretright.svg"
-                    />
-                  </div>
-                </div>
-              </div>
+            <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-center py-[18px] px-6 gap-[12px] z-[0] text-neutral-gray-gray-500">
+              <Pagination
+                variant="outlined"
+                onChange={(event: React.ChangeEvent<unknown>, page: number) => {
+                  setPage(page);
+                  {
+                    event;
+                  }
+                }}
+                count={pageCount}
+                page={page}
+                sx={{
+                  "& .MuiPaginationItem-root.Mui-selected": {
+                    bgcolor: "rgb(0 178 7/1)",
+                  },
+                }}
+              />
             </div>
           </div>
         </div>

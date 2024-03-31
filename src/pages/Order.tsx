@@ -25,7 +25,13 @@ const Order: FunctionComponent = () => {
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<order_Type[]>([]);
   const [order, setOrder] = useState<order_Type[]>([]);
-  const status = ["Processing", "Order received", "On the way", "Shiped"];
+  const status = [
+    "กำลังดำเนินการ",
+    "รับออเดอร์เรียบร้อย",
+    "กำลังเตรียมพัสดุ",
+    "บริษัทขนส่งเข้ารับพัสดุ",
+    "พัสดุตีกลับ",
+  ];
   const months = [
     "January",
     "February",
@@ -348,10 +354,16 @@ const Order: FunctionComponent = () => {
                           {status[item.status - 1]}
                         </div>
                       </div>
+                    ) : item.status === 5 ? (
+                      <div className="rounded-lg bg-secondary-blue-blue-500/10 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-blue-blue-500">
+                          {status[item.status - 1]}
+                        </div>
+                      </div>
                     ) : (
                       <div className="rounded-lg bg-secondary-red-red-50 flex flex-col items-center justify-center py-1 px-2.5">
                         <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-red-red-500">
-                          Cancelled
+                          ยกเลิกสินค้า
                         </div>
                       </div>
                     )}

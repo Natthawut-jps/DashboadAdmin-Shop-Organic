@@ -33,7 +33,13 @@ interface order_Type {
 
 const OrderDetails: FunctionComponent = () => {
   const order: order_Type = useLocation().state;
-  const status = ["Processing", "Order received", "On the way", "Shiped"];
+  const status = [
+    "กำลังดำเนินการ",
+    "รับออเดอร์เรียบร้อย",
+    "กำลังเตรียมพัสดุ",
+    "บริษัทขนส่งเข้ารับพัสดุ",
+    "พัสดุตีกลับ",
+  ];
   const months = [
     "January",
     "February",
@@ -181,10 +187,16 @@ const OrderDetails: FunctionComponent = () => {
                           {status[order.status - 1]}
                         </div>
                       </div>
+                    ) : order.status === 5 ? (
+                      <div className="rounded-lg bg-secondary-cyan-cyan-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-cyan-cyan-500">
+                          {status[order.status - 1]}
+                        </div>
+                      </div>
                     ) : (
                       <div className="rounded-lg bg-secondary-red-red-50 flex flex-col items-center justify-center py-1 px-2.5">
                         <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-red-red-500">
-                          Cancelled
+                          ยกเลิกสินค้า
                         </div>
                       </div>
                     )}
@@ -293,6 +305,7 @@ const OrderDetails: FunctionComponent = () => {
                       <MenuItem value={2}>{status[1]}</MenuItem>
                       <MenuItem value={3}>{status[2]}</MenuItem>
                       <MenuItem value={4}>{status[3]}</MenuItem>
+                      <MenuItem value={5}>{status[4]}</MenuItem>
                     </Select>
                   </FormControl>
                 </div>

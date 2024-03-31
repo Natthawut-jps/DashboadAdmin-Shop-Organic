@@ -28,7 +28,9 @@ const AddProduct: FunctionComponent = () => {
   const [product, setProduct] = useState<product_Type>({} as product_Type);
   const [error_product, setErrorProduct] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const status_product = ["Out of Stock", "Low Stock", "Published"];
   // add products
+  console.log(product)
   const handleSubmitAddProduct = async (e: FormEvent) => {
     e.preventDefault();
     if (product.categories && product.status) {
@@ -38,9 +40,6 @@ const AddProduct: FunctionComponent = () => {
       const result = keys.map((item) => {
         form.append(item, values[item]);
       });
-      for (let p of form) {
-        console.log(p);
-      }
       if (result) {
         await instance_auth({
           method: "post",
@@ -59,7 +58,7 @@ const AddProduct: FunctionComponent = () => {
         });
       }
     } else {
-     setError('"Categories" and "Status" required')
+      setError('"Categories" and "Status" required');
     }
   };
   // categories
@@ -93,7 +92,7 @@ const AddProduct: FunctionComponent = () => {
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-medium">
       <Sidebar />
       <div className="self-stretch flex-1 flex flex-col items-start justify-start py-8 px-6 gap-[24px] text-neutral-black-black-500">
-        <Header/>
+        <Header />
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[1] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
@@ -121,7 +120,9 @@ const AddProduct: FunctionComponent = () => {
               </div>
             </div>
           </div>
-          <span className=" text-secondary-red-red-500 relative right-[50px] text-[16px]">{error}</span>
+          <span className=" text-secondary-red-red-500 relative right-[50px] text-[16px]">
+            {error}
+          </span>
           <div className="flex flex-row items-start justify-start gap-[16px] text-sm text-neutral-gray-gray-400">
             <a
               href={"/Dashboad/Product"}
@@ -458,10 +459,9 @@ const AddProduct: FunctionComponent = () => {
                           });
                         }}
                       >
-                        <MenuItem value={0}>Darft</MenuItem>
-                        <MenuItem value={1}>Out Stock</MenuItem>
-                        <MenuItem value={2}>Processing</MenuItem>
-                        <MenuItem value={3}>Published</MenuItem>
+                        <MenuItem value={1}>{status_product[0]}</MenuItem>
+                        <MenuItem value={2}>{status_product[1]}</MenuItem>
+                        <MenuItem value={3}>{status_product[2]}</MenuItem>
                       </Select>
                     </FormControl>
                   </div>

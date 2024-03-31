@@ -37,13 +37,13 @@ const Login: FunctionComponent = () => {
         const date = new Date();
         const token = new Date(date.setMinutes(date.getMinutes() + 3));
         const refresh_token = new Date(date.setDate(date.getDate() + 5));
-        cookie.set("_ut", res.data._ut, {
+        cookie.set("_uta", res.data._uta, {
           expires: token,
           path: "/",
           secure: true,
           sameSite: "strict",
         });
-        cookie.set("_ur", res.data._ur, {
+        cookie.set("_ura", res.data._ura, {
           expires: refresh_token,
           path: "/",
           secure: true,

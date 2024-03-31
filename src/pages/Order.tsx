@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 interface order_Type {
   id: number;
   referent: string;
-  payment_menthod: string;
+  tracking_id: string;
   amount_total: number;
   status: number;
   quantity: number;
@@ -25,6 +25,7 @@ const Order: FunctionComponent = () => {
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<order_Type[]>([]);
   const [order, setOrder] = useState<order_Type[]>([]);
+  const status = ["Processing", "Order received", "On the way", "Shiped"];
   const months = [
     "January",
     "February",
@@ -291,7 +292,7 @@ const Order: FunctionComponent = () => {
             <div className=" flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Payment
+                  Tracking ID
                 </div>
               </div>
               {order.map((item, index) => (
@@ -301,108 +302,62 @@ const Order: FunctionComponent = () => {
                 >
                   <div className="h-11 flex flex-row items-center justify-center">
                     <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      {item.payment_menthod}
+                      {item.status === 9
+                        ? "ยกเลิกสินค้าแล้ว"
+                        : item.tracking_id
+                        ? item.tracking_id
+                        : "กำลังดำเนินการ"}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="flex-1 flex flex-col items-start justify-start text-center text-secondary-green-green-600">
+            <div className="flex-1 flex flex-col items-start justify-start text-center">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-left text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
                   Status
                 </div>
               </div>
-              <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-left text-secondary-orange-orange-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-orange-orange-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Processing
-                    </div>
+              {order.map((item, index) => (
+                <div
+                  key={index}
+                  className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-left border-b-[1px] border-solid border-neutral-gray-gray-50"
+                >
+                  <div className="h-11 flex flex-row items-center justify-center">
+                    {item.status === 1 ? (
+                      <div className="rounded-lg bg-secondary-orange-orange-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-orange-orange-500">
+                          {status[item.status - 1]}
+                        </div>
+                      </div>
+                    ) : item.status === 2 ? (
+                      <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-green-green-600">
+                          {status[item.status - 1]}
+                        </div>
+                      </div>
+                    ) : item.status === 3 ? (
+                      <div className="rounded-lg bg-secondary-yellow-yellow-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-yellow-yellow-500">
+                          {status[item.status - 1]}
+                        </div>
+                      </div>
+                    ) : item.status === 4 ? (
+                      <div className="rounded-lg bg-secondary-cyan-cyan-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-cyan-cyan-500">
+                          {status[item.status - 1]}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="rounded-lg bg-secondary-red-red-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-red-red-500">
+                          Cancelled
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-              <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Delivered
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] text-secondary-red-red-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-red-red-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Cancelled
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] text-secondary-cyan-cyan-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-cyan-cyan-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Shiped
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] text-secondary-cyan-cyan-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-cyan-cyan-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Shiped
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Published
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] text-secondary-red-red-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-red-red-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Cancelled
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Delivered
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Delivered
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] text-secondary-red-red-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                <div className="h-11 flex flex-row items-center justify-center">
-                  <div className="rounded-lg bg-secondary-red-red-50 flex flex-col items-center justify-center py-1 px-2.5">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Cancelled
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
             <div className="flex flex-col items-start justify-start text-right text-neutral-black-black-500">
               <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
@@ -415,15 +370,34 @@ const Order: FunctionComponent = () => {
                   key={index}
                   className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
                 >
-                  <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
-                    <Link to={"/Dashboad/Order"}>
-                      <img
-                        className="relative w-4 h-4 overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/fisreye.svg"
-                      />
-                    </Link>
-                  </div>
+                  {item.status === 9 ? (
+                    <div className="h-11 flex flex-row items-center justify-center gap-[20px]">
+                      <Link to={"/Dashboad/Order/Detail"}>
+                        <img
+                          className="relative w-4 h-4 overflow-hidden shrink-0"
+                          alt=""
+                          src="/img/fisreye.svg"
+                        />
+                      </Link>
+                    </div>
+                  ) : (
+                    <div className="h-11 flex flex-row items-center justify-center gap-[20px]">
+                      <Link to={"/Dashboad/Order/Detail"}>
+                        <img
+                          className="relative w-4 h-4 overflow-hidden shrink-0"
+                          alt=""
+                          src="/img/fisreye.svg"
+                        />
+                      </Link>
+                      <Link to={"/Dashboad/Order/Edit"} state={item}>
+                        <img
+                          className="relative w-4 h-4 overflow-hidden shrink-0"
+                          alt=""
+                          src="/img/fisrpencil.svg"
+                        />
+                      </Link>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

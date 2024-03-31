@@ -9,6 +9,7 @@ import AddProduct from "./pages/AddProduct";
 import AddCategory from "./pages/AddCategory";
 import EditCategory from "./pages/EditCategory";
 import OrderDetails from "./pages/OrderDetails";
+import OrderEdit from "./pages/OrderEdit";
 import CustomerDetails from "./pages/CustomerDetails";
 import Login from "./pages/Login";
 import Protect_route from "./pages/utities/protect._route";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/Dashboad/Order">
             <Route index element={<Order />} />
             <Route path="Detail" element={<OrderDetails />} />
+            <Route path="Edit" element={<OrderEdit />} />
           </Route>
           <Route path="/Dashboad/Customer">
             <Route index element={<Customer />} />

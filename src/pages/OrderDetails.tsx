@@ -5,9 +5,9 @@ import Header from "./utities/Header";
 const OrderDetails: FunctionComponent = () => {
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-s-medium">
-      <Sidebar/>
+      <Sidebar />
       <div className="self-stretch flex-1 flex flex-col items-start justify-start py-8 px-6 gap-[24px] text-lg text-neutral-black-black-500">
-        <Header/>
+        <Header />
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[2] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">{`Order Details `}</div>
@@ -77,11 +77,6 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                 </div>
               </div>
-              <img
-                className="relative w-4 h-4 overflow-hidden shrink-0"
-                alt=""
-                src="/img/fisrpencil.svg"
-              />
             </div>
             <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm">
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -201,7 +196,7 @@ const OrderDetails: FunctionComponent = () => {
           </div>
           <div className="flex-1 rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[20px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-              Document
+              Shipping
             </div>
             <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm">
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -210,15 +205,15 @@ const OrderDetails: FunctionComponent = () => {
                     <img
                       className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                       alt=""
-                      src="/img/fisrreceipt1.svg"
+                      src="/img/fisrtimefast.svg"
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Invoice
+                    Status
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  INV-32011
+                  Processing
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -236,23 +231,6 @@ const OrderDetails: FunctionComponent = () => {
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                   SHP-2011REG
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[8px]">
-                  <div className="rounded-81xl bg-neutral-gray-gray-50 w-10 h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrtrophy.svg"
-                    />
-                  </div>
-                  <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Rewards
-                  </div>
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  480 point
                 </div>
               </div>
             </div>
@@ -381,83 +359,6 @@ const OrderDetails: FunctionComponent = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Subtotal
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        VAT(0)%
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Shipping Rate
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        Total
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-1 flex flex-col items-end justify-start text-right">
-                  <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Total
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] text-neutral-gray-gray-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="flex-1 h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        $121.00
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] text-neutral-gray-gray-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="flex-1 h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        $590.00
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="flex-1 h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        $711.00
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="flex-1 h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        $0.00
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="flex-1 h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        $20.00
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="flex-1 h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        $731.00
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -508,136 +409,30 @@ const OrderDetails: FunctionComponent = () => {
               <div className="rounded-lg bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] w-[360px] overflow-hidden flex flex-col items-center justify-start p-6 box-border gap-[18px]">
                 <div className="self-stretch flex flex-row items-center justify-start z-[1]">
                   <div className="flex-1 relative tracking-[0.01em] leading-[28px] font-semibold">
-                    Order Status
+                    Sumary Order
                   </div>
                 </div>
-                <div className="self-stretch flex flex-col items-start justify-start z-[0] text-base">
-                  <div className="self-stretch flex flex-row items-start justify-start gap-[8px]">
-                    <div className="self-stretch flex flex-col items-center justify-start">
-                      <div className="rounded-81xl bg-primary-primary-50 w-9 h-9 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border z-[1]">
-                        <img
-                          className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/fisrshoppingcartcheck.svg"
-                        />
-                      </div>
-                      <img
-                        className="flex-1 relative max-h-full w-px z-[0]"
-                        alt=""
-                        src="/img/divider1.svg"
-                      />
+                <div className="self-stretch grid grid-cols-2 items-start justify-start z-[0] text-base gap-[100px] w-full">
+                  <div className="self-stretch flex flex-col items-start justify-start gap-[20px]">
+                    <div className="self-stretch flex flex-col items-start justify-start font-medium">
+                      Subtotal
                     </div>
-                    <div className="flex-1 flex flex-col items-start justify-start pt-0 px-0 pb-[18px] gap-[8px]">
-                      <div className="self-stretch relative tracking-[0.01em] leading-[24px] font-medium">
-                        Order Placed
-                      </div>
-                      <div className="self-stretch relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-400">
-                        An order has been placed.
-                      </div>
-                      <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] font-medium text-neutral-gray-gray-400">
-                        12/12/2022, 03:00
-                      </div>
+                    <div className="self-stretch flex flex-col items-start justify-start font-medium">
+                      Shipping Rate
+                    </div>
+                    <div className="self-stretch flex flex-col items-start justify-start font-medium">
+                      Total
                     </div>
                   </div>
-                  <div className="self-stretch flex flex-row items-start justify-start gap-[8px]">
-                    <div className="self-stretch flex flex-col items-center justify-start">
-                      <div className="rounded-81xl bg-primary-primary-50 w-9 h-9 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border z-[1]">
-                        <img
-                          className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/fisrtimefast.svg"
-                        />
-                      </div>
-                      <img
-                        className="flex-1 relative max-h-full w-px z-[0]"
-                        alt=""
-                        src="/img/divider1.svg"
-                      />
+                  <div className="self-stretch flex flex-col items-start justify-start gap-[20px] pl-[25px]">
+                    <div className="self-stretch flex flex-col justify-start items-start tracking-[0.01em] ">
+                      ฿145
                     </div>
-                    <div className="flex-1 flex flex-col items-start justify-start pt-0 px-0 pb-[18px] gap-[8px]">
-                      <div className="self-stretch relative tracking-[0.01em] leading-[24px] font-medium">
-                        Processing
-                      </div>
-                      <div className="self-stretch relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-400">
-                        Seller has proccessed your order.
-                      </div>
-                      <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] font-medium text-neutral-gray-gray-400">
-                        12/12/2022, 03:15
-                      </div>
+                    <div className="self-stretch flex flex-col justify-start items-start relative tracking-[0.01em]">
+                      ฿50
                     </div>
-                  </div>
-                  <div className="self-stretch flex flex-row items-start justify-start gap-[8px]">
-                    <div className="self-stretch flex flex-col items-center justify-start">
-                      <div className="rounded-81xl bg-neutral-gray-gray-50 w-9 h-9 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border z-[1]">
-                        <img
-                          className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/fisrboxalt.svg"
-                        />
-                      </div>
-                      <img
-                        className="flex-1 relative max-h-full w-px z-[0]"
-                        alt=""
-                        src="/img/divider2.svg"
-                      />
-                    </div>
-                    <div className="flex-1 flex flex-col items-start justify-start pt-0 px-0 pb-[18px] gap-[8px]">
-                      <div className="self-stretch relative tracking-[0.01em] leading-[24px] font-medium">
-                        Packed
-                      </div>
-                      <div className="self-stretch relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-400 hidden">
-                        Seller has proccessed your order.
-                      </div>
-                      <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] font-medium text-neutral-gray-gray-400">
-                        DD/MM/YY, 00:00
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch flex flex-row items-start justify-start gap-[8px]">
-                    <div className="self-stretch flex flex-col items-center justify-start">
-                      <div className="rounded-81xl bg-neutral-gray-gray-50 w-9 h-9 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border z-[1]">
-                        <img
-                          className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/fisrtruckside.svg"
-                        />
-                      </div>
-                      <img
-                        className="flex-1 relative max-h-full w-px z-[0]"
-                        alt=""
-                        src="/img/divider2.svg"
-                      />
-                    </div>
-                    <div className="flex-1 flex flex-col items-start justify-start pt-0 px-0 pb-[18px] gap-[8px]">
-                      <div className="self-stretch relative tracking-[0.01em] leading-[24px] font-medium">
-                        Shipping
-                      </div>
-                      <div className="self-stretch relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-400 hidden">
-                        Desc lorem ipsum dolor sia amt
-                      </div>
-                      <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] font-medium text-neutral-gray-gray-400">
-                        DD/MM/YY, 00:00
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch flex flex-row items-start justify-start gap-[8px]">
-                    <div className="rounded-81xl bg-neutral-gray-gray-50 w-9 h-9 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
-                      <img
-                        className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/fisrdocumentsigned.svg"
-                      />
-                    </div>
-                    <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
-                      <div className="self-stretch relative tracking-[0.01em] leading-[24px] font-medium">
-                        Delivered
-                      </div>
-                      <div className="self-stretch relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-400 hidden">
-                        Seller has proccessed your order.
-                      </div>
-                      <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] font-medium text-neutral-gray-gray-400">
-                        DD/MM/YY, 00:00
-                      </div>
+                    <div className="self-stretch flex flex-col justify-start items-start relative tracking-[0.01em]">
+                      ฿195
                     </div>
                   </div>
                 </div>

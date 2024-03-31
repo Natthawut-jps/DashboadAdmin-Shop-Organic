@@ -4,9 +4,9 @@ import { Cookies } from "react-cookie";
 const Header: FunctionComponent = () => {
   const Logout = () => {
     const cookie = new Cookies();
-    if (cookie.get("_ur")) {
-      cookie.remove("_ur");
-      cookie.remove("_ut");
+    if (cookie.get("_ura")) {
+      cookie.remove("_ura");
+      cookie.remove("_uta");
       return (location.href = "/admin/login");
     }
   };

@@ -9,9 +9,9 @@ const instance_auth = axios.create({
 try {
   instance_auth.interceptors.request.use(
     async (configs) => {
-      const _ut = cookies.get("_ut");
-      if (_ut) {
-        configs.headers.Authorization = `Bearer ${_ut}`;
+      const _uta = cookies.get("_uta");
+      if (_uta) {
+        configs.headers.Authorization = `Bearer ${_uta}`;
       }
       return configs;
     },
@@ -28,26 +28,26 @@ try {
       const originRequest = error.config;
       if (error.response && (error.response.status === 401 || error.response.status === 403) && !originRequest._retry) {
         originRequest._retry = true;
-        const _ur = cookies.get("_ur");
-        if (_ur) {
+        const _ura = cookies.get("_ura");
+        if (_ura) {
           try {
             await axios({
               method: "post",
               url: "http://localhost:8080/admin_authRefreshToken/refresh_token",
               data: { massage: "Authorize" },
               headers: {
-                Authorization: `Bearer ${_ur}`,
+                Authorization: `Bearer ${_ura}`,
               },
             }).then((res:any) => {
               if (res.status === 200) {
                 const date = new Date();
-                cookies.set("_ut", res.data._ut, {
+                cookies.set("_uta", res.data._uta, {
                   expires: new Date(date.setMinutes(date.getMinutes() + 3)),
                   path: '/',
                   secure: true,
                   sameSite: "strict",
                 });
-                cookies.set("_ur", res.data._ur, {
+                cookies.set("_ura", res.data._ura, {
                   expires: new Date(date.setDate(date.getDate() + 5)),
                   path: '/',
                   secure: true,

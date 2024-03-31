@@ -74,18 +74,6 @@ const Product: FunctionComponent = () => {
             </div>
           </div>
           <div className="flex flex-row items-start justify-start gap-[16px] text-sm text-primary-primary-500">
-            <div className="rounded-lg bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px]">
-              <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                <img
-                  className="relative w-4 h-4 overflow-hidden shrink-0"
-                  alt=""
-                  src="/img/fisrdownload.svg"
-                />
-              </div>
-              <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                Export
-              </div>
-            </div>
             <NavLink
               to={"/Dashboad/Product/Add"}
               className=" no-underline rounded-lg bg-primary-primary-500 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] text-neutral-white"

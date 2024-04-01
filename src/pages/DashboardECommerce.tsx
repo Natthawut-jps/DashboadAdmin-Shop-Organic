@@ -36,11 +36,11 @@ interface order_Type {
 
 const DashboardECommerce: FunctionComponent = () => {
   const [data_sales, setSales] = useState<sale_Type>({} as sale_Type);
-  const [year, setYear] = useState<number>(2024);
   const [pageCount, setPageCount] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<order_Type[]>([]);
   const [order, setOrder] = useState<order_Type[]>([]);
+
   const months = [
     "January",
     "February",
@@ -70,7 +70,7 @@ const DashboardECommerce: FunctionComponent = () => {
   const sale = async () => {
     await instance_auth({
       method: "get",
-      params: { year: year },
+      params: { year: new Date().getFullYear() },
       url: "/dashboads/sales",
       responseType: "json",
     }).then((res) => {
@@ -79,7 +79,34 @@ const DashboardECommerce: FunctionComponent = () => {
       }
     });
   };
-
+  interface top_month_Type {
+    id: number;
+    name: string;
+    categories: string;
+    product_id: number;
+    imgURL: string;
+    sold: number;
+    quantity: number;
+    price: number;
+    createdAt: Date;
+    updatedAt: Date;
+  }
+  const [top_month, setTop_month] = useState<top_month_Type[]>([]);
+  const top_of_month = async () => {
+    try {
+      instance_auth({
+        method: "get",
+        url: "/dashboads/top_of_month",
+        responseType: "json",
+      }).then((res) => {
+        if (res.status === 200) {
+          setTop_month(res.data);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     const sortByLstest = data.sort(
       (a: order_Type, b: order_Type) => b.id - a.id
@@ -93,9 +120,11 @@ const DashboardECommerce: FunctionComponent = () => {
   useEffect(() => {
     sale();
     get_order_admin();
+    top_of_month();
   }, []);
-  console.log(data_sales);
 
+ 
+  console.log(top_month);
   return (
     <div className="relative bg-neutral-white-base-color w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-s-regular">
       <Sidebar />
@@ -220,7 +249,7 @@ const DashboardECommerce: FunctionComponent = () => {
                   Statistic
                 </div>
                 <div className="relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
-                  Sales&nbsp;{year}
+                  Sales&nbsp;{new Date().getFullYear()}
                 </div>
               </div>
               <div className=" flex justify-center w-full">
@@ -271,7 +300,7 @@ const DashboardECommerce: FunctionComponent = () => {
                         data_sales.Dec,
                       ],
                       color: "rgb(248 102 36)",
-                      label: `Sales ${year}`,
+                      label: `Sales ${new Date().getFullYear()}`,
                       showMark: false,
                       valueFormatter: new Intl.NumberFormat("th", {
                         style: "currency",
@@ -302,11 +331,6 @@ const DashboardECommerce: FunctionComponent = () => {
                   Top Product in This Month
                 </div>
               </div>
-              <img
-                className="relative w-4 h-4 overflow-hidden shrink-0"
-                alt=""
-                src="/img/fisrmenudotsvertical.svg"
-              />
             </div>
             <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[16px] z-[0] text-sm">
               <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
@@ -325,109 +349,6 @@ const DashboardECommerce: FunctionComponent = () => {
                   1,240
                 </div>
               </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="relative rounded-lg bg-neutral-gray-gray-100 w-10 h-10" />
-                  <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      PS Wireless Controller
-                    </div>
-                    <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                      Smartphone
-                    </div>
-                  </div>
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  1,189
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="relative rounded-lg bg-neutral-gray-gray-100 w-10 h-10" />
-                  <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Ximi Mechanical Keyboard
-                    </div>
-                    <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                      Smartphone
-                    </div>
-                  </div>
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  1,100
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="relative rounded-lg bg-neutral-gray-gray-100 w-10 h-10" />
-                  <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Audia Tech Earphone
-                    </div>
-                    <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                      Earphone
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-[8px]">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    908
-                  </div>
-                  <div className="rounded-md bg-secondary-green-green-50 hidden flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-green-green-600">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      +10%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="relative rounded-lg bg-neutral-gray-gray-100 w-10 h-10" />
-                  <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Sams S14 Pro
-                    </div>
-                    <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                      Tablet
-                    </div>
-                  </div>
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  900
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="relative rounded-lg bg-neutral-gray-gray-100 w-10 h-10" />
-                  <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Sams A13 5G
-                    </div>
-                    <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                      Smartphone
-                    </div>
-                  </div>
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  870
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="relative rounded-lg bg-neutral-gray-gray-100 w-10 h-10" />
-                  <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Jsound P01 TWS
-                    </div>
-                    <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                      Earphone
-                    </div>
-                  </div>
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  870
-                </div>
-              </div>
             </div>
           </div>
           <div className="flex-1 rounded-xl bg-neutral-white-base-color shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[22px]">
@@ -440,11 +361,6 @@ const DashboardECommerce: FunctionComponent = () => {
                   Top Category in This Month
                 </div>
               </div>
-              <img
-                className="relative w-4 h-4 overflow-hidden shrink-0"
-                alt=""
-                src="/img/fisrmenudotsvertical.svg"
-              />
             </div>
             <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[16px] z-[0] text-sm">
               <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
@@ -469,158 +385,6 @@ const DashboardECommerce: FunctionComponent = () => {
                   <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-green-green-600">
                     <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
                       +12%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="rounded-81xl bg-secondary-orange-orange-50 w-10 h-10 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrtablet.svg"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-center">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Tablet
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-[8px]">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    1,460
-                  </div>
-                  <div className="rounded-md bg-secondary-red-red-50 flex flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-red-red-500">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      -5%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="rounded-81xl bg-secondary-green-green-50 w-10 h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrheadphones.svg"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-center">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Earphone
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-[8px]">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    1,229
-                  </div>
-                  <div className="rounded-md bg-neutral-gray-gray-50 flex flex-col items-center justify-center py-0.5 px-2 text-xs text-neutral-black-black-400">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      0%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="rounded-81xl bg-secondary-red-red-50 w-10 h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrlaptop.svg"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-center">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">{`Laptop & PC`}</div>
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-[8px]">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    982
-                  </div>
-                  <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-green-green-600">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      +19%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="rounded-81xl bg-secondary-cyan-cyan-50 w-10 h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrmouse.svg"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-center">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Mouse
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-[8px]">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    791
-                  </div>
-                  <div className="rounded-md bg-secondary-red-red-50 flex flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-red-red-500">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      -25%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="rounded-81xl bg-secondary-yellow-yellow-50 w-10 h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrusbpendrive.svg"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-center">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">{`Hardisk & USB Drive`}</div>
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-[8px]">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    679
-                  </div>
-                  <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-green-green-600">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      +11%
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="rounded-81xl bg-neutral-gray-gray-50 w-10 h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrcamera.svg"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-center">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Camera
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-[8px]">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    679
-                  </div>
-                  <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-green-green-600">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      +11%
                     </div>
                   </div>
                 </div>
@@ -847,7 +611,10 @@ const DashboardECommerce: FunctionComponent = () => {
                   </div>
                 </div>
                 {order.map((item, index) => (
-                  <div key={index} className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-center py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
+                  <div
+                    key={index}
+                    className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-center py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                  >
                     <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
                       <img
                         className="relative w-4 h-4 overflow-hidden shrink-0"

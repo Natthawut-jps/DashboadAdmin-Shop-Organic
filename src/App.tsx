@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/admin/login" element={<Login />} />
         <Route
-          element={<Protect_route allow={cookie.get("_ur") ? true : false} />}
+          element={<Protect_route allow={cookie.get("_ura") ? true : false} />}
         >
           <Route index element={<DashboardECommerce />} />
           <Route path="/Dashboad/Product">

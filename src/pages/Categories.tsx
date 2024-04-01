@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Sidebar } from "./utities/Sidebar";
 import instance_auth from "./utities/instance_auth";
 import Header from "./utities/Header";
@@ -9,6 +9,7 @@ interface category_Typee {
   id: number;
   category_name: string;
   description: string;
+  sold: number;
   quantity: number;
   imgURL: File | null;
   createdAt: Date;
@@ -150,7 +151,26 @@ const Categories: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Stock
+                  Sold
+                </div>
+              </div>
+              {categories.map((item, index) => (
+                <div
+                  key={index}
+                  className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                >
+                  <div className="h-11 flex flex-row items-center justify-center">
+                    <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                      {item.sold}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex-1 flex flex-col items-start justify-start">
+              <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
+                <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
+                  Quantity
                 </div>
               </div>
               {categories.map((item, index) => (

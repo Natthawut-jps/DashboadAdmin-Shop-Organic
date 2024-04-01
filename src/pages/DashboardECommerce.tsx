@@ -79,7 +79,7 @@ const DashboardECommerce: FunctionComponent = () => {
       }
     });
   };
-  interface top_month_Type {
+  interface product_top_Type {
     id: number;
     name: string;
     categories: string;
@@ -87,29 +87,48 @@ const DashboardECommerce: FunctionComponent = () => {
     imgURL: string;
     sold: number;
     quantity: number;
+    description: string;
     price: number;
     createdAt: Date;
     updatedAt: Date;
   }
-  const [top_month, setTop_month] = useState<top_month_Type[]>([]);
+  interface categories_top_Type {
+    id: number;
+    category_name: string;
+    description: string;
+    sold: number;
+    quantity: number;
+    imgURL: string;
+    createdAt: Date;
+    updatedAt: Date;
+  }
+
+  const [categories_top, setCategories_top] = useState<categories_top_Type[]>(
+    []
+  );
+  const [product_top, setProduct_top] = useState<product_top_Type[]>([]);
+
   const top_of_month = async () => {
     try {
-      instance_auth({
+      await instance_auth({
         method: "get",
         url: "/dashboads/top_of_month",
         responseType: "json",
       }).then((res) => {
         if (res.status === 200) {
-          setTop_month(res.data);
+          setCategories_top(res.data.categories_top);
+          setProduct_top(res.data.product_top);
         }
       });
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(categories_top);
   useEffect(() => {
     const sortByLstest = data.sort(
-      (a: order_Type, b: order_Type) => b.id - a.id
+      (a: order_Type, b: order_Type) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
     const itemOffset = ((page - 1) * 10) % sortByLstest.length;
     const endOffset = itemOffset + 10;
@@ -123,8 +142,6 @@ const DashboardECommerce: FunctionComponent = () => {
     top_of_month();
   }, []);
 
- 
-  console.log(top_month);
   return (
     <div className="relative bg-neutral-white-base-color w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-s-regular">
       <Sidebar />
@@ -332,24 +349,39 @@ const DashboardECommerce: FunctionComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[16px] z-[0] text-sm">
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="relative rounded-lg bg-neutral-gray-gray-100 w-10 h-10" />
-                  <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Logic+ Wireless Mouse
-                    </div>
-                    <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                      Mouse
+            {product_top &&
+              product_top
+                .sort((a, b) => b.sold - a.sold)
+                .slice(0, 10)
+                .map((item, index) => (
+                  <div
+                    key={index}
+                    className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[16px] z-[0] text-sm"
+                  >
+                    <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
+                      <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
+                        <img
+                          src={`${import.meta.env.VITE_BASE_API}/img/${
+                            item.imgURL
+                          }`}
+                          alt=""
+                          className=" relative w-10 h-10"
+                        />
+                        <div className="flex-1 flex flex-col items-start justify-center gap-[2px]">
+                          <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
+                            {item.name}
+                          </div>
+                          <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
+                            {item.description}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                        ฿{item.price}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  1,240
-                </div>
-              </div>
-            </div>
+                ))}
           </div>
           <div className="flex-1 rounded-xl bg-neutral-white-base-color shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[22px]">
             <div className="self-stretch flex flex-row items-start justify-start gap-[12px] z-[1]">
@@ -357,39 +389,53 @@ const DashboardECommerce: FunctionComponent = () => {
                 <div className="self-stretch relative tracking-[0.01em] leading-[30px] font-semibold">
                   Top Category
                 </div>
-                <div className="relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
-                  Top Category in This Month
-                </div>
-              </div>
-            </div>
-            <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[16px] z-[0] text-sm">
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
-                  <div className="rounded-81xl bg-primary-primary-50 w-10 h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrsmartphone.svg"
-                    />
+                <div className=" flex">
+                  <div className="relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
+                    Top Category in This Month
                   </div>
-                  <div className="flex-1 flex flex-col items-start justify-center">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Smartphone
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-[8px]">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    1,509
-                  </div>
-                  <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-center text-xs text-secondary-green-green-600">
-                    <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                      +12%
-                    </div>
+                  <div className="relative left-[330px] text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
+                    Sold
                   </div>
                 </div>
               </div>
             </div>
+            {categories_top &&
+              categories_top
+                .sort((a, b) => b.sold - a.sold)
+                .slice(0, 10)
+                .map((item, index) => (
+                  <div
+                    key={index}
+                    className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[16px] z-[0] text-sm"
+                  >
+                    <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
+                      <div className="flex-1 flex flex-row items-center justify-center gap-[12px]">
+                        <div className="rounded-81xl bg-primary-primary-50 w-10 h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
+                          <img
+                            className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
+                            alt=""
+                            src={`${import.meta.env.VITE_BASE_API}/img/${
+                              item.imgURL
+                            }`}
+                          />
+                        </div>
+                        <div className="flex-1 flex flex-col items-start justify-center">
+                          <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
+                            {item.category_name}
+                          </div>
+                          <div className="self-stretch relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
+                            {item.description}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-row items-center justify-center gap-[8px]">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                          {item.sold}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
         <div className="self-stretch flex flex-row items-start justify-start gap-[24px] z-[0]">

@@ -61,7 +61,7 @@ const OrderDetails: FunctionComponent = () => {
   });
   const handleSubmit = async () => {
     if (data.tracking_id && data.staus) {
-      if (!err) {
+      try {
         await instance_auth({
           method: "post",
           url: "/orders/change_status",
@@ -81,6 +81,8 @@ const OrderDetails: FunctionComponent = () => {
             setError("aleady Tracking ID");
           }
         });
+      } catch (error) {
+        console.log(error);
       }
     } else {
       setError('"Tracking and Status required"');
@@ -92,7 +94,7 @@ const OrderDetails: FunctionComponent = () => {
       tracking_id: order.tracking_id ? order.tracking_id : "",
     });
   }, []);
-  console.log(data);
+
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-s-medium">
       <Sidebar />
@@ -285,7 +287,6 @@ const OrderDetails: FunctionComponent = () => {
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                   <FormControl
-                    required
                     size="small"
                     sx={{
                       width: 200,

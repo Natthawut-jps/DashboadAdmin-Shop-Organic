@@ -3,21 +3,37 @@ import { Sidebar } from "./utities/Sidebar";
 import Header from "./utities/Header";
 import instance_auth from "./utities/instance_auth";
 import { Pagination } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface customer_Type {
   id: number;
   first_name: string;
   last_name: string;
+  email: string;
   imgURL: string;
   createdAt: Date;
   updatedAt: Date;
 }
+
 const Customer: FunctionComponent = () => {
   const [pageCount, setPageCount] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<customer_Type[]>([]);
   const [customers, setCustomer] = useState<customer_Type[]>([]);
-
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   const get_customer_admin = async () => {
     await instance_auth({
       method: "get",
@@ -136,7 +152,7 @@ const Customer: FunctionComponent = () => {
                   <img
                     src={`${import.meta.env.VITE_BASE_API}/img/${item.imgURL}`}
                     alt=""
-                    className="relative rounded-81xl bg-neutral-gray-gray-100 w-20 h-20 "
+                    className="relative rounded-81xl bg-neutral-gray-gray-100 w-20 h-20"
                   />
                   <div className="self-stretch flex flex-col items-center justify-center gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-semibold">
@@ -157,26 +173,22 @@ const Customer: FunctionComponent = () => {
                 <div className="self-stretch flex flex-row items-center justify-center gap-[10px] z-[2] text-xs text-neutral-gray-gray-500">
                   <div className="flex-1 flex flex-col items-center justify-start gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[18px]">
-                      Orders
+                      Added
                     </div>
                     <div className="self-stretch relative text-sm tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
-                      12,091
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-center justify-start gap-[4px]">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[18px]">
-                      Balance
-                    </div>
-                    <div className="self-stretch relative text-sm tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
-                      $12,091
+                      {`${new Date(item.createdAt).getDate()} ${
+                        months[new Date(item.createdAt).getMonth()]
+                      } ${new Date(item.createdAt).getFullYear()}`}
                     </div>
                   </div>
                 </div>
-                <img
-                  className="absolute my-0 mx-[!important] top-[16px] right-[16.4px] w-4 h-4 overflow-hidden shrink-0 z-[3]"
-                  alt=""
-                  src="/img/fisrmenudotsvertical.svg"
-                />
+                <Link
+                  to={"/Dashboad/Customer/Detail-Customer"}
+                  state={item}
+                  className="absolute no-underline top-[16px] right-[0px] w-4 h-4 p-1 shrink-0 mr-[30px] z-50 cursor-pointer text-secondary-cyan-cyan-500 font-semibold"
+                >
+                  View
+                </Link>
               </div>
             </div>
           ))}

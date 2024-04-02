@@ -261,7 +261,7 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Fash Express
+                    Kerry Express
                   </div>
                 </div>
               </div>
@@ -321,7 +321,7 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Shipping
+                    Tracking ID
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">

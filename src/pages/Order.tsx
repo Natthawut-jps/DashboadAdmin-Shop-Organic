@@ -13,6 +13,7 @@ interface order_Type {
   amount_total: number;
   status: number;
   quantity: number;
+  sold: number;
   customer_name: string;
   user_id: string;
   address_id: number;
@@ -394,7 +395,7 @@ const Order: FunctionComponent = () => {
                     </div>
                   ) : (
                     <div className="h-11 flex flex-row items-center justify-center gap-[20px]">
-                      <Link to={"/Dashboad/Order/Detail"}>
+                      <Link to={"/Dashboad/Order/Detail"} state={item}>
                         <img
                           className="relative w-4 h-4 overflow-hidden shrink-0"
                           alt=""

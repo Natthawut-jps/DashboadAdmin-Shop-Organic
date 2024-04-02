@@ -87,11 +87,6 @@ export const Sidebar: FunctionComponent = () => {
                 <b className="flex-1 relative tracking-[0.01em] leading-[20px]">
                   E-Commerce
                 </b>
-                <div className="rounded bg-secondary-cyan-cyan-500 flex flex-col relative right-10 items-center justify-center py-0.5 px-1.5 text-3xs text-neutral-white font-inter">
-                  <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
-                    2
-                  </div>
-                </div>
               </div>
             </AccordionSummary>
             <AccordionDetails
@@ -138,11 +133,6 @@ export const Sidebar: FunctionComponent = () => {
                 >
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
                     Orders
-                  </div>
-                  <div className="rounded bg-secondary-cyan-cyan-500 relative right-10 flex flex-col items-center justify-center py-0.5 px-1.5 text-3xs text-neutral-white font-inter">
-                    <div className="relative tracking-[0.01em] leading-[136%] font-semibold">
-                      2
-                    </div>
                   </div>
                 </NavLink>
                 <NavLink

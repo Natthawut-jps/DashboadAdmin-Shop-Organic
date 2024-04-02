@@ -131,7 +131,24 @@ const DashboardECommerce: FunctionComponent = () => {
       console.log(error);
     }
   };
-  console.log(categories_top);
+  interface total_Type {
+    order_total: number;
+    customer_total: number;
+    product_total: number;
+  }
+  const [total, setTotal] = useState<total_Type>();
+  const get_total = async () => {
+    await instance_auth({
+      method: "get",
+      url: "/dashboads/total",
+      responseType: "json",
+    }).then((res) => {
+      if (res.status === 200) {
+        setTotal(res.data);
+      }
+    });
+  };
+
   useEffect(() => {
     const sortByLstest = data.sort(
       (a: order_Type, b: order_Type) =>
@@ -147,6 +164,7 @@ const DashboardECommerce: FunctionComponent = () => {
     sale();
     get_order_admin();
     top_of_month();
+    get_total();
   }, []);
 
   return (
@@ -157,10 +175,10 @@ const DashboardECommerce: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-between z-[4] text-9xl text-neutral-black-black-700">
           <div className="flex flex-col items-start justify-start gap-[8px]">
             <div className="relative tracking-[0.01em] font-medium inline-block w-[469px]">
-              Welcome Back Jay
+              Welcome Shop-Organic
             </div>
             <div className="relative text-lg tracking-[0.01em] leading-[28px] text-neutral-black-black-300 inline-block w-[469px]">
-              Lorem ipsum dolor si amet welcome back jay
+              shop-organic agricultural products in loei province
             </div>
           </div>
           <div className="rounded-lg bg-neutral-white-base-color overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[8px] text-sm text-neutral-black-black-400 border-[1px] border-solid border-neutral-gray-gray-100">
@@ -191,12 +209,7 @@ const DashboardECommerce: FunctionComponent = () => {
               </div>
               <div className="flex flex-row items-center justify-center gap-[8px] text-9xl text-neutral-white-base-color">
                 <div className="relative tracking-[0.01em] font-semibold">
-                  31,500
-                </div>
-                <div className="rounded bg-gray-400 flex flex-col items-center justify-center py-0.5 px-1.5 text-center text-xs">
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    +15%
-                  </div>
+                  {total && total.order_total}
                 </div>
               </div>
             </div>
@@ -220,12 +233,7 @@ const DashboardECommerce: FunctionComponent = () => {
               </div>
               <div className="flex flex-row items-center justify-center gap-[8px] text-9xl text-neutral-white-base-color">
                 <div className="relative tracking-[0.01em] font-semibold">
-                  ฿24,500
-                </div>
-                <div className="rounded bg-gray-400 flex flex-col items-center justify-center py-0.5 px-1.5 text-center text-xs">
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    -25%
-                  </div>
+                  {total && total.customer_total}
                 </div>
               </div>
             </div>
@@ -249,12 +257,7 @@ const DashboardECommerce: FunctionComponent = () => {
               </div>
               <div className="flex flex-row items-center justify-center gap-[8px] text-9xl text-neutral-white-base-color">
                 <div className="relative tracking-[0.01em] font-semibold">
-                  247
-                </div>
-                <div className="rounded bg-gray-400 flex flex-col items-center justify-center py-0.5 px-1.5 text-center text-xs">
-                  <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                    0%
-                  </div>
+                  {total && total.product_total}
                 </div>
               </div>
             </div>

@@ -1,8 +1,105 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Sidebar } from "./utities/Sidebar";
 import Header from "./utities/Header";
+import { useLocation } from "react-router-dom";
+import instance_auth from "./utities/instance_auth";
+
+interface order_Type {
+  id: number;
+  referent: string;
+  tracking_id: string;
+  amount_total: number;
+  status: number;
+  quantity: number;
+  sold: number;
+  customer_name: string;
+  user_id: string;
+  address_id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+interface addressType {
+  first_name: string;
+  last_name: string;
+  street: string;
+  county: string;
+  tambon: string;
+  states: string;
+  zipCode: number;
+  phone: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+interface orderDetail_Type {
+  id: number;
+  name: string;
+  price: number;
+  categories: string;
+  quantity: number;
+  imgURL: string;
+  product_id: number;
+  user_id: number;
+  order_id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 const OrderDetails: FunctionComponent = () => {
+  const order_state: order_Type = useLocation().state;
+  const status = [
+    "กำลังดำเนินการ",
+    "รับออเดอร์เรียบร้อย",
+    "กำลังเตรียมพัสดุ",
+    "บริษัทขนส่งเข้ารับพัสดุ",
+    "พัสดุตีกลับ",
+  ];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const [address, setAddress] = useState<addressType>();
+  const get_address = async () => {
+    await instance_auth({
+      method: "get",
+      url: "/orders/address",
+      responseType: "json",
+      params: { id: order_state.address_id },
+    }).then((res) => {
+      if (res.status === 200) {
+        setAddress(res.data);
+      }
+    });
+  };
+
+  const [detail_order, setDetailOrder] = useState<orderDetail_Type[]>([]);
+  const get_Detail = async () => {
+    await instance_auth({
+      method: "get",
+      url: "/orders/order_detail",
+      responseType: "json",
+      params: { id: order_state.id },
+    }).then((res) => {
+      if (res.status === 200) {
+        console.log(res.data);
+        setDetailOrder(res.data);
+      }
+    });
+  };
+  useEffect(() => {
+    get_address();
+    get_Detail();
+  }, []);
+
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-s-medium">
       <Sidebar />
@@ -68,12 +165,46 @@ const OrderDetails: FunctionComponent = () => {
               <div className="flex-1 flex flex-col items-start justify-start">
                 <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
                   <div className="relative tracking-[0.01em] leading-[28px] font-semibold">
-                    Order #302011
+                    Order #{order_state.id}
                   </div>
-                  <div className="rounded-lg bg-secondary-orange-orange-50 flex flex-col items-center justify-center py-1 px-2.5 text-sm text-secondary-orange-orange-500">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Processing
-                    </div>
+                  <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
+                    {order_state.status === 1 ? (
+                      <div className="rounded-lg bg-secondary-orange-orange-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-orange-orange-500">
+                          {status[order_state.status - 1]}
+                        </div>
+                      </div>
+                    ) : order_state.status === 2 ? (
+                      <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-green-green-600">
+                          {status[order_state.status - 1]}
+                        </div>
+                      </div>
+                    ) : order_state.status === 3 ? (
+                      <div className="rounded-lg bg-secondary-yellow-yellow-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-yellow-yellow-500">
+                          {status[order_state.status - 1]}
+                        </div>
+                      </div>
+                    ) : order_state.status === 4 ? (
+                      <div className="rounded-lg bg-secondary-cyan-cyan-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-cyan-cyan-500">
+                          {status[order_state.status - 1]}
+                        </div>
+                      </div>
+                    ) : order_state.status === 5 ? (
+                      <div className="rounded-lg bg-secondary-blue-blue-500/10 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-blue-blue-500">
+                          {status[order_state.status - 1]}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="rounded-lg bg-secondary-red-red-50 flex flex-col items-center justify-center py-1 px-2.5">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-red-red-500">
+                          ยกเลิกสินค้า
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -93,7 +224,9 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  12 Dec 2022
+                  {`${new Date(order_state.createdAt).getDate()} ${
+                    months[new Date(order_state.createdAt).getMonth()]
+                  } ${new Date(order_state.createdAt).getFullYear()}`}
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -110,7 +243,7 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  Visa
+                  QR Code PrompPay
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -127,7 +260,7 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  Flat Shipping
+                  Kerry Express
                 </div>
               </div>
             </div>
@@ -151,7 +284,7 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  Josh Adam
+                  {order_state.customer_name}
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -172,7 +305,7 @@ const OrderDetails: FunctionComponent = () => {
                   href="mailto:josh_adam@mail.com"
                   target="_blank"
                 >
-                  joshadam@mail.com
+                  {order_state.user_id}
                 </a>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -189,7 +322,7 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  909 427 2910
+                  {address && address.phone}
                 </div>
               </div>
             </div>
@@ -213,7 +346,7 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  Processing
+                  {status[order_state.status - 1]}
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -226,11 +359,13 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Shipping
+                    Tracking ID
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  SHP-2011REG
+                  {order_state.tracking_id
+                    ? order_state.tracking_id
+                    : "กำลังดำเนินการ"}
                 </div>
               </div>
             </div>
@@ -244,11 +379,7 @@ const OrderDetails: FunctionComponent = () => {
                   <div className="relative tracking-[0.01em] leading-[28px] font-semibold">
                     Order List
                   </div>
-                  <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5 text-center text-sm text-secondary-green-green-600">
-                    <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      +2 Orders
-                    </div>
-                  </div>
+                  <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5 text-center text-sm text-secondary-green-green-600"></div>
                 </div>
               </div>
               <div className="self-stretch overflow-hidden flex flex-row items-start justify-start z-[0] text-sm">
@@ -258,32 +389,27 @@ const OrderDetails: FunctionComponent = () => {
                       Product
                     </div>
                   </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="flex flex-row items-center justify-start gap-[8px]">
-                      <div className="relative rounded-lg bg-gainsboro w-11 h-11" />
-                      <div className="flex flex-col items-start justify-start gap-[4px]">
-                        <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                          Logic+ Wireless Mouse
-                        </div>
-                        <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                          Black
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="flex flex-row items-center justify-start gap-[8px]">
-                      <div className="relative rounded-lg bg-gainsboro w-11 h-11" />
-                      <div className="flex flex-col items-start justify-start gap-[4px]">
-                        <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                          Smartwatch E2
-                        </div>
-                        <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
-                          Black
+                  {detail_order.map((item, index) => (
+                    <div
+                      key={index}
+                      className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                    >
+                      <div className="flex flex-row items-center justify-start gap-[8px]">
+                        <img
+                          src={`${import.meta.env.VITE_BASE_API}/img/${
+                            item.imgURL
+                          }`}
+                          alt=""
+                          className="relative rounded-lg bg-gainsboro w-11 h-11"
+                        />
+                        <div className="flex flex-col items-start justify-start gap-[4px]">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                            {item.name}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                   <div className="self-stretch bg-neutral-white border-b-[1px] border-solid border-neutral-gray-gray-50" />
                   <div className="self-stretch bg-neutral-white border-b-[1px] border-solid border-neutral-gray-gray-50" />
                   <div className="self-stretch bg-neutral-white border-b-[1px] border-solid border-neutral-gray-gray-50" />
@@ -292,23 +418,21 @@ const OrderDetails: FunctionComponent = () => {
                 <div className="flex-1 flex flex-col items-start justify-start text-primary-primary-500">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      SKU
+                      Categories
                     </div>
                   </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                        302011
+                  {detail_order.map((item, index) => (
+                    <div
+                      key={index}
+                      className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                    >
+                      <div className="h-11 flex flex-row items-center justify-center">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
+                          {item.categories}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                        302011
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                   <div className="self-stretch bg-neutral-white border-b-[1px] border-solid border-neutral-gray-gray-50" />
                   <div className="self-stretch bg-neutral-white border-b-[1px] border-solid border-neutral-gray-gray-50" />
                   <div className="self-stretch bg-neutral-white border-b-[1px] border-solid border-neutral-gray-gray-50" />
@@ -320,20 +444,18 @@ const OrderDetails: FunctionComponent = () => {
                       Total
                     </div>
                   </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        1 pcs
+                  {detail_order.map((item, index) => (
+                    <div
+                      key={index}
+                      className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                    >
+                      <div className="h-11 flex flex-row items-center justify-center">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                          {item.quantity} pcs
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        1 pcs
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                   <div className="self-stretch bg-neutral-white border-b-[1px] border-solid border-neutral-gray-gray-50" />
                   <div className="self-stretch bg-neutral-white border-b-[1px] border-solid border-neutral-gray-gray-50" />
                   <div className="self-stretch bg-neutral-white border-b-[1px] border-solid border-neutral-gray-gray-50" />
@@ -345,20 +467,18 @@ const OrderDetails: FunctionComponent = () => {
                       Price
                     </div>
                   </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] text-neutral-gray-gray-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        $121.00
+                  {detail_order.map((item, index) => (
+                    <div
+                      key={index}
+                      className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] text-neutral-gray-gray-500 border-b-[1px] border-solid border-neutral-gray-gray-50"
+                    >
+                      <div className="h-11 flex flex-row items-center justify-center">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                          ฿{item.price.toFixed(2)}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] text-neutral-gray-gray-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                    <div className="h-11 flex flex-row items-center justify-center">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                        $590.00
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -379,27 +499,14 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Billing Address
-                    </div>
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
-                      1833 Bel Meadow Drive, Fontana, California 92335, USA
-                    </div>
-                  </div>
-                </div>
-                <div className="w-[312px] flex flex-row items-start justify-start gap-[8px]">
-                  <div className="rounded-81xl bg-neutral-gray-gray-50 w-10 h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrmarker.svg"
-                    />
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
-                    <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
                       Shipping Address
                     </div>
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
-                      1833 Bel Meadow Drive, Fontana, California 92335, USA
+                      {`${address && address.street} ${
+                        address && address.county
+                      }, ${address && address.states}, ${
+                        address && address.tambon
+                      } ${address && address.zipCode}`}
                     </div>
                   </div>
                 </div>
@@ -426,13 +533,13 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                   <div className="self-stretch flex flex-col items-start justify-start gap-[20px] pl-[25px]">
                     <div className="self-stretch flex flex-col justify-start items-start tracking-[0.01em] ">
-                      ฿145
+                      ฿{order_state.amount_total - 50}
                     </div>
                     <div className="self-stretch flex flex-col justify-start items-start relative tracking-[0.01em]">
                       ฿50
                     </div>
                     <div className="self-stretch flex flex-col justify-start items-start relative tracking-[0.01em]">
-                      ฿195
+                      ฿{order_state.amount_total}
                     </div>
                   </div>
                 </div>

@@ -49,6 +49,18 @@ const Product: FunctionComponent = () => {
       }
     });
   };
+  const deleted = async (id: number) => {
+    await instance_auth({
+      method: "post",
+      url: "/products/deleted",
+      responseType: "json",
+      data: { id: id },
+    }).then((res) => {
+      if (res.status === 200) {
+        location.reload();
+      }
+    });
+  };
 
   useEffect(() => {
     const sortByLstest = data.sort(
@@ -375,7 +387,10 @@ const Product: FunctionComponent = () => {
                         src="/img/fisrpencil.svg"
                       />
                     </Link>
-                    <div className=" cursor-pointer">
+                    <div
+                      className=" cursor-pointer"
+                      onClick={() => deleted(item.id)}
+                    >
                       <img
                         className="relative w-4 h-4 overflow-hidden shrink-0"
                         alt=""

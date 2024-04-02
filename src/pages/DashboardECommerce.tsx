@@ -55,6 +55,13 @@ const DashboardECommerce: FunctionComponent = () => {
     "November",
     "December",
   ];
+  const status = [
+    "กำลังดำเนินการ",
+    "รับออเดอร์เรียบร้อย",
+    "กำลังเตรียมพัสดุ",
+    "บริษัทขนส่งเข้ารับพัสดุ",
+    "พัสดุตีกลับ",
+  ];
   const get_order_admin = async () => {
     await instance_auth({
       method: "get",
@@ -604,51 +611,52 @@ const DashboardECommerce: FunctionComponent = () => {
                     Status
                   </div>
                 </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="rounded-lg bg-secondary-orange-orange-50 flex flex-col items-center justify-center py-1 px-2.5">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                        Processing
-                      </div>
+                {order.map((item, index) => (
+                  <div
+                    key={index}
+                    className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-left border-b-[1px] border-solid border-neutral-gray-gray-50"
+                  >
+                    <div className="h-11 flex flex-row items-center justify-center">
+                      {item.status === 1 ? (
+                        <div className="rounded-lg bg-secondary-orange-orange-50 flex flex-col items-center justify-center py-1 px-2.5">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-orange-orange-500">
+                            {status[item.status - 1]}
+                          </div>
+                        </div>
+                      ) : item.status === 2 ? (
+                        <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-green-green-600">
+                            {status[item.status - 1]}
+                          </div>
+                        </div>
+                      ) : item.status === 3 ? (
+                        <div className="rounded-lg bg-secondary-yellow-yellow-50 flex flex-col items-center justify-center py-1 px-2.5">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-yellow-yellow-500">
+                            {status[item.status - 1]}
+                          </div>
+                        </div>
+                      ) : item.status === 4 ? (
+                        <div className="rounded-lg bg-secondary-cyan-cyan-50 flex flex-col items-center justify-center py-1 px-2.5">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-cyan-cyan-500">
+                            {status[item.status - 1]}
+                          </div>
+                        </div>
+                      ) : item.status === 5 ? (
+                        <div className="rounded-lg bg-secondary-blue-blue-500/10 flex flex-col items-center justify-center py-1 px-2.5">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-blue-blue-500">
+                            {status[item.status - 1]}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="rounded-lg bg-secondary-red-red-50 flex flex-col items-center justify-center py-1 px-2.5">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-red-red-500">
+                            ยกเลิกสินค้า
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="rounded-lg bg-secondary-orange-orange-50 flex flex-col items-center justify-center py-1 px-2.5">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                        Processing
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] text-center text-secondary-cyan-cyan-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="rounded-lg bg-secondary-cyan-cyan-50 flex flex-col items-center justify-center py-1 px-2.5">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                        Shiped
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] text-center text-secondary-cyan-cyan-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="rounded-lg bg-secondary-cyan-cyan-50 flex flex-col items-center justify-center py-1 px-2.5">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                        Shiped
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-start py-[18px] px-[22px] text-center text-secondary-green-green-600 border-b-[1px] border-solid border-neutral-gray-gray-50">
-                  <div className="h-11 flex flex-row items-center justify-center">
-                    <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5">
-                      <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                        Delivered
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
               <div className="flex flex-col items-start justify-start text-right">
                 <div className="bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">

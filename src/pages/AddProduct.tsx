@@ -29,8 +29,8 @@ const AddProduct: FunctionComponent = () => {
   const [error_product, setErrorProduct] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const status_product = ["Out of Stock", "Low Stock", "Published"];
+
   // add products
-  console.log(product)
   const handleSubmitAddProduct = async (e: FormEvent) => {
     e.preventDefault();
     if (product.categories && product.status) {
@@ -88,6 +88,7 @@ const AddProduct: FunctionComponent = () => {
   useEffect(() => {
     get_category();
   }, []);
+  
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-medium">
       <Sidebar />

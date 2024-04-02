@@ -33,6 +33,7 @@ const AddCategory: FunctionComponent = () => {
       }
     });
   };
+
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-regular">
       <Sidebar />
@@ -212,7 +213,7 @@ const AddCategory: FunctionComponent = () => {
                         name="description"
                         className=" w-[800px] h-[130px] resize-none focus:outline-none bg-transparent"
                         placeholder="Type category description here. . ."
-                      ></textarea>
+                      />
                     </div>
                   </div>
                 </div>

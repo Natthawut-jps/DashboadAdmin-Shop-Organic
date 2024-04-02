@@ -1,13 +1,108 @@
-import { FunctionComponent } from "react";
+import { FormEvent, FunctionComponent, useEffect, useState } from "react";
 import { Sidebar } from "./utities/Sidebar";
 import Header from "./utities/Header";
+import { useLocation } from "react-router-dom";
+import instance_auth from "./utities/instance_auth";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+
+interface product_Type {
+  id: number;
+  name: string;
+  price: number;
+  categories: string;
+  imgURL: File | null | string;
+  description: string;
+  quantity: number;
+  status: number;
+}
 
 const EditProduct: FunctionComponent = () => {
+  const state_product: product_Type = useLocation().state;
+  const [edit_product, setEditProduct] = useState<product_Type>({
+    id: state_product.id,
+    name: state_product.name,
+    price: state_product.price,
+    categories: state_product.categories,
+    imgURL: null,
+    description: state_product.description,
+    quantity: state_product.quantity,
+    status: state_product.status,
+  });
+  const [error_product, setErrorProduct] = useState<string | null>(null);
+  const status_product = ["Out of Stock", "Low Stock", "Published"];
+
+  // add products
+  const handleSubmitEditProduct = async (e: FormEvent) => {
+    e.preventDefault();
+    if (edit_product) {
+      const keys = Object.keys(edit_product);
+      const values = Object(edit_product);
+      const form = new FormData();
+      const result = keys.map((item) => {
+        form.append(item, values[item]);
+      });
+      form.append("image_old", state_product.imgURL as string);
+      if (result && form) {
+        await instance_auth({
+          method: "post",
+          url: "/products/edit",
+          responseType: "json",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          data: form,
+        }).then((res) => {
+          if (res.status === 200) {
+            location.href = "/Dashboad/Product";
+          } else {
+            setErrorProduct(res.data);
+          }
+        });
+      }
+    } else {
+      console.log("not found data");
+    }
+  };
+  // categories
+  interface categories_Type {
+    id: number;
+    category_name: string;
+    description: string;
+    imgURL: string;
+  }
+  const [categories, setCategories] = useState<categories_Type[]>([]);
+  const get_category = async () => {
+    try {
+      await instance_auth({
+        method: "get",
+        url: "/categories/get_data",
+        responseType: "json",
+      }).then((res) => {
+        if (res.status === 200) {
+          setCategories(res.data);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    get_category();
+  }, []);
+
+  console.log(edit_product);
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-medium">
-      <Sidebar/>
+      <Sidebar />
       <div className="self-stretch flex-1 flex flex-col items-start justify-start py-8 px-6 gap-[24px] text-neutral-black-black-500">
-        <Header/>
+        <Header />
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[1] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
@@ -36,7 +131,10 @@ const EditProduct: FunctionComponent = () => {
             </div>
           </div>
           <div className="flex flex-row items-start justify-start gap-[16px] text-sm text-neutral-gray-gray-400">
-            <div className="rounded-lg overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] border-[1px] border-solid border-neutral-gray-gray-400">
+            <a
+              href="/Dashboad/Product"
+              className="rounded-lg text-neutral-gray-gray-400 no-underline overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] border-[1px] border-solid border-neutral-gray-gray-400"
+            >
               <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -47,19 +145,28 @@ const EditProduct: FunctionComponent = () => {
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
                 Cancel
               </div>
-            </div>
-            <div className="rounded-lg bg-primary-primary-500 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] opacity-[0.65] text-neutral-white">
-              <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                <img
-                  className="relative w-4 h-4 overflow-hidden shrink-0"
-                  alt=""
-                  src="/img/fisrdisk.svg"
-                />
-              </div>
-              <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                Save Product
-              </div>
-            </div>
+            </a>
+            <form
+              id="edit_product"
+              onSubmit={handleSubmitEditProduct}
+              encType="multipart/form-data"
+            >
+              <button
+                type="submit"
+                className="rounded-lg bg-primary-primary-500 cursor-pointer overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] opacity-[0.65] text-neutral-white"
+              >
+                <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
+                  <img
+                    className="relative w-4 h-4 overflow-hidden shrink-0"
+                    alt=""
+                    src="/img/fisrdisk.svg"
+                  />
+                </div>
+                <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
+                  Save Product
+                </div>
+              </button>
+            </form>
           </div>
         </div>
         <div className="self-stretch flex flex-row items-start justify-start gap-[24px] z-[0] text-lg">
@@ -72,13 +179,32 @@ const EditProduct: FunctionComponent = () => {
                 <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Product Name
+                      Product Name{" "}
+                      <span className=" text-secondary-red-red-500 relative left-[15px]">
+                        {error_product}
+                      </span>
                     </div>
                   </div>
-                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                    <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
+                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
+                    <div className="flex-1 h-6 flex flex-row items-center justify-start">
                       <div className="relative tracking-[0.01em] leading-[20px]">
-                        Smartwatch E2
+                        <input
+                          value={edit_product.name}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            setEditProduct({
+                              ...edit_product,
+                              name: e.target.value,
+                            });
+                          }}
+                          form="edit_product"
+                          name="name"
+                          type="text"
+                          placeholder="Type product name here. . ."
+                          className=" w-[800px] h-[30px] focus:outline-none bg-transparent"
+                          required
+                        />
                       </div>
                     </div>
                   </div>
@@ -86,20 +212,27 @@ const EditProduct: FunctionComponent = () => {
                 <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Description
+                      Description (optional)
                     </div>
                   </div>
-                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
+                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
                     <div className="flex-1 h-[140px] overflow-hidden flex flex-row items-start justify-start">
                       <div className="flex-1 relative tracking-[0.01em] leading-[20px]">
-                        Smartwatch for men women notify you incoming calls, SMS
-                        notifications. when you connect the smartphone with
-                        fitness tracker. Connect fitness tracker with your
-                        phone, you will never miss a call and a message. The
-                        smart watches for android phones will vibrate to alert
-                        you if your phone receives any notifications. You can
-                        reject calls and view message directly from your watch.
-                        A best gift for family and friends
+                        <textarea
+                          value={edit_product.description}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLTextAreaElement>
+                          ) => {
+                            setEditProduct({
+                              ...edit_product,
+                              description: e.target.value,
+                            });
+                          }}
+                          name="description"
+                          form="edit_product"
+                          placeholder="Type product description here. . ."
+                          className=" w-[800px] h-[135px] focus:outline-none resize-none bg-transparent"
+                        ></textarea>
                       </div>
                     </div>
                   </div>
@@ -117,44 +250,58 @@ const EditProduct: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-col items-center justify-center py-6 px-3 gap-[16px] text-neutral-gray-gray-400 border-[1px] border-dashed border-neutral-gray-gray-100">
-                  <div className="flex flex-row items-start justify-start gap-[16px]">
-                    <div className="flex flex-col items-end justify-start relative">
-                      <div className="relative rounded-lg bg-neutral-gray-gray-100 w-[100px] h-[100px] z-[0]" />
-                      <div className="my-0 mx-[!important] absolute top-[4px] right-[4px] rounded-81xl bg-secondary-green-green-100 w-6 h-6 overflow-hidden shrink-0 flex flex-row items-center justify-center p-1 box-border z-[1]">
-                        <img
-                          className="relative w-2.5 h-2.5 overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/firrcheck.svg"
-                        />
-                      </div>
+                  {edit_product.imgURL || state_product.imgURL ? (
+                    <div className="rounded-lg w-full h-full overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
+                      <img
+                        className="relative overflow-hidden shrink-0"
+                        alt=""
+                        width={300}
+                        height={300}
+                        src={
+                          edit_product.imgURL
+                            ? URL.createObjectURL(
+                                new Blob([edit_product.imgURL])
+                              )
+                            : `${import.meta.env.VITE_BASE_API}/img/${String(
+                                state_product.imgURL
+                              )}`
+                        }
+                      />
                     </div>
-                    <div className="flex flex-col items-end justify-start relative">
-                      <div className="relative rounded-lg bg-neutral-gray-gray-100 w-[100px] h-[100px] z-[0]" />
-                      <div className="my-0 mx-[!important] absolute top-[4px] right-[4px] rounded-81xl bg-secondary-green-green-100 w-6 h-6 overflow-hidden shrink-0 flex flex-row items-center justify-center p-1 box-border z-[1]">
-                        <img
-                          className="relative w-2.5 h-2.5 overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/firrcheck.svg"
-                        />
-                      </div>
+                  ) : (
+                    <div className="rounded-lg bg-primary-primary-500 w-11 h-11 overflow-hidden shrink-0 flex flex-row items-center justify-center p-2 box-border">
+                      <img
+                        className="relative overflow-hidden shrink-0"
+                        alt=""
+                        src="/img/fisrpicture.svg"
+                      />
                     </div>
-                    <div className="flex flex-col items-end justify-start relative">
-                      <div className="relative rounded-lg bg-neutral-gray-gray-100 w-[100px] h-[100px] z-[0]" />
-                      <div className="my-0 mx-[!important] absolute top-[4px] right-[4px] rounded-81xl bg-secondary-green-green-100 w-6 h-6 overflow-hidden shrink-0 flex flex-row items-center justify-center p-1 box-border z-[1]">
-                        <img
-                          className="relative w-2.5 h-2.5 overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/firrcheck.svg"
-                        />
-                      </div>
+                  )}
+                  {edit_product.imgURL ? null : (
+                    <div className="relative tracking-[0.01em] leading-[20px]">
+                      Drag and drop image here, or click add image size 600x600
                     </div>
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[20px]">
-                    Drag and drop image here, or click add image
-                  </div>
+                  )}
                   <div className="rounded-lg bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 text-primary-primary-500">
                     <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Add Image
+                      <input
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          if (!e.target.files?.item(0)) return;
+                          const file: File | null = e.target.files.item(0);
+                          if (file) {
+                            setEditProduct({
+                              ...edit_product,
+                              imgURL: file,
+                            });
+                          }
+                        }}
+                        type="file"
+                        name="product_image"
+                        form="edit_product"
+                        accept="image/png, image/jpg, image/jpeg"
+                        className="cursor-pointer file:hidden absolute w-full pt-[35px] file:border-none file:m-0 file:p-0 file:bg-transparent file:text-transparent text-transparent bg-transparent"
+                      />
+                      <span>Add Image</span>
                     </div>
                   </div>
                 </div>
@@ -171,87 +318,29 @@ const EditProduct: FunctionComponent = () => {
                       Base Price
                     </div>
                   </div>
-                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 gap-[4px] text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
+                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 gap-[4px] text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
                     <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                      <img
-                        className="relative w-4 h-4 overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/fisrdollar.svg"
-                      />
+                      ฿
                     </div>
-                    <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
+                    <div className="flex-1 h-6 flex flex-row items-center justify-start">
                       <div className="relative tracking-[0.01em] leading-[20px]">
-                        400.00
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch flex flex-row items-start justify-start gap-[14px]">
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Discount Type
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        No Discount
-                      </div>
-                      <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                        <img
-                          className="relative w-4 h-4 overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/firrcaretdown.svg"
+                        <input
+                          value={edit_product.price}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            setEditProduct({
+                              ...edit_product,
+                              price: e.target.valueAsNumber,
+                            });
+                          }}
+                          type="number"
+                          name="price"
+                          form="edit_product"
+                          className=" w-[800px] h-[30px] focus:outline-none bg-transparent"
+                          placeholder="Type base price here. . ."
+                          required
                         />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Discount Precentage (%)
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                        <div className="relative tracking-[0.01em] leading-[20px]">
-                          0%
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch flex flex-row items-start justify-start gap-[14px]">
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Tax Class
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Tax Free
-                      </div>
-                      <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                        <img
-                          className="relative w-4 h-4 overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/firrcaretdown.svg"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        VAT Amount (%)
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                        <div className="relative tracking-[0.01em] leading-[20px]">
-                          0%
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -266,226 +355,29 @@ const EditProduct: FunctionComponent = () => {
                 <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      SKU
-                    </div>
-                  </div>
-                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                    <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                      <div className="relative tracking-[0.01em] leading-[20px]">
-                        302002
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                  <div className="self-stretch flex flex-row items-start justify-start">
-                    <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Barcode
-                    </div>
-                  </div>
-                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                    <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                      <div className="relative tracking-[0.01em] leading-[20px]">
-                        0984939101123
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                  <div className="self-stretch flex flex-row items-start justify-start">
-                    <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
                       Quantity
                     </div>
                   </div>
-                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
+                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
                     <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
                       <div className="relative tracking-[0.01em] leading-[20px]">
-                        124
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-start justify-center p-6 gap-[14px] text-sm">
-              <div className="self-stretch relative text-lg tracking-[0.01em] leading-[28px] font-semibold z-[2]">
-                Variation
-              </div>
-              <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[1] text-neutral-black-black-300">
-                <div className="self-stretch flex flex-row items-end justify-start gap-[14px]">
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Variation Type
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Color
-                      </div>
-                      <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                        <img
-                          className="relative w-4 h-4 overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/firrcaretdown.svg"
+                        <input
+                          value={edit_product.quantity}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            setEditProduct({
+                              ...edit_product,
+                              quantity: e.target.valueAsNumber,
+                            });
+                          }}
+                          type="number"
+                          name="quatity"
+                          form="edit_product"
+                          className=" w-[820px] h-[30px] focus:outline-none bg-transparent"
+                          placeholder="Type product quantity here. . ."
+                          required
                         />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Variation
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                        <div className="relative tracking-[0.01em] leading-[20px]">
-                          Black
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="rounded-lg bg-secondary-red-red-50 overflow-hidden flex flex-row items-center justify-center p-2.5">
-                    <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                      <img
-                        className="relative w-4 h-4 overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/fisrplus.svg"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch flex flex-row items-end justify-start gap-[14px]">
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Variation Type
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Color
-                      </div>
-                      <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                        <img
-                          className="relative w-4 h-4 overflow-hidden shrink-0"
-                          alt=""
-                          src="/img/firrcaretdown.svg"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Variation
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                        <div className="relative tracking-[0.01em] leading-[20px]">
-                          Gray
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="rounded-lg bg-secondary-red-red-50 overflow-hidden flex flex-row items-center justify-center p-2.5">
-                    <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                      <img
-                        className="relative w-4 h-4 overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/fisrplus.svg"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-lg bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] z-[0] text-primary-primary-500">
-                <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrplus1.svg"
-                  />
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                  Add Variant
-                </div>
-              </div>
-            </div>
-            <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
-              <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-                Shiping
-              </div>
-              <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm text-primary-primary-500">
-                <div className="overflow-hidden flex flex-row items-start justify-start gap-[8px]">
-                  <div className="relative w-5 h-5">
-                    <div className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-md bg-primary-primary-500" />
-                    <img
-                      className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] max-w-full overflow-hidden max-h-full"
-                      alt=""
-                      src="/img/check.svg"
-                    />
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                    This is a physical product
-                  </div>
-                </div>
-                <div className="self-stretch flex flex-row items-start justify-start gap-[14px] text-neutral-black-black-300">
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Weight
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                        <div className="relative tracking-[0.01em] leading-[20px]">
-                          0.25 kg
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Height
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                        <div className="relative tracking-[0.01em] leading-[20px]">
-                          10 cm
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Length
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                        <div className="relative tracking-[0.01em] leading-[20px]">
-                          10 cm
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
-                    <div className="self-stretch flex flex-row items-start justify-start">
-                      <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                        Width
-                      </div>
-                    </div>
-                    <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                      <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
-                        <div className="relative tracking-[0.01em] leading-[20px]">
-                          7 cm
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -505,58 +397,47 @@ const EditProduct: FunctionComponent = () => {
                       Product Category
                     </div>
                   </div>
-                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                    <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Watch
-                    </div>
-                    <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                      <img
-                        className="relative w-4 h-4 overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/firrcaretdown.svg"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
-                  <div className="self-stretch flex flex-row items-start justify-start">
-                    <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Product Tags
-                    </div>
-                  </div>
-                  <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-xs text-primary-primary-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                    <div className="flex-1 flex flex-row items-start justify-start gap-[8px]">
-                      <div className="rounded bg-primary-primary-50 flex flex-row items-center justify-start py-1 px-1.5 gap-[2px]">
-                        <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                          Watch
-                        </div>
-                        <div className="w-4 h-4 flex flex-row items-center justify-center p-2 box-border">
-                          <img
-                            className="relative w-3.5 h-3.5 overflow-hidden shrink-0"
-                            alt=""
-                            src="/img/fisrcrosssmall.svg"
-                          />
-                        </div>
-                      </div>
-                      <div className="rounded bg-primary-primary-50 flex flex-row items-center justify-start py-1 px-1.5 gap-[2px]">
-                        <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                          Gadget
-                        </div>
-                        <div className="w-4 h-4 flex flex-row items-center justify-center p-2 box-border">
-                          <img
-                            className="relative w-3.5 h-3.5 overflow-hidden shrink-0"
-                            alt=""
-                            src="/img/fisrcrosssmall.svg"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                      <img
-                        className="relative w-4 h-4 overflow-hidden shrink-0"
-                        alt=""
-                        src="/img/firrcaretdown.svg"
-                      />
+                  <div className="">
+                    <div className="flex-1 relative tracking-[0.01em] leading-[20px]">
+                      <FormControl
+                        required
+                        size="small"
+                        sx={{
+                          width: 200,
+                          m: 1,
+                          "& .MuiInputLabel-root.Mui-focused": {
+                            color: "black",
+                          },
+                        }}
+                      >
+                        <InputLabel id="categories">
+                          Select a category
+                        </InputLabel>
+                        <Select
+                          required
+                          value={edit_product.categories}
+                          sx={{
+                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                              borderColor: "rgba(228, 219, 233, 1)",
+                            },
+                          }}
+                          name="categories"
+                          labelId="categories"
+                          label="Select a category"
+                          onChange={(e: SelectChangeEvent) => {
+                            setEditProduct({
+                              ...edit_product,
+                              categories: e.target.value,
+                            });
+                          }}
+                        >
+                          {categories.map((item, index) => (
+                            <MenuItem key={index} value={item.category_name}>
+                              {item.category_name}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
                     </div>
                   </div>
                 </div>
@@ -567,9 +448,9 @@ const EditProduct: FunctionComponent = () => {
                 <div className="flex-1 relative tracking-[0.01em] leading-[28px] font-semibold">
                   Status
                 </div>
-                <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5 text-center text-sm text-secondary-green-green-600">
+                <div className="rounded-lg bg-neutral-gray-gray-50 flex flex-col items-center justify-center py-1 px-2.5 text-sm text-neutral-gray-gray-500">
                   <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                    Published
+                    Draft
                   </div>
                 </div>
               </div>
@@ -579,16 +460,42 @@ const EditProduct: FunctionComponent = () => {
                     Product Status
                   </div>
                 </div>
-                <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 box-border h-10 overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-3 gap-[8px] text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
+                <div className="">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Published
-                  </div>
-                  <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/firrcaretdown.svg"
-                    />
+                    <FormControl
+                      required
+                      size="small"
+                      sx={{
+                        width: 200,
+                        m: 1,
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: "black",
+                        },
+                      }}
+                    >
+                      <InputLabel id="status">Select a Draft</InputLabel>
+                      <Select
+                        value={String(edit_product.status)}
+                        sx={{
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(228, 219, 233, 1)",
+                          },
+                        }}
+                        name="status"
+                        labelId="status"
+                        label="Select a Darft"
+                        onChange={(e: SelectChangeEvent) => {
+                          setEditProduct({
+                            ...edit_product,
+                            status: parseInt(e.target.value),
+                          });
+                        }}
+                      >
+                        <MenuItem value={1}>{status_product[0]}</MenuItem>
+                        <MenuItem value={2}>{status_product[1]}</MenuItem>
+                        <MenuItem value={3}>{status_product[2]}</MenuItem>
+                      </Select>
+                    </FormControl>
                   </div>
                 </div>
               </div>

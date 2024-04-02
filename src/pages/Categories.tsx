@@ -11,7 +11,7 @@ interface category_Typee {
   description: string;
   sold: number;
   quantity: number;
-  imgURL: File | null;
+  imgURL: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -45,6 +45,22 @@ const Categories: FunctionComponent = () => {
       }).then((res) => {
         if (res.status === 200) {
           setData(res.data);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const deleted = async (id: number) => {
+    try {
+      await instance_auth({
+        method: "post",
+        url: "/categories/deleted",
+        responseType: "json",
+        data: { id: id },
+      }).then((res) => {
+        if (res.status === 200) {
+          location.reload();
         }
       });
     } catch (error) {
@@ -228,13 +244,16 @@ const Categories: FunctionComponent = () => {
                         src="/img/fisrpencil.svg"
                       />
                     </Link>
-                    <Link to={"/Dashboad/Categories"}>
+                    <div
+                      className=" cursor-pointer"
+                      onClick={() => deleted(item.id)}
+                    >
                       <img
                         className="relative w-4 h-4 overflow-hidden shrink-0"
                         alt=""
                         src="/img/fisrtrash.svg"
                       />
-                    </Link>
+                    </div>
                   </div>
                 </div>
               ))}

@@ -34,18 +34,18 @@ const Order: FunctionComponent = () => {
     "พัสดุตีกลับ",
   ];
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const get_order_admin = async () => {
     await instance_auth({

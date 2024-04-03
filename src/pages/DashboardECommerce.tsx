@@ -42,18 +42,18 @@ const DashboardECommerce: FunctionComponent = () => {
   const [order, setOrder] = useState<order_Type[]>([]);
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const status = [
     "กำลังดำเนินการ",

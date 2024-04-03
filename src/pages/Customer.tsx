@@ -21,18 +21,18 @@ const Customer: FunctionComponent = () => {
   const [data, setData] = useState<customer_Type[]>([]);
   const [customers, setCustomer] = useState<customer_Type[]>([]);
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const get_customer_admin = async () => {
     await instance_auth({

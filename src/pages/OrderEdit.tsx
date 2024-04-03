@@ -41,18 +41,18 @@ const OrderDetails: FunctionComponent = () => {
     "พัสดุตีกลับ",
   ];
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const [err, setError] = useState<string>("");
   const [data, setData] = useState<data_Type>({

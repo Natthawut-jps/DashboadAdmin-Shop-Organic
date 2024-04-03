@@ -23,18 +23,18 @@ const Categories: FunctionComponent = () => {
   const [categories, setCategories] = useState<category_Typee[]>([]);
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const get_category = async () => {
     try {

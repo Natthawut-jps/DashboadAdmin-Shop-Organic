@@ -23,20 +23,20 @@ const Product: FunctionComponent = () => {
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<product_Type[]>([]);
   const [products, setProducts] = useState<product_Type[]>([]);
-  const status_product = ["Out of Stock", "Low Stock", "Published"];
+  const status_product = ["Out of Stock", "Low Stock", "InStock"];
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const get_order_admin = async () => {
     await instance_auth({
@@ -331,9 +331,9 @@ const Product: FunctionComponent = () => {
                     </div>
                   ) : (
                     item.status === 3 && (
-                      <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-left text-secondary-cyan-cyan-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
+                      <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-left text-green-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                         <div className="h-11 flex flex-row items-center justify-center">
-                          <div className="rounded-lg bg-secondary-cyan-cyan-50 flex flex-col items-center justify-center py-1 px-2.5">
+                          <div className="rounded-lg bg-green-50 flex flex-col items-center justify-center py-1 px-2.5">
                             <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
                               {status_product[2]}
                             </div>

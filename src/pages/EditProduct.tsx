@@ -189,6 +189,7 @@ const EditProduct: FunctionComponent = () => {
                     <div className="flex-1 h-6 flex flex-row items-center justify-start">
                       <div className="relative tracking-[0.01em] leading-[20px]">
                         <input
+                          disabled
                           value={edit_product.name}
                           onChange={(
                             e: React.ChangeEvent<HTMLInputElement>
@@ -202,7 +203,7 @@ const EditProduct: FunctionComponent = () => {
                           name="name"
                           type="text"
                           placeholder="Type product name here. . ."
-                          className=" w-[800px] h-[30px] focus:outline-none bg-transparent"
+                          className=" w-[800px] h-[30px] focus:outline-none bg-transparent cursor-not-allowed"
                           required
                         />
                       </div>

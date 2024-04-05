@@ -3,7 +3,15 @@ import { Link, NavLink } from "react-router-dom";
 import { Sidebar } from "./utities/Sidebar";
 import instance_auth from "./utities/instance_auth";
 import Header from "./utities/Header";
-import { Pagination } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Pagination,
+  TextField,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface category_Typee {
   id: number;
@@ -21,7 +29,46 @@ const Categories: FunctionComponent = () => {
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<category_Typee[]>([]);
   const [categories, setCategories] = useState<category_Typee[]>([]);
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState<category_Typee[]>([]);
+  const [search_Data, setSearch_Data] = useState<category_Typee[]>([]);
+  const [inputSearch, setInputSearch] = useState<string | null>(null);
 
+  const Search = async () => {
+    try {
+      await instance_auth({
+        method: "get",
+        url: "/categories/get_data",
+        responseType: "json",
+      }).then((res) => {
+        if (res.status === 200) {
+          setSearch_Data(res.data);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleClickOpen = () => {
+    Search();
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const ChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value: string = e.target.value.toLowerCase();
+    setSearch(() =>
+      search_Data.filter((item: category_Typee) => {
+        return (
+          item.category_name.toLowerCase().search(value) !== -1 &&
+          value.trim().length >= 1
+        );
+      })
+    );
+    setInputSearch(value);
+  };
   const months = [
     "Jan",
     "Feb",
@@ -104,6 +151,163 @@ const Categories: FunctionComponent = () => {
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
                 Categories
+              </div>
+            </div>
+          </div>
+          <Dialog
+            maxWidth={false}
+            fullWidth
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+              component: "form",
+            }}
+          >
+            <DialogTitle>Search</DialogTitle>
+            <IconButton
+              aria-label="close"
+              onClick={handleClose}
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                color: (theme) => theme.palette.grey[500],
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+            <DialogContent>
+              <TextField
+                value={inputSearch}
+                autoFocus
+                required
+                margin="dense"
+                id="name"
+                name="search"
+                label="Search Categories Name"
+                type="text"
+                fullWidth
+                variant="standard"
+                onChange={ChangeSearch}
+              />
+            </DialogContent>
+            <DialogContent>
+              <div className=" flex flex-row">
+                <div className="flex-1 flex flex-col items-start justify-start text-neutral-black-black-500">
+                  {search.map((item, index) => (
+                    <div
+                      key={index}
+                      className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                    >
+                      <div className="flex flex-row items-center justify-start gap-[8px]">
+                        <img
+                          src={`${import.meta.env.VITE_BASE_API}/img/${
+                            item.imgURL
+                          }`}
+                          alt=""
+                          className="relative rounded-lg bg-gainsboro w-11 h-11"
+                        />
+                        <div className="flex flex-col items-start justify-start gap-[4px]">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-medium">{`${item.category_name}`}</div>
+                          <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
+                            {item.description}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex-1 flex flex-col items-start justify-start">
+                  {search.map((item, index) => (
+                    <div
+                      key={index}
+                      className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                    >
+                      <div className="h-11 flex flex-row items-center justify-center">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                          {item.sold}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex-1 flex flex-col items-start justify-start">
+                  {search.map((item, index) => (
+                    <div
+                      key={index}
+                      className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                    >
+                      <div className="h-11 flex flex-row items-center justify-center">
+                        <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                          {item.quantity}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex-1 flex flex-col items-start justify-start">
+                  {search.map((item, index) => (
+                    <div
+                      key={index}
+                      className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                    >
+                      <div className="h-11 flex flex-row items-center justify-start">
+                        <div className="flex flex-col items-start justify-start">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                            {`${new Date(item.createdAt).getDate()} ${
+                              months[new Date(item.createdAt).getMonth()]
+                            } ${new Date(item.createdAt).getFullYear()}`}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col items-start justify-start text-right text-neutral-black-black-500">
+                  {search.map((item, index) => (
+                    <div
+                      key={index}
+                      className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                    >
+                      <div className="h-11 flex flex-row items-center justify-center gap-[20px]">
+                        <Link to={"/Dashboad/Categories/Edit"} state={item}>
+                          <img
+                            className="relative w-4 h-4 overflow-hidden shrink-0"
+                            alt=""
+                            src="/img/fisrpencil.svg"
+                          />
+                        </Link>
+                        <div
+                          className=" cursor-pointer"
+                          onClick={() => deleted(item.id)}
+                        >
+                          <img
+                            className="relative w-4 h-4 overflow-hidden shrink-0"
+                            alt=""
+                            src="/img/fisrtrash.svg"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+          <div
+            onClick={handleClickOpen}
+            className="cursor-pointer rounded-lg bg-neutral-white box-border w-[200px] overflow-hidden shrink-0 flex flex-row items-center justify-start py-2 px-3 gap-[4px] border-[1px] border-solid border-neutral-gray-gray-100"
+          >
+            <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
+              <img
+                className="relative w-4 h-4 overflow-hidden shrink-0"
+                alt=""
+                src="/img/firrsearch1.svg"
+              />
+            </div>
+            <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start text-[14px] text-gray-500">
+              <div className="relative tracking-[0.01em] leading-[20px]">
+                Search categories. . .
               </div>
             </div>
           </div>

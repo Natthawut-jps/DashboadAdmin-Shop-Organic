@@ -1,9 +1,19 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Sidebar } from "./utities/Sidebar";
+import CloseIcon from "@mui/icons-material/Close";
 import Header from "./utities/Header";
 import instance_auth from "./utities/instance_auth";
-import { Pagination } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Pagination,
+  TextField,
+} from "@mui/material";
 
 interface product_Type {
   id: number;
@@ -18,11 +28,58 @@ interface product_Type {
   createdAt: Date;
   updatedAt: Date;
 }
+interface filter_Type {
+  All_Stock: number | null;
+  InStock: number | null;
+  LowStock: number | null;
+  OutStock: number | null;
+}
 const Product: FunctionComponent = () => {
+  const [filters, setFilter] = useState<filter_Type>({} as filter_Type);
   const [pageCount, setPageCount] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<product_Type[]>([]);
   const [products, setProducts] = useState<product_Type[]>([]);
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState<product_Type[]>([]);
+  const [search_Data, setSearch_Data] = useState<product_Type[]>([]);
+  const [inputSearch, setInputSearch] = useState<string | null>(null);
+
+  const Search = async () => {
+    try {
+      await instance_auth({
+        method: "get",
+        url: "/products/get_products",
+        responseType: "json",
+      }).then((res) => {
+        if (res.status === 200) {
+          setSearch_Data(res.data);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleClickOpen = () => {
+    Search();
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const ChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value: string = e.target.value.toLowerCase();
+    setSearch(() =>
+      search_Data.filter((item: product_Type) => {
+        return (
+          item.name.toLowerCase().search(value) !== -1 &&
+          value.trim().length >= 1
+        );
+      })
+    );
+    setInputSearch(value);
+  };
   const status_product = ["Out of Stock", "Low Stock", "InStock"];
   const months = [
     "Jan",
@@ -61,7 +118,37 @@ const Product: FunctionComponent = () => {
       }
     });
   };
-
+  const filter_handle = async (value: number = 4) => {
+    if (value === 3) {
+      setFilter({
+        All_Stock: null,
+        InStock: value,
+        LowStock: null,
+        OutStock: null,
+      });
+    } else if (value === 2) {
+      setFilter({
+        All_Stock: null,
+        InStock: null,
+        LowStock: value,
+        OutStock: null,
+      });
+    } else if (value === 1) {
+      setFilter({
+        All_Stock: null,
+        InStock: null,
+        LowStock: null,
+        OutStock: value,
+      });
+    } else {
+      setFilter({
+        All_Stock: value,
+        InStock: null,
+        LowStock: null,
+        OutStock: null,
+      });
+    }
+  };
   useEffect(() => {
     const sortByLstest = data.sort(
       (a: product_Type, b: product_Type) =>
@@ -69,12 +156,25 @@ const Product: FunctionComponent = () => {
     );
     const itemOffset = ((page - 1) * 10) % sortByLstest.length;
     const endOffset = itemOffset + 10;
-    setProducts(sortByLstest.slice(itemOffset, endOffset));
+    setProducts(
+      sortByLstest
+        .slice(itemOffset, endOffset)
+        .filter((item: product_Type) =>
+          filters.InStock
+            ? item.status === 3
+            : filters.LowStock
+            ? item.status === 2
+            : filters.OutStock
+            ? item.status === 1
+            : item
+        )
+    );
     setPageCount(Math.ceil(sortByLstest.length / 10));
-  }, [page, pageCount, data]);
+  }, [page, pageCount, data, filters]);
 
   useEffect(() => {
     get_order_admin();
+    filter_handle();
   }, []);
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-semibold">
@@ -120,29 +220,271 @@ const Product: FunctionComponent = () => {
         </div>
         <div className="self-stretch flex flex-row items-start justify-between z-[1]">
           <div className="rounded-lg bg-neutral-white overflow-hidden flex flex-row items-start justify-start p-1 border-[1px] border-solid border-neutral-gray-gray-100">
-            <div className="rounded-md bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 text-primary-primary-500">
+            <div
+              onClick={() => filter_handle(4)}
+              className={
+                filters.All_Stock
+                  ? "rounded-md bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 text-primary-primary-500 cursor-pointer"
+                  : "rounded-md overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 cursor-pointer"
+              }
+            >
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
                 All Product
               </div>
             </div>
-            <div className="rounded-lg overflow-hidden flex flex-row items-center justify-center py-1.5 px-3">
+            <div
+              onClick={() => filter_handle(3)}
+              className={
+                filters.InStock
+                  ? "rounded-lg overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 text-primary-primary-500 bg-primary-primary-50 cursor-pointer"
+                  : "rounded-lg overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 cursor-pointer"
+              }
+            >
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Published
+                InStock
               </div>
             </div>
-            <div className="rounded-lg overflow-hidden flex flex-row items-center justify-center py-1.5 px-3">
+            <div
+              onClick={() => filter_handle(2)}
+              className={
+                filters.LowStock
+                  ? "text-primary-primary-500 bg-primary-primary-50 rounded-lg overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 cursor-pointer"
+                  : "rounded-lg overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 cursor-pointer"
+              }
+            >
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                 Low Stock
               </div>
             </div>
-            <div className="rounded-lg overflow-hidden flex flex-row items-center justify-center py-1.5 px-3">
+            <div
+              onClick={() => filter_handle(1)}
+              className={
+                filters.OutStock
+                  ? "text-primary-primary-500 bg-primary-primary-50 rounded-lg overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 cursor-pointer"
+                  : "rounded-lg overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 cursor-pointer"
+              }
+            >
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                 Out of Stock
               </div>
             </div>
           </div>
           <div className="flex flex-row items-start justify-start gap-[16px] text-neutral-gray-gray-400">
-            <div className="rounded-lg bg-neutral-white box-border w-[200px] overflow-hidden shrink-0 flex flex-row items-center justify-start py-2 px-3 gap-[4px] border-[1px] border-solid border-neutral-gray-gray-100">
+            <Dialog
+              maxWidth={false}
+              fullWidth
+              open={open}
+              onClose={handleClose}
+              PaperProps={{
+                component: "form",
+              }}
+            >
+              <DialogTitle>Search</DialogTitle>
+              <IconButton
+                aria-label="close"
+                onClick={handleClose}
+                sx={{
+                  position: "absolute",
+                  right: 8,
+                  top: 8,
+                  color: (theme) => theme.palette.grey[500],
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+              <DialogContent>
+                <TextField
+                  value={inputSearch}
+                  autoFocus
+                  required
+                  margin="dense"
+                  id="name"
+                  name="search"
+                  label="Search Product Name"
+                  type="text"
+                  fullWidth
+                  variant="standard"
+                  onChange={ChangeSearch}
+                />
+              </DialogContent>
+              <DialogContent>
+                <div className="flex flex-row w-full">
+                  <div className="flex flex-col items-start justify-start text-neutral-black-black-500">
+                    {search.map((item, index) => (
+                      <div
+                        key={index}
+                        className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                      >
+                        <div className="flex flex-row items-center justify-start gap-[8px]">
+                          <img
+                            src={`${import.meta.env.VITE_BASE_API}/img/${
+                              item.imgURL
+                            }`}
+                            alt=""
+                            className="relative rounded-lg bg-neutral-gray-gray-100 w-11 h-11"
+                          />
+                          <div className="flex flex-col items-start justify-start gap-[4px]">
+                            <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                              {item.name}
+                            </div>
+                            <div className="relative text-xs tracking-[0.01em] leading-[18px] text-neutral-gray-gray-500">
+                              {item.description}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col items-start justify-start">
+                    {search.map((item, index) => (
+                      <div
+                        key={index}
+                        className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                      >
+                        <div className="h-11 flex flex-row items-center justify-center">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
+                            {item.rating}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex-1 flex flex-col items-start justify-start">
+                    {search.map((item, index) => (
+                      <div
+                        key={index}
+                        className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                      >
+                        <div className="h-11 flex flex-row items-center justify-start">
+                          <div className="flex flex-col items-start justify-start">
+                            <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                              {item.categories}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex-1 flex flex-col items-start justify-start">
+                    {search.map((item, index) => (
+                      <div
+                        key={index}
+                        className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                      >
+                        <div className="h-11 flex flex-row items-center justify-center">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                            {item.quantity}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex-1 flex flex-col items-start justify-start">
+                    {search.map((item, index) => (
+                      <div
+                        key={index}
+                        className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                      >
+                        <div className="h-11 flex flex-row items-center justify-center">
+                          <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                            ฿{item.price}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col items-start justify-start text-center text-secondary-green-green-600">
+                    {search.map((item, index) => (
+                      <div key={index}>
+                        {item.status === 1 ? (
+                          <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-left text-secondary-orange-orange-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
+                            <div className="h-11 flex flex-row items-center justify-center">
+                              <div className="rounded-lg bg-secondary-red-red-50 flex flex-col items-center justify-center py-1 px-2.5">
+                                <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
+                                  {status_product[0]}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ) : item.status === 2 ? (
+                          <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-left text-secondary-yellow-yellow-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
+                            <div className="h-11 flex flex-row items-center justify-center">
+                              <div className="rounded-lg bg-secondary-orange-orange-50 flex flex-col items-center justify-center py-1 px-2.5">
+                                <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
+                                  {status_product[1]}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          item.status === 3 && (
+                            <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-left text-green-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
+                              <div className="h-11 flex flex-row items-center justify-center">
+                                <div className="rounded-lg bg-green-50 flex flex-col items-center justify-center py-1 px-2.5">
+                                  <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
+                                    {status_product[2]}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex-1 flex flex-col items-start justify-start">
+                    {search.map((item, index) => (
+                      <div
+                        key={index}
+                        className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                      >
+                        <div className="h-11 flex flex-row items-center justify-start">
+                          <div className="flex flex-col items-start justify-start">
+                            <div className="relative tracking-[0.01em] leading-[20px] font-medium">
+                              {`${new Date(item.createdAt).getDate()} ${
+                                months[new Date(item.createdAt).getMonth()]
+                              } ${new Date(item.createdAt).getFullYear()}`}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col items-start justify-start text-right text-neutral-black-black-500">
+                    {search.map((item, index) => (
+                      <div
+                        key={index}
+                        className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
+                      >
+                        <div className="h-11 flex flex-row items-center justify-center gap-[20px]">
+                          <Link to={"/Dashboad/Product/Edit"} state={item}>
+                            <img
+                              className="relative w-4 h-4 overflow-hidden shrink-0"
+                              alt=""
+                              src="/img/fisrpencil.svg"
+                            />
+                          </Link>
+                          <div
+                            className=" cursor-pointer"
+                            onClick={() => deleted(item.id)}
+                          >
+                            <img
+                              className="relative w-4 h-4 overflow-hidden shrink-0"
+                              alt=""
+                              src="/img/fisrtrash.svg"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+            <div
+              onClick={handleClickOpen}
+              className=" cursor-pointer rounded-lg bg-neutral-white box-border w-[200px] overflow-hidden shrink-0 flex flex-row items-center justify-start py-2 px-3 gap-[4px] border-[1px] border-solid border-neutral-gray-gray-100"
+            >
               <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
                 <img
                   className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -154,30 +496,6 @@ const Product: FunctionComponent = () => {
                 <div className="relative tracking-[0.01em] leading-[20px]">
                   Search product. . .
                 </div>
-              </div>
-            </div>
-            <div className="rounded-lg bg-neutral-white overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[8px] border-[1px] border-solid border-neutral-gray-gray-100">
-              <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                <img
-                  className="relative w-4 h-4 overflow-hidden shrink-0"
-                  alt=""
-                  src="/img/fisrcalendar1.svg"
-                />
-              </div>
-              <div className="relative tracking-[0.01em] leading-[20px]">
-                Select Date
-              </div>
-            </div>
-            <div className="rounded-lg bg-neutral-white overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[8px] text-neutral-gray-gray-500 border-[1px] border-solid border-neutral-gray-gray-100">
-              <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                <img
-                  className="relative w-4 h-4 overflow-hidden shrink-0"
-                  alt=""
-                  src="/img/fisrsettingssliders.svg"
-                />
-              </div>
-              <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Filters
               </div>
             </div>
           </div>

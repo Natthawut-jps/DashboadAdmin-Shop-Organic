@@ -130,34 +130,6 @@ const OrderDetails: FunctionComponent = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row items-start justify-start text-sm text-primary-primary-500">
-            <div className="flex flex-row items-start justify-start gap-[16px]">
-              <div className="rounded-lg bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px]">
-                <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrdownload.svg"
-                  />
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                  Export
-                </div>
-              </div>
-              <div className="rounded-lg bg-primary-primary-500 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px] text-neutral-white">
-                <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrreceipt.svg"
-                  />
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                  Invoice
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div className="self-stretch flex flex-row items-start justify-start gap-[24px] z-[1]">
           <div className="flex-1 rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[20px]">

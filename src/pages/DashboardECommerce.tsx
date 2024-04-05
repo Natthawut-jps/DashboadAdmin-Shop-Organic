@@ -5,6 +5,7 @@ import { LineChart } from "@mui/x-charts/LineChart";
 import instance_auth from "./utities/instance_auth";
 import { axisClasses } from "@mui/x-charts";
 import { Pagination } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface sale_Type {
   Jan: number;
@@ -179,18 +180,6 @@ const DashboardECommerce: FunctionComponent = () => {
             </div>
             <div className="relative text-lg tracking-[0.01em] leading-[28px] text-neutral-black-black-300 inline-block w-[469px]">
               shop-organic agricultural products in loei province
-            </div>
-          </div>
-          <div className="rounded-lg bg-neutral-white-base-color overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[8px] text-sm text-neutral-black-black-400 border-[1px] border-solid border-neutral-gray-gray-100">
-            <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-              <img
-                className="relative w-4 h-4 overflow-hidden shrink-0"
-                alt=""
-                src="/img/fisrcalendar1.svg"
-              />
-            </div>
-            <div className="relative tracking-[0.01em] leading-[20px]">
-              Select Dates
             </div>
           </div>
         </div>
@@ -455,40 +444,6 @@ const DashboardECommerce: FunctionComponent = () => {
                 <div className="relative tracking-[0.01em] leading-[30px] font-semibold">
                   Recent Orders
                 </div>
-                <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5 text-center text-sm text-secondary-green-green-600">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                    +2 Orders
-                  </div>
-                </div>
-              </div>
-              <div className="rounded-lg bg-neutral-white-base-color overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[8px] text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
-                <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrcalendar1.svg"
-                  />
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px]">
-                  Select Date
-                </div>
-              </div>
-              <div className="rounded-lg bg-neutral-white-base-color overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[8px] text-neutral-gray-gray-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                  <img
-                    className="relative w-4 h-4 overflow-hidden shrink-0"
-                    alt=""
-                    src="/img/fisrsettingssliders.svg"
-                  />
-                </div>
-                <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  Filters
-                </div>
-              </div>
-              <div className="rounded-lg bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 text-primary-primary-500">
-                <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                  See All
-                </div>
               </div>
             </div>
             <div className="self-stretch overflow-hidden flex flex-row items-start justify-start z-[1]">
@@ -673,11 +628,13 @@ const DashboardECommerce: FunctionComponent = () => {
                     className="self-stretch bg-neutral-white-base-color flex flex-row items-start justify-center py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50"
                   >
                     <div className="h-11 flex flex-row items-center justify-center gap-[12px]">
+                      <Link to={"/Dashboad/Order/Detail"} state={item}>
                       <img
                         className="relative w-4 h-4 overflow-hidden shrink-0"
                         alt=""
                         src="/img/fisreye.svg"
                       />
+                      </Link>
                     </div>
                   </div>
                 ))}

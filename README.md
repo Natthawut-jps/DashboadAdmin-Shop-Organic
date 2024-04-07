@@ -1,4 +1,7 @@
-# React + TypeScript + Vite
+## https://xqqc63-5174.csb.app/admin/login > preview "Admin"
+
+  ##  username: admin
+  ##  password: 0000
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

@@ -5,9 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Header from "./utities/Header";
 import instance_auth from "./utities/instance_auth";
 import {
-  Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   IconButton,

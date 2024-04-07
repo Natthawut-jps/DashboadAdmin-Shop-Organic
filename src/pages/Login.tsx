@@ -23,7 +23,7 @@ const Login: FunctionComponent = () => {
   }
   const [data, setData] = useState<data_Type>({} as data_Type);
   const handleLogin = async () => {
-    const url_sandbox = "https://9j2wn3-8080.csb.app/public/admin_login/admin";
+    const url_sandbox = "https://y7ly4z-8080.csb.app/public/admin_login/admin";
     // const url_dev = "http://localhost:8080/public/admin_login/admin"
     await axios({
       method: "post",

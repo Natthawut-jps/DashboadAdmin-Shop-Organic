@@ -1,6 +1,6 @@
 ## preview Admin Dashboad
 
-## https://dashboadadmin-shop-organic.onrender.com
+## https://dashboadadmin-shop-organic.onrender.com/admin/login
 
 ## authentication
    ## username : admin

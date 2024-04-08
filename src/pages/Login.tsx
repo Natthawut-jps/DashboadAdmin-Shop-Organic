@@ -23,7 +23,7 @@ const Login: FunctionComponent = () => {
   }
   const [data, setData] = useState<data_Type>({} as data_Type);
   const handleLogin = async () => {
-    const url_deploy = "https://dashboadadmin-shop-organic.onrender.com/public/admin_login/admin";
+    const url_deploy = "https://api-shoporganic-ecommerce.onrender.com/public/admin_login/admin";
    // const url_dev = "http://localhost:8080/public/admin_login/admin"
     await axios({
       method: "post",

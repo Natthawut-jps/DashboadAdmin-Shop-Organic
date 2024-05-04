@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Sidebar: FunctionComponent = () => {
   return (
@@ -104,7 +104,6 @@ export const Sidebar: FunctionComponent = () => {
                       ? "box-border w-[264px] h-12 flex flex-row items-center justify-start mt-2 py-3 pr-6 pl-14 bg-primary-primary-50 text-primary-primary-500 border-l-[4px] border-solid border-primary-primary-500 no-underline"
                       : "hover:bg-primary-primary-50 box-border w-[264px] h-12 flex flex-row items-center justify-start mt-2 py-3 pr-6 pl-14 text-black hover:text-primary-primary-500 hover:border-l-[4px] border-solid hover:border-primary-primary-500 no-underline"
                   }
-                  end
                 >
                   <b className="flex-1 relative tracking-[0.01em] leading-[20px]">
                     Product
@@ -117,7 +116,6 @@ export const Sidebar: FunctionComponent = () => {
                       ? "box-border w-[264px] h-12 flex flex-row items-center justify-start py-3 pr-6 pl-14 bg-primary-primary-50 text-primary-primary-500 border-l-[4px] border-solid border-primary-primary-500 no-underline"
                       : "hover:bg-primary-primary-50 box-border w-[264px] h-12 flex flex-row items-center justify-start py-3 pr-6 pl-14 text-black hover:text-primary-primary-500 hover:border-l-[4px] border-solid hover:border-primary-primary-500 no-underline"
                   }
-                  end
                 >
                   <b className="flex-1 relative tracking-[0.01em] leading-[20px]">
                     Categories
@@ -142,7 +140,6 @@ export const Sidebar: FunctionComponent = () => {
                       ? "box-border w-[264px] h-12 flex flex-row items-center justify-start py-3 pr-6 pl-14 bg-primary-primary-50 text-primary-primary-500 border-l-[4px] border-solid border-primary-primary-500 no-underline"
                       : "hover:bg-primary-primary-50 box-border w-[264px] h-12 flex flex-row items-center justify-start py-3 pr-6 pl-14 text-black hover:text-primary-primary-500 hover:border-l-[4px] border-solid hover:border-primary-primary-500 no-underline"
                   }
-                  end
                 >
                   <b className="flex-1 relative tracking-[0.01em] leading-[20px]">
                     Customer
@@ -151,11 +148,15 @@ export const Sidebar: FunctionComponent = () => {
               </div>
             </AccordionDetails>
           </Accordion>
-          <Link
-            to={"#"}
-            className="hover:text-primary-primary-500 hover:border-l-[4px] border-solid hover:border-primary-primary-500  hover:bg-primary-primary-50 box-border no-underline text-black self-stretch flex flex-row items-center justify-start py-3 px-6 gap-[8px]"
+          <NavLink
+            to={"/Dashboad/Contact"}
+            className={({ isActive }) =>
+              isActive
+                ? "box-border w-[264px] h-12 flex flex-row items-center justify-start py-3 pr-6 pl-14 bg-primary-primary-50 text-primary-primary-500 border-l-[4px] border-solid border-primary-primary-500 no-underline"
+                : "hover:bg-primary-primary-50 box-border w-[264px] h-12 flex flex-row items-center justify-start py-3 pr-6 pl-14 text-black hover:text-primary-primary-500 hover:border-l-[4px] border-solid hover:border-primary-primary-500 no-underline"
+            }
           >
-            <div className="w-6 h-6 flex flex-row items-center justify-center">
+            <div className="w-6 h-6 flex flex-row items-center justify-start">
               <img
                 className="relative w-[18px] h-[18px] overflow-hidden shrink-0"
                 alt=""
@@ -165,7 +166,7 @@ export const Sidebar: FunctionComponent = () => {
             <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
               Contact
             </div>
-          </Link>
+          </NavLink>
         </div>
       </div>
     </>

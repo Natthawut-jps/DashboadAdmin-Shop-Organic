@@ -3,6 +3,7 @@ import { Sidebar } from "./utities/Sidebar";
 import Header from "./utities/Header";
 import { useLocation } from "react-router-dom";
 import instance_auth from "./utities/instance_auth";
+import { Excel_one } from "./utities/Excel";
 
 interface order_Type {
   id: number;
@@ -127,6 +128,23 @@ const OrderDetails: FunctionComponent = () => {
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
                 Order Details
+              </div>
+            </div>
+          </div>
+          <div
+            onClick={() => Excel_one(order_state.id)}
+            className=" cursor-pointer flex flex-row items-start justify-start gap-[16px] text-sm text-primary-primary-500"
+          >
+            <div className="rounded-lg bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[4px]">
+              <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
+                <img
+                  className="relative w-4 h-4 overflow-hidden shrink-0"
+                  alt=""
+                  src="/img/fisrdownload.svg"
+                />
+              </div>
+              <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
+                Export
               </div>
             </div>
           </div>

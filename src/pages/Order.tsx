@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import Excel from "./utities/Excel";
+import {Excel} from "./utities/Excel";
 import { Sidebar } from "./utities/Sidebar";
 import Header from "./utities/Header";
 import {

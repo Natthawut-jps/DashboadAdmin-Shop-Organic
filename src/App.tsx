@@ -15,6 +15,8 @@ import Login from "./pages/Login";
 import Protect_route from "./pages/utities/protect._route";
 import { Cookies } from "react-cookie";
 import NoPage from "./pages/utities/NoPage";
+import Contact from "./pages/Contact";
+import ContactDetails from "./pages/ContactDetail";
 
 function App() {
   const cookie = new Cookies();
@@ -45,6 +47,10 @@ function App() {
           <Route path="/Dashboad/Customer">
             <Route index element={<Customer />} />
             <Route path="Detail-Customer" element={<CustomerDetails />} />
+          </Route>
+          <Route path="/Dashboad/Contact">
+            <Route index element={<Contact />} />
+            <Route path="Detail" element={<ContactDetails />} />
           </Route>
           <Route path="*" element={<NoPage />} />
         </Route>

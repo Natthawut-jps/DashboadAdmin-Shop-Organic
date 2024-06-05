@@ -1,10 +1,12 @@
-## Admin Dashboad
+# Admin Dashboad
 
 ## Setup Project
    ### 1. Download Souce Code
-   ### 2. Login 
-   ####    username : admin
-   ####    password : 0000 
-
+   ### 2. run "npm install"
    ### 3. Set File "ENV" 
    ####   VITE_BASE_API = 'http://localhost:8080'
+   ### 4. Login at http://localhost:5174/admin/login
+   ####   username : admin
+   ####   password : 0000 
+
+ 

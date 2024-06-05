@@ -1,9 +1,7 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent } from "react";
 import { Sidebar } from "./utities/Sidebar";
 import Header from "./utities/Header";
 import { useLocation } from "react-router-dom";
-import instance_auth from "./utities/instance_auth";
-import { Pagination } from "@mui/material";
 
 interface contact_Typee {
   id: number;

@@ -22,38 +22,44 @@ const Login: FunctionComponent = () => {
     password: string;
   }
   const [data, setData] = useState<data_Type>({} as data_Type);
+  const [errors, setError] = useState<string>("");
   const handleLogin = async () => {
-    const url_dev = "http://localhost:8080/public/admin_login/admin";
-    await axios({
-      method: "post",
-      url: url_dev,
-      responseType: "json",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    }).then((res) => {
-      if (res.status === 200) {
-        const cookie = new Cookies();
-        const date = new Date();
-        const token = new Date(date.setMinutes(date.getMinutes() + 3));
-        const refresh_token = new Date(date.setDate(date.getDate() + 5));
-        cookie.set("_uta", res.data._uta, {
-          expires: token,
-          path: "/",
-          secure: true,
-          sameSite: "strict",
-        });
-        cookie.set("_ura", res.data._ura, {
-          expires: refresh_token,
-          path: "/",
-          secure: true,
-          sameSite: "strict",
-        });
-        return (location.href = "/");
-      }
-    });
+    if (data.username === "admin" && data.password === "0000") {
+      const url_dev = "http://localhost:8080/public/admin_login/admin";
+      await axios({
+        method: "post",
+        url: url_dev,
+        responseType: "json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data,
+      }).then((res) => {
+        if (res.status === 200) {
+          const cookie = new Cookies();
+          const date = new Date();
+          const token = new Date(date.setMinutes(date.getMinutes() + 3));
+          const refresh_token = new Date(date.setDate(date.getDate() + 5));
+          cookie.set("_uta", res.data._uta, {
+            expires: token,
+            path: "/",
+            secure: true,
+            sameSite: "strict",
+          });
+          cookie.set("_ura", res.data._ura, {
+            expires: refresh_token,
+            path: "/",
+            secure: true,
+            sameSite: "strict",
+          });
+          return (location.href = "/");
+        }
+      });
+    } else {
+      setError("incorrect username or password !");
+    }
   };
+
   return (
     <>
       <Dialog open={true} fullWidth>
@@ -71,7 +77,21 @@ const Login: FunctionComponent = () => {
               <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
                 <LockOutlined />
               </Avatar>
-              <Typography variant="h5">Login</Typography>
+              <Typography variant="h5" sx={{ paddingBottom: "10px" }}>
+                Login
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: "13px",
+                  color: "red",
+                  top: "155px",
+                  left: "110px",
+                  position: "absolute",
+                }}
+              >
+                {errors}
+              </Typography>
               <Box sx={{ mt: 1 }}>
                 <TextField
                   margin="normal"
@@ -100,7 +120,6 @@ const Login: FunctionComponent = () => {
                     setData({ ...data, password: e.target.value });
                   }}
                 />
-
                 <Button
                   fullWidth
                   variant="contained"
@@ -109,11 +128,6 @@ const Login: FunctionComponent = () => {
                 >
                   Login
                 </Button>
-                <Grid container justifyContent={"flex-end"}>
-                  <Grid item>
-                    <Link to="/">Don't have an account? Register</Link>
-                  </Grid>
-                </Grid>
               </Box>
             </Box>
           </Container>

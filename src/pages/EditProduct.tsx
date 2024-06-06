@@ -37,7 +37,7 @@ const EditProduct: FunctionComponent = () => {
   const [error_product, setErrorProduct] = useState<string | null>(null);
   const status_product = ["Out of Stock", "Low Stock", "Published"];
 
-  // add products
+  // edit products
   const handleSubmitEditProduct = async (e: FormEvent) => {
     e.preventDefault();
     if (edit_product) {
@@ -189,7 +189,6 @@ const EditProduct: FunctionComponent = () => {
                     <div className="flex-1 h-6 flex flex-row items-center justify-start">
                       <div className="relative tracking-[0.01em] leading-[20px]">
                         <input
-                          disabled
                           value={edit_product.name}
                           onChange={(
                             e: React.ChangeEvent<HTMLInputElement>
@@ -203,7 +202,7 @@ const EditProduct: FunctionComponent = () => {
                           name="name"
                           type="text"
                           placeholder="Type product name here. . ."
-                          className=" w-[800px] h-[30px] focus:outline-none bg-transparent cursor-not-allowed"
+                          className=" w-[800px] h-[30px] focus:outline-none bg-transparent"
                           required
                         />
                       </div>

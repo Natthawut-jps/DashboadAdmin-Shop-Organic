@@ -34,7 +34,6 @@ const EditCategory: FunctionComponent = () => {
     const form = new FormData(data);
     form.append("imgURL", state_category.imgURL);
     form.append("id", String(state_category.id));
-    form.append("category_name", state_category.category_name)
     if (form) {
       await instance_auth({
         method: "post",
@@ -209,12 +208,18 @@ const EditCategory: FunctionComponent = () => {
                   <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
                     <div className="relative tracking-[0.01em] leading-[20px]">
                       <input
-                        disabled
                         value={category_edit.category_name}
                         type="text"
+                        form="EditCategory"
                         name="category_name"
                         placeholder="Type category name here. . ."
-                        className=" focus:outline-none w-[800px] h-[34px] bg-transparent cursor-not-allowed"
+                        className=" focus:outline-none w-[800px] h-[34px] bg-transparent"
+                        onChange = {(e: React.ChangeEvent<HTMLInputElement>) =>
+                          setEditCategory({
+                            ...category_edit,
+                            category_name: e.target.value,
+                          })
+                        }
                         required
                       />
                     </div>

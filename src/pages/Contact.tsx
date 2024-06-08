@@ -69,18 +69,18 @@ const Contact: FunctionComponent = () => {
     setInputSearch(value);
   };
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
   ];
   const get_contact = async () => {
     try {
@@ -121,11 +121,11 @@ const Contact: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[1] text-5xl text-neutral-black-black-500">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <h2 className="m-0 self-stretch relative text-inherit tracking-[0.01em] leading-[32px] font-semibold font-inherit">
-              Contact
+              ติดต่อ
             </h2>
             <div className="flex flex-row items-center justify-start gap-[8px] text-sm text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Dashboard
+                หน้าหลัก
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -133,7 +133,7 @@ const Contact: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
-                Contact
+                รายการผู้ติดต่อ
               </div>
             </div>
           </div>
@@ -146,7 +146,7 @@ const Contact: FunctionComponent = () => {
               component: "form",
             }}
           >
-            <DialogTitle>Search</DialogTitle>
+            <DialogTitle>ค้นหา</DialogTitle>
             <IconButton
               aria-label="close"
               onClick={handleClose}
@@ -159,7 +159,7 @@ const Contact: FunctionComponent = () => {
             >
               <CloseIcon />
             </IconButton>
-            <DialogContent>
+            <DialogContent sx={{ paddingTop: 0 }}>
               <TextField
                 value={inputSearch}
                 autoFocus
@@ -167,7 +167,7 @@ const Contact: FunctionComponent = () => {
                 margin="dense"
                 id="name"
                 name="search"
-                label="Search Contact Name"
+                label="กรุณาพิมพ์ชื่อผู้ติดต่อเพื่อค้นหา"
                 type="text"
                 fullWidth
                 variant="standard"
@@ -229,7 +229,7 @@ const Contact: FunctionComponent = () => {
                           <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                             {`${new Date(item.createdAt).getDate()} ${
                               months[new Date(item.createdAt).getMonth()]
-                            } ${new Date(item.createdAt).getFullYear()}`}
+                            } ${new Date(item.createdAt).getFullYear() + 543}`}
                           </div>
                         </div>
                       </div>
@@ -270,7 +270,7 @@ const Contact: FunctionComponent = () => {
             </div>
             <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start text-[14px] text-gray-500">
               <div className="relative tracking-[0.01em] leading-[20px]">
-                Search contact. . .
+                ค้นหาผู้ติดต่อ. . .
               </div>
             </div>
           </div>
@@ -280,7 +280,7 @@ const Contact: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start text-neutral-black-black-500">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Contact Name
+                  ผู้ติดต่อ
                 </div>
               </div>
               {contact.map((item, index) => (
@@ -299,7 +299,7 @@ const Contact: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  E-mail
+                  อีเมลล์
                 </div>
               </div>
               {contact.map((item, index) => (
@@ -318,7 +318,7 @@ const Contact: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Subject
+                  เรื่อง
                 </div>
               </div>
               {contact.map((item, index) => (
@@ -337,7 +337,7 @@ const Contact: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Added
+                  วันที่ส่ง
                 </div>
               </div>
               {contact.map((item, index) => (
@@ -350,7 +350,7 @@ const Contact: FunctionComponent = () => {
                       <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                         {`${new Date(item.createdAt).getDate()} ${
                           months[new Date(item.createdAt).getMonth()]
-                        } ${new Date(item.createdAt).getFullYear()}`}
+                        } ${new Date(item.createdAt).getFullYear() + 543}`}
                       </div>
                     </div>
                   </div>
@@ -360,7 +360,7 @@ const Contact: FunctionComponent = () => {
             <div className="flex flex-col items-start justify-start text-right text-neutral-black-black-500">
               <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Action
+                  เพิ่มเติม
                 </div>
               </div>
               {contact.map((item, index) => (

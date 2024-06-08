@@ -176,10 +176,10 @@ const DashboardECommerce: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-between z-[4] text-9xl text-neutral-black-black-700">
           <div className="flex flex-col items-start justify-start gap-[8px]">
             <div className="relative tracking-[0.01em] font-medium inline-block w-[469px]">
-              Welcome Shop-Organic
+              ยินดีต้อนรับ Shop-Organic
             </div>
             <div className="relative text-lg tracking-[0.01em] leading-[28px] text-neutral-black-black-300 inline-block w-[469px]">
-              shop-organic agricultural products in loei province
+              shop-organic สินค้าการเกษตรในจังหวัดเลย
             </div>
           </div>
         </div>
@@ -194,7 +194,7 @@ const DashboardECommerce: FunctionComponent = () => {
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-[8px] z-[1]">
               <div className="self-stretch relative tracking-[0.01em] leading-[24px] font-medium">
-                Total Order
+                คำสั่งซื้อทั้งหมด
               </div>
               <div className="flex flex-row items-center justify-center gap-[8px] text-9xl text-neutral-white-base-color">
                 <div className="relative tracking-[0.01em] font-semibold">
@@ -218,7 +218,7 @@ const DashboardECommerce: FunctionComponent = () => {
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-[8px] z-[1]">
               <div className="self-stretch relative tracking-[0.01em] leading-[24px] font-medium">
-                Total Customer
+                ลูกค้าทั้งหมด
               </div>
               <div className="flex flex-row items-center justify-center gap-[8px] text-9xl text-neutral-white-base-color">
                 <div className="relative tracking-[0.01em] font-semibold">
@@ -242,7 +242,7 @@ const DashboardECommerce: FunctionComponent = () => {
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-[8px] z-[1]">
               <div className="self-stretch relative tracking-[0.01em] leading-[24px] font-medium">
-                Total Product
+                สินค้าทั้งหมด
               </div>
               <div className="flex flex-row items-center justify-center gap-[8px] text-9xl text-neutral-white-base-color">
                 <div className="relative tracking-[0.01em] font-semibold">
@@ -262,10 +262,10 @@ const DashboardECommerce: FunctionComponent = () => {
             <div className="self-stretch flex flex-col items-start justify-start gap-[12px] z-[1] w-full">
               <div className="flex-1 flex flex-col items-start justify-start gap-[2px]">
                 <div className="self-stretch relative tracking-[0.01em] leading-[30px] font-semibold">
-                  Statistic
+                  สรุปยอดขาย
                 </div>
                 <div className="relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
-                  Sales&nbsp;{new Date().getFullYear()}
+                  ปี &nbsp;{new Date().getFullYear()}
                 </div>
               </div>
               <div className=" flex justify-center w-full">
@@ -316,7 +316,7 @@ const DashboardECommerce: FunctionComponent = () => {
                         data_sales.Dec,
                       ],
                       color: "rgb(248 102 36)",
-                      label: `Sales ${new Date().getFullYear()}`,
+                      label: `ขาย`,
                       showMark: false,
                       valueFormatter: new Intl.NumberFormat("th", {
                         style: "currency",
@@ -341,10 +341,10 @@ const DashboardECommerce: FunctionComponent = () => {
             <div className="self-stretch flex flex-row items-start justify-start gap-[12px] z-[1]">
               <div className="flex-1 flex flex-col items-start justify-start gap-[2px]">
                 <div className="self-stretch relative tracking-[0.01em] leading-[30px] font-semibold">
-                  Top Product
+                  สินค้ายอดนิยม
                 </div>
                 <div className="relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
-                  Top Product in This Month
+                สินค้าขายดีในเดือนนี้
                 </div>
               </div>
             </div>
@@ -386,14 +386,14 @@ const DashboardECommerce: FunctionComponent = () => {
             <div className="self-stretch flex flex-row items-start justify-start gap-[12px] z-[1]">
               <div className="flex-1 flex flex-col items-start justify-start gap-[2px]">
                 <div className="self-stretch relative tracking-[0.01em] leading-[30px] font-semibold">
-                  Top Category
+                  หมวดหมู่ยอดนิยม
                 </div>
                 <div className=" flex">
                   <div className="relative text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
-                    Top Category in This Month
+                    หมวดหมู่ขายดีในเดือนนี้
                   </div>
                   <div className="relative left-[330px] text-sm tracking-[0.01em] leading-[20px] text-neutral-black-black-300">
-                    Sold
+                    ขาย
                   </div>
                 </div>
               </div>
@@ -442,7 +442,7 @@ const DashboardECommerce: FunctionComponent = () => {
             <div className="self-stretch bg-neutral-white-base-color flex flex-row items-center justify-start py-[18px] px-6 gap-[12px] z-[2] border-b-[1px] border-solid border-neutral-gray-gray-50">
               <div className="flex-1 flex flex-row items-center justify-start gap-[8px] text-xl">
                 <div className="relative tracking-[0.01em] leading-[30px] font-semibold">
-                  Recent Orders
+                คำสั่งซื้อล่าสุด
                 </div>
               </div>
             </div>

@@ -16,10 +16,10 @@ const Header: FunctionComponent = () => {
         <div className="flex flex-row items-center justify-end gap-[16px]">
           <div
             onClick={Logout}
-            className="rounded-lg w-[100px] border-red-500/10 border-solid border-2 h-10 flex flex-row items-center justify-center p-2 box-border cursor-pointer"
+            className="rounded-lg w-[110px] border-red-500/10 border-solid border-2 h-10 flex flex-row items-center justify-center p-2 box-border cursor-pointer"
           >
             <div className=" text-secondary-red-red-500 text-[16px]">
-              Logout
+              ออกจากระบบ
             </div>
           </div>
         </div>

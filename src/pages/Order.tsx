@@ -89,18 +89,18 @@ const Order: FunctionComponent = () => {
     "พัสดุตีกลับ",
   ];
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
   ];
   const get_order_admin = async () => {
     await instance_auth({
@@ -228,11 +228,11 @@ const Order: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[2] text-5xl text-neutral-black-black-500">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
-              Order
+              คำสั่งซื้อ
             </div>
             <div className="flex flex-row items-center justify-start gap-[8px] text-sm text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Dashboard
+                หน้าหลัก
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -240,7 +240,7 @@ const Order: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
-                Order List
+                รายการคำสั่งซื้อ
               </div>
             </div>
           </div>
@@ -257,7 +257,7 @@ const Order: FunctionComponent = () => {
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                Export
+                ส่งออก
               </div>
             </div>
           </div>
@@ -359,7 +359,7 @@ const Order: FunctionComponent = () => {
                 component: "form",
               }}
             >
-              <DialogTitle>Search</DialogTitle>
+              <DialogTitle>ค้นหา</DialogTitle>
               <IconButton
                 aria-label="close"
                 onClick={handleClose}
@@ -372,7 +372,7 @@ const Order: FunctionComponent = () => {
               >
                 <CloseIcon />
               </IconButton>
-              <DialogContent>
+              <DialogContent sx={{ paddingTop: 0 }}>
                 <TextField
                   value={inputSearch}
                   autoFocus
@@ -380,7 +380,7 @@ const Order: FunctionComponent = () => {
                   margin="dense"
                   id="name"
                   name="search"
-                  label="Search Order ID"
+                  label="กรุณาพิมพ์หมายเลขคำสั่งซื้อเพื่อค้นหา"
                   type="text"
                   fullWidth
                   variant="standard"
@@ -414,7 +414,7 @@ const Order: FunctionComponent = () => {
                             <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                               {`${new Date(item.createdAt).getDate()} ${
                                 months[new Date(item.createdAt).getMonth()]
-                              } ${new Date(item.createdAt).getFullYear()}`}
+                              } ${new Date(item.createdAt).getFullYear() + 543}`}
                             </div>
                           </div>
                         </div>
@@ -584,7 +584,7 @@ const Order: FunctionComponent = () => {
               </div>
               <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
                 <div className="relative tracking-[0.01em] leading-[20px]">
-                  Search orders. . .
+                  ค้นหาคำสั่งซื้อ. . .
                 </div>
               </div>
             </div>
@@ -603,7 +603,7 @@ const Order: FunctionComponent = () => {
                   />
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  Order ID
+                  หมายเลขคำสั่งซื้อ
                 </div>
               </div>
               {order.map((item, index) => (
@@ -622,7 +622,7 @@ const Order: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Date
+                  วันที่สั่งซื้อ
                 </div>
               </div>
               {order.map((item, index) => (
@@ -635,7 +635,7 @@ const Order: FunctionComponent = () => {
                       <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                         {`${new Date(item.createdAt).getDate()} ${
                           months[new Date(item.createdAt).getMonth()]
-                        } ${new Date(item.createdAt).getFullYear()}`}
+                        } ${new Date(item.createdAt).getFullYear() + 543}`}
                       </div>
                     </div>
                   </div>
@@ -645,7 +645,7 @@ const Order: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Customer
+                  ลูกค้า
                 </div>
               </div>
               {order.map((item, index) => (
@@ -666,7 +666,7 @@ const Order: FunctionComponent = () => {
             <div className=" flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Quantity
+                  จำนวน
                 </div>
               </div>
               {order.map((item, index) => (
@@ -685,7 +685,7 @@ const Order: FunctionComponent = () => {
             <div className=" flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Total
+                  ทั้งหมด
                 </div>
               </div>
               {order.map((item, index) => (
@@ -704,7 +704,7 @@ const Order: FunctionComponent = () => {
             <div className=" flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Tracking ID
+                  หมายเลขพัสดุ
                 </div>
               </div>
               {order.map((item, index) => (
@@ -727,7 +727,7 @@ const Order: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start text-center">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-left text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Status
+                  สถานะ
                 </div>
               </div>
               {order.map((item, index) => (
@@ -780,7 +780,7 @@ const Order: FunctionComponent = () => {
             <div className="flex flex-col items-start justify-start text-right text-neutral-black-black-500">
               <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Action
+                  เพิ่มเติม
                 </div>
               </div>
               {order.map((item, index) => (

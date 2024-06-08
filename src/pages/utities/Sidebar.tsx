@@ -31,7 +31,7 @@ export const Sidebar: FunctionComponent = () => {
               />
             </div>
             <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-              Dashboard
+            หน้าหลัก
             </div>
           </NavLink>
           <Accordion
@@ -85,7 +85,7 @@ export const Sidebar: FunctionComponent = () => {
                   />
                 </div>
                 <b className="flex-1 relative tracking-[0.01em] leading-[20px]">
-                  E-Commerce
+                  รายการ
                 </b>
               </div>
             </AccordionSummary>
@@ -106,7 +106,7 @@ export const Sidebar: FunctionComponent = () => {
                   }
                 >
                   <b className="flex-1 relative tracking-[0.01em] leading-[20px]">
-                    Product
+                    สินค้า
                   </b>
                 </NavLink>
                 <NavLink
@@ -118,7 +118,7 @@ export const Sidebar: FunctionComponent = () => {
                   }
                 >
                   <b className="flex-1 relative tracking-[0.01em] leading-[20px]">
-                    Categories
+                    หมวดหมู่
                   </b>
                 </NavLink>
                 <NavLink
@@ -130,7 +130,7 @@ export const Sidebar: FunctionComponent = () => {
                   }
                 >
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-                    Orders
+                    คำสั่งซื้อ
                   </div>
                 </NavLink>
                 <NavLink
@@ -142,7 +142,7 @@ export const Sidebar: FunctionComponent = () => {
                   }
                 >
                   <b className="flex-1 relative tracking-[0.01em] leading-[20px]">
-                    Customer
+                    ลูกค้า
                   </b>
                 </NavLink>
               </div>
@@ -164,7 +164,7 @@ export const Sidebar: FunctionComponent = () => {
               />
             </div>
             <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-semibold">
-              Contact
+              ติดต่อ
             </div>
           </NavLink>
         </div>

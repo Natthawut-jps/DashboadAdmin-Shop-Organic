@@ -17,18 +17,18 @@ const ContactDetails: FunctionComponent = () => {
   const contacts: contact_Typee = useLocation().state;
   const customer_state: contact_Typee = useLocation().state;
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
   ];
 
   return (
@@ -39,11 +39,11 @@ const ContactDetails: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-start z-[1] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
-              Contact Details
+              ข้อมูลผู้ติดต่อ
             </div>
             <div className="flex flex-row items-center justify-start gap-[8px] text-sm text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Dashboard
+                หน้าหลัก
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -51,7 +51,7 @@ const ContactDetails: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Contact
+                รายการผู้ติดต่อ
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -59,7 +59,7 @@ const ContactDetails: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
-                Contact Details
+                ข้อมูลผู้ติดต่อ
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@ const ContactDetails: FunctionComponent = () => {
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Contact Name
+                      ผู้ติดต่อ
                     </div>
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
                       {contacts.name}
@@ -95,7 +95,7 @@ const ContactDetails: FunctionComponent = () => {
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      E-mail
+                      อีเมลล์
                     </div>
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
                       {customer_state.email}
@@ -112,12 +112,12 @@ const ContactDetails: FunctionComponent = () => {
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Added
+                      วันที่ส่ง
                     </div>
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
                       {`${new Date(contacts.createdAt).getDate()} ${
                         months[new Date(contacts.createdAt).getMonth()]
-                      } ${new Date(contacts.createdAt).getFullYear()}`}
+                      } ${new Date(contacts.createdAt).getFullYear() + 543}`}
                     </div>
                   </div>
                 </div>

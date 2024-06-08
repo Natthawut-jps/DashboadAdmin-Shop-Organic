@@ -76,7 +76,7 @@ const Login: FunctionComponent = () => {
                 <LockOutlined />
               </Avatar>
               <Typography variant="h5" sx={{ paddingBottom: "10px" }}>
-                Login
+                เข้าสู่ระบบ
               </Typography>
               <Typography
                 variant="body1"
@@ -96,7 +96,7 @@ const Login: FunctionComponent = () => {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="อีเมลล์"
                   name="email"
                   autoFocus
                   value={data?.username}
@@ -111,7 +111,7 @@ const Login: FunctionComponent = () => {
                   fullWidth
                   id="password"
                   name="password"
-                  label="Password"
+                  label="รหัสผาน"
                   type="password"
                   value={data.password}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,7 +124,7 @@ const Login: FunctionComponent = () => {
                   sx={{ mt: 3, mb: 2 }}
                   onClick={handleLogin}
                 >
-                  Login
+                  เข้าสู่ระบบ
                 </Button>
               </Box>
             </Box>

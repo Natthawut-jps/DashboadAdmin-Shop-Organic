@@ -78,20 +78,20 @@ const Product: FunctionComponent = () => {
     );
     setInputSearch(value);
   };
-  const status_product = ["Out of Stock", "Low Stock", "InStock"];
+  const status_product = ["สินค้าหมด", "เหลือน้อย", "มีสินค้า"];
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
   ];
   const get_order_admin = async () => {
     await instance_auth({
@@ -182,11 +182,11 @@ const Product: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[2] text-5xl text-neutral-black-black-500">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
-              Product
+              สินค้า
             </div>
             <div className="flex flex-row items-center justify-start gap-[8px] text-sm text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Dashboard
+                หน้าหลัก
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -194,7 +194,7 @@ const Product: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
-                Product List
+                รายการสินค้า
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@ const Product: FunctionComponent = () => {
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                Add Product
+                เพิ่มสินค้า
               </div>
             </NavLink>
           </div>
@@ -227,7 +227,7 @@ const Product: FunctionComponent = () => {
               }
             >
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                All Product
+                ทั้งหมด
               </div>
             </div>
             <div
@@ -239,7 +239,7 @@ const Product: FunctionComponent = () => {
               }
             >
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                InStock
+                มีสินค้า
               </div>
             </div>
             <div
@@ -251,7 +251,7 @@ const Product: FunctionComponent = () => {
               }
             >
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Low Stock
+                เหลือน้อย
               </div>
             </div>
             <div
@@ -263,7 +263,7 @@ const Product: FunctionComponent = () => {
               }
             >
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Out of Stock
+                สินค้าหมด
               </div>
             </div>
           </div>
@@ -277,7 +277,7 @@ const Product: FunctionComponent = () => {
                 component: "form",
               }}
             >
-              <DialogTitle>Search</DialogTitle>
+              <DialogTitle>ค้นหา</DialogTitle>
               <IconButton
                 aria-label="close"
                 onClick={handleClose}
@@ -290,7 +290,9 @@ const Product: FunctionComponent = () => {
               >
                 <CloseIcon />
               </IconButton>
-              <DialogContent>
+              <DialogContent sx={{ 
+                paddingTop: 0
+              }}>
                 <TextField
                   value={inputSearch}
                   autoFocus
@@ -298,7 +300,7 @@ const Product: FunctionComponent = () => {
                   margin="dense"
                   id="name"
                   name="search"
-                  label="Search Product Name"
+                  label="กรุณาพิมพ์ชื่อสินค้าที่ต้องการค้นหา"
                   type="text"
                   fullWidth
                   variant="standard"
@@ -492,7 +494,7 @@ const Product: FunctionComponent = () => {
               </div>
               <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
                 <div className="relative tracking-[0.01em] leading-[20px]">
-                  Search product. . .
+                  ค้นหาสินค้า. . .
                 </div>
               </div>
             </div>
@@ -511,7 +513,7 @@ const Product: FunctionComponent = () => {
                   />
                 </div>
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Product
+                  สินค้า
                 </div>
               </div>
               {products.map((item, index) => (
@@ -542,7 +544,7 @@ const Product: FunctionComponent = () => {
             <div className="flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Rating
+                  รีวิว
                 </div>
               </div>
               {products.map((item, index) => (
@@ -561,7 +563,7 @@ const Product: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Category
+                  หมวดหมู่
                 </div>
               </div>
               {products.map((item, index) => (
@@ -582,7 +584,7 @@ const Product: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Stock
+                  คงเหลือ
                 </div>
               </div>
               {products.map((item, index) => (
@@ -601,7 +603,7 @@ const Product: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Price
+                  ราคา
                 </div>
               </div>
               {products.map((item, index) => (
@@ -620,7 +622,7 @@ const Product: FunctionComponent = () => {
             <div className="flex flex-col items-start justify-start text-center text-secondary-green-green-600">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-left text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Status
+                  สถานะ
                 </div>
               </div>
               {products.map((item, index) => (
@@ -664,7 +666,7 @@ const Product: FunctionComponent = () => {
             <div className="flex-1 flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Added
+                  วันที่เพิ่ม
                 </div>
               </div>
               {products.map((item, index) => (
@@ -677,7 +679,7 @@ const Product: FunctionComponent = () => {
                       <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                         {`${new Date(item.createdAt).getDate()} ${
                           months[new Date(item.createdAt).getMonth()]
-                        } ${new Date(item.createdAt).getFullYear()}`}
+                        } ${new Date(item.createdAt).getFullYear() + 543}`}
                       </div>
                     </div>
                   </div>
@@ -687,7 +689,7 @@ const Product: FunctionComponent = () => {
             <div className="flex flex-col items-start justify-start text-right text-neutral-black-black-500">
               <div className="self-stretch bg-neutral-white flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Action
+                  เพิ่มเติม
                 </div>
               </div>
               {products.map((item, index) => (

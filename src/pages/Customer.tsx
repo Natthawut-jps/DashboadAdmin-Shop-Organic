@@ -71,18 +71,18 @@ const Customer: FunctionComponent = () => {
     setInputSearch(value);
   };
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
   ];
   const get_customer_admin = async () => {
     await instance_auth({
@@ -118,11 +118,11 @@ const Customer: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[5] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
-              Customer
+              ลูกค้า
             </div>
             <div className="flex flex-row items-center justify-start gap-[8px] text-sm text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Dashboard
+                หน้าหลัก
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -130,7 +130,7 @@ const Customer: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
-                Customer List
+                รายการลูกค้า
               </div>
             </div>
           </div>
@@ -139,7 +139,7 @@ const Customer: FunctionComponent = () => {
           <div className="rounded-lg bg-neutral-white overflow-hidden flex flex-row items-start justify-start p-1 border-[1px] border-solid border-neutral-gray-gray-100">
             <div className="rounded-md bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-1.5 px-3 text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                All Status
+                ทั้งหมด
               </div>
             </div>
           </div>
@@ -152,7 +152,7 @@ const Customer: FunctionComponent = () => {
               component: "form",
             }}
           >
-            <DialogTitle>Search</DialogTitle>
+            <DialogTitle>ค้นหา</DialogTitle>
             <IconButton
               aria-label="close"
               onClick={handleClose}
@@ -165,7 +165,7 @@ const Customer: FunctionComponent = () => {
             >
               <CloseIcon />
             </IconButton>
-            <DialogContent>
+            <DialogContent sx={{ paddingTop: 0 }}>
               <TextField
                 value={inputSearch}
                 autoFocus
@@ -173,7 +173,7 @@ const Customer: FunctionComponent = () => {
                 margin="dense"
                 id="name"
                 name="search"
-                label="Search Product Name"
+                label="กรุณาพิมพ์ชื่อลูกค้าเพื่อค้นหา"
                 type="text"
                 fullWidth
                 variant="standard"
@@ -183,9 +183,11 @@ const Customer: FunctionComponent = () => {
             <DialogContent>
               <div className="flex gap-y-[40px] gap-x-[40px] justify-start w-full flex-wrap">
                 {search.map((item, index) => (
-                  <div
+                  <Link
+                    to={"/Dashboad/Customer/Detail-Customer"}
+                    state={item}
                     key={index}
-                    className="flex flex-col items-start justify-start gap-[24px] z-[3] text-center"
+                    className="flex flex-col items-start justify-start gap-[24px] z-[3] text-center no-underline text-black"
                   >
                     <div className="flex-1 rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start  relative gap-[16px] border-[1px] border-solid border-primary-primary-500 px-[50px] py-[20px]">
                       <div className="self-stretch flex flex-col items-center justify-start gap-[16px] z-[0]">
@@ -202,7 +204,7 @@ const Customer: FunctionComponent = () => {
                           </div>
                           <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-xs text-secondary-green-green-600">
                             <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                              Active
+                              ปกติ
                             </div>
                           </div>
                         </div>
@@ -215,24 +217,17 @@ const Customer: FunctionComponent = () => {
                       <div className="self-stretch flex flex-row items-center justify-center gap-[10px] z-[2] text-xs text-neutral-gray-gray-500">
                         <div className="flex-1 flex flex-col items-center justify-start gap-[4px]">
                           <div className="self-stretch relative tracking-[0.01em] leading-[18px]">
-                            Added
+                            เพิ่มเมื่อ
                           </div>
                           <div className="self-stretch relative text-sm tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
                             {`${new Date(item.createdAt).getDate()} ${
                               months[new Date(item.createdAt).getMonth()]
-                            } ${new Date(item.createdAt).getFullYear()}`}
+                            } ${new Date(item.createdAt).getFullYear() + 543}`}
                           </div>
                         </div>
                       </div>
-                      <Link
-                        to={"/Dashboad/Customer/Detail-Customer"}
-                        state={item}
-                        className="absolute no-underline top-[16px] right-[0px] w-4 h-4 p-1 shrink-0 mr-[30px] z-50 cursor-pointer text-secondary-cyan-cyan-500 font-semibold"
-                      >
-                        View
-                      </Link>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </DialogContent>
@@ -251,7 +246,7 @@ const Customer: FunctionComponent = () => {
               </div>
               <div className="flex-1 h-6 overflow-hidden flex flex-row items-center justify-start">
                 <div className="relative tracking-[0.01em] leading-[20px]">
-                  Search customer. . .
+                  ค้นหาลูกค้า. . .
                 </div>
               </div>
             </div>
@@ -259,9 +254,11 @@ const Customer: FunctionComponent = () => {
         </div>
         <div className="flex gap-y-[40px] gap-x-[40px] justify-start w-full flex-wrap">
           {customers.map((item, index) => (
-            <div
+            <Link
+              to={"/Dashboad/Customer/Detail-Customer"}
+              state={item}
               key={index}
-              className="flex flex-col items-start justify-start gap-[24px] z-[3] text-center"
+              className="flex flex-col items-start justify-start gap-[24px] z-[3] text-center no-underline text-black"
             >
               <div className="flex-1 rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start  relative gap-[16px] border-[1px] border-solid border-primary-primary-500 px-[50px] py-[20px]">
                 <div className="self-stretch flex flex-col items-center justify-start gap-[16px] z-[0]">
@@ -276,7 +273,7 @@ const Customer: FunctionComponent = () => {
                     </div>
                     <div className="rounded-md bg-secondary-green-green-50 flex flex-col items-center justify-center py-0.5 px-2 text-xs text-secondary-green-green-600">
                       <div className="relative tracking-[0.01em] leading-[18px] font-semibold">
-                        Active
+                        ปกติ
                       </div>
                     </div>
                   </div>
@@ -289,24 +286,17 @@ const Customer: FunctionComponent = () => {
                 <div className="self-stretch flex flex-row items-center justify-center gap-[10px] z-[2] text-xs text-neutral-gray-gray-500">
                   <div className="flex-1 flex flex-col items-center justify-start gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[18px]">
-                      Added
+                      เพิ่มเมื่อ
                     </div>
                     <div className="self-stretch relative text-sm tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
                       {`${new Date(item.createdAt).getDate()} ${
                         months[new Date(item.createdAt).getMonth()]
-                      } ${new Date(item.createdAt).getFullYear()}`}
+                      } ${new Date(item.createdAt).getFullYear() + 543}`}
                     </div>
                   </div>
                 </div>
-                <Link
-                  to={"/Dashboad/Customer/Detail-Customer"}
-                  state={item}
-                  className="absolute no-underline top-[16px] right-[0px] w-4 h-4 p-1 shrink-0 mr-[30px] z-50 cursor-pointer text-secondary-cyan-cyan-500 font-semibold"
-                >
-                  View
-                </Link>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="self-stretch flex flex-row items-center justify-center gap-[12px] z-[0] text-neutral-gray-gray-500">

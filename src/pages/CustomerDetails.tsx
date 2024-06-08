@@ -36,18 +36,18 @@ const CustomerDetails: FunctionComponent = () => {
   const [data, setData] = useState<order_Type[]>([]);
   const [order, setOrder] = useState<order_Type[]>([]);
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
   ];
   const status = [
     "กำลังดำเนินการ",
@@ -91,11 +91,11 @@ const CustomerDetails: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-start z-[1] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
-              Customer Details
+              ข้อมูลลูกค้า
             </div>
             <div className="flex flex-row items-center justify-start gap-[8px] text-sm text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Dashboard
+                หน้าหลัก
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -103,7 +103,7 @@ const CustomerDetails: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Customer List
+                รายการลูกค้า
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -111,7 +111,7 @@ const CustomerDetails: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
-                Customer Details
+                ข้อมูลลูกค้า
               </div>
             </div>
           </div>
@@ -135,7 +135,7 @@ const CustomerDetails: FunctionComponent = () => {
                   </div>
                   <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5 text-sm text-secondary-green-green-600">
                     <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                      Active
+                      ปกติ
                     </div>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ const CustomerDetails: FunctionComponent = () => {
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Customer ID
+                      รหัสลูกค้า
                     </div>
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
                       ID-{customer_state.id}
@@ -178,7 +178,7 @@ const CustomerDetails: FunctionComponent = () => {
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      E-mail
+                      อีเมลล์
                     </div>
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
                       {customer_state.email}
@@ -193,31 +193,7 @@ const CustomerDetails: FunctionComponent = () => {
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-6 gap-[12px] z-[2] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 flex flex-row items-center justify-start text-xl">
                   <div className="relative tracking-[0.01em] leading-[30px] font-semibold">
-                    Order History
-                  </div>
-                </div>
-                <div className="rounded-lg bg-neutral-white overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[8px] text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
-                  <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrcalendar1.svg"
-                    />
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[20px]">
-                    Select Date
-                  </div>
-                </div>
-                <div className="rounded-lg bg-neutral-white overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 gap-[8px] text-neutral-gray-gray-500 border-[1px] border-solid border-neutral-gray-gray-100">
-                  <div className="w-5 h-5 flex flex-row items-center justify-center p-2 box-border">
-                    <img
-                      className="relative w-4 h-4 overflow-hidden shrink-0"
-                      alt=""
-                      src="/img/fisrsettingssliders.svg"
-                    />
-                  </div>
-                  <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                    Filters
+                    ประวัติการสั่งซื้อ
                   </div>
                 </div>
               </div>
@@ -225,7 +201,7 @@ const CustomerDetails: FunctionComponent = () => {
                 <div className="flex flex-col items-start justify-start text-primary-primary-500">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      Order ID
+                      หมายเลขคำสั่งซื้อ
                     </div>
                   </div>
                   {order.map((item, index) => (
@@ -244,7 +220,7 @@ const CustomerDetails: FunctionComponent = () => {
                 <div className="flex-1 flex flex-col items-start justify-start">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      Quantity
+                      จำนวน
                     </div>
                   </div>
                   {order.map((item, index) => (
@@ -263,7 +239,7 @@ const CustomerDetails: FunctionComponent = () => {
                 <div className="flex-1 flex flex-col items-start justify-start">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Total
+                      ทั้งหมด
                     </div>
                   </div>
                   {order.map((item) => (
@@ -279,7 +255,7 @@ const CustomerDetails: FunctionComponent = () => {
                 <div className="flex flex-col items-start justify-start text-secondary-orange-orange-500">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Status
+                      สถานะ
                     </div>
                   </div>
                   {order.map((item, index) => (
@@ -332,7 +308,7 @@ const CustomerDetails: FunctionComponent = () => {
                 <div className="flex flex-col items-end justify-center text-right">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-center justify-end py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                      Date
+                      วันที่สั่งซื้อ
                     </div>
                   </div>
                   {order.map((item, index) => (
@@ -344,7 +320,7 @@ const CustomerDetails: FunctionComponent = () => {
                         <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                           {`${new Date(item.createdAt).getDate()} ${
                             months[new Date(item.createdAt).getMonth()]
-                          } ${new Date(item.createdAt).getFullYear()}`}
+                          } ${new Date(item.createdAt).getFullYear() + 543}`}
                         </div>
                       </div>
                     </div>

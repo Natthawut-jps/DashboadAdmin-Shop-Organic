@@ -9,15 +9,14 @@ export const Excel = () => {
       responseType: "blob",
     }).then((res) => {
       if (res.status === 200) {
-        console.log(res);
-        saveAs(res.data, "example.xlsx");
+        const date = new Date();
+        saveAs(res.data, `${new Date(date.setDate(date.getDate() - 1)).toISOString().slice(0,10)}.xlsx`);
       }
     });
   })();
 };
 
 export const Excel_one = (id: number) => {
-  console.log(id);
   (async () => {
     await instance_auth({
       method: "post",
@@ -26,8 +25,7 @@ export const Excel_one = (id: number) => {
       responseType: "blob",
     }).then((res) => {
       if (res.status === 200) {
-        console.log(res);
-        saveAs(res.data, "example_one.xlsx");
+        saveAs(res.data, `#${id}_${new Date().toISOString().slice(0,10)}.xlsx`);
       }
     });
   })();

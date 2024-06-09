@@ -55,18 +55,18 @@ const OrderDetails: FunctionComponent = () => {
     "พัสดุตีกลับ",
   ];
   const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค.",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
   ];
   const [address, setAddress] = useState<addressType>();
   const get_address = async () => {
@@ -108,10 +108,10 @@ const OrderDetails: FunctionComponent = () => {
         <Header />
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[2] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
-            <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">{`Order Details `}</div>
+            <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">{`ข้อมูลคำสั่งซื้อ`}</div>
             <div className="flex flex-row items-center justify-start gap-[8px] text-sm text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Dashboard
+                หน้าหลัก
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -119,7 +119,7 @@ const OrderDetails: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Order List
+                รายการคำสั่งซื้อ
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -127,7 +127,7 @@ const OrderDetails: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
-                Order Details
+                ข้อมูลคำสั่งซื้อ
               </div>
             </div>
           </div>
@@ -144,7 +144,7 @@ const OrderDetails: FunctionComponent = () => {
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                Export
+                ส่งออก
               </div>
             </div>
           </div>
@@ -154,10 +154,10 @@ const OrderDetails: FunctionComponent = () => {
             <div className="self-stretch flex flex-row items-center justify-start gap-[12px] z-[1]">
               <div className="flex-1 flex flex-col items-start justify-start">
                 <div className="self-stretch flex flex-row items-center justify-start gap-[12px]">
-                  <div className="relative tracking-[0.01em] leading-[28px] font-semibold">
-                    Order #{order_state.id}
+                  <div className="relative text-[16px] tracking-[0.01em] leading-[28px] font-semibold">
+                    หมายเลขคำสั่งซื้อ #{order_state.id}
                   </div>
-                  <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
+                  <div className="relative text-[16px] tracking-[0.01em] leading-[20px] font-semibold">
                     {order_state.status === 1 ? (
                       <div className="rounded-lg bg-secondary-orange-orange-50 flex flex-col items-center justify-center py-1 px-2.5">
                         <div className="relative tracking-[0.01em] leading-[20px] font-semibold text-secondary-orange-orange-500">
@@ -210,13 +210,13 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Added
+                    วันที่สั่งซื้อ
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
                   {`${new Date(order_state.createdAt).getDate()} ${
                     months[new Date(order_state.createdAt).getMonth()]
-                  } ${new Date(order_state.createdAt).getFullYear()}`}
+                  } ${new Date(order_state.createdAt).getFullYear() + 543}`}
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -229,7 +229,7 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Payment Method
+                    วิธีชำระเงิน
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -246,7 +246,7 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Shipping Method
+                    บริษัทขนส่ง
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -257,7 +257,7 @@ const OrderDetails: FunctionComponent = () => {
           </div>
           <div className="flex-1 rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[20px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-              Customer
+              ลูกค้า
             </div>
             <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm">
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -270,7 +270,7 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Customer
+                    ชื่อ
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -287,7 +287,7 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Email
+                    อีเมลล์
                   </div>
                 </div>
                 <a
@@ -308,7 +308,7 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Phone
+                    เบอร์โทร
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -319,7 +319,7 @@ const OrderDetails: FunctionComponent = () => {
           </div>
           <div className="flex-1 rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[20px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-              Shipping
+              จัดส่ง
             </div>
             <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm">
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -332,11 +332,13 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Status
+                    สถานะ
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                  {status[order_state.status - 1]}
+                  {status[order_state.status - 1]
+                    ? status[order_state.status - 1]
+                    : "ยกเลิกคำสั่งซื้อแล้ว"}
                 </div>
               </div>
               <div className="self-stretch flex flex-row items-center justify-start gap-[8px]">
@@ -349,7 +351,7 @@ const OrderDetails: FunctionComponent = () => {
                     />
                   </div>
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Tracking ID
+                    หมายเลขพัสดุ
                   </div>
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-medium">
@@ -367,7 +369,7 @@ const OrderDetails: FunctionComponent = () => {
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-6 z-[1] border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 flex flex-row items-center justify-start gap-[8px]">
                   <div className="relative tracking-[0.01em] leading-[28px] font-semibold">
-                    Order List
+                    รายการสินค้าคำสั่งซื้อ
                   </div>
                   <div className="rounded-lg bg-secondary-green-green-50 flex flex-col items-center justify-center py-1 px-2.5 text-center text-sm text-secondary-green-green-600"></div>
                 </div>
@@ -376,7 +378,7 @@ const OrderDetails: FunctionComponent = () => {
                 <div className="flex flex-col items-start justify-start">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Product
+                      สินค้า
                     </div>
                   </div>
                   {detail_order.map((item, index) => (
@@ -408,7 +410,7 @@ const OrderDetails: FunctionComponent = () => {
                 <div className="flex-1 flex flex-col items-start justify-start text-primary-primary-500">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Categories
+                      หมวดหมู่
                     </div>
                   </div>
                   {detail_order.map((item, index) => (
@@ -431,7 +433,7 @@ const OrderDetails: FunctionComponent = () => {
                 <div className="flex-1 flex flex-col items-start justify-start text-neutral-gray-gray-500">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Total
+                      ทั้งหมด
                     </div>
                   </div>
                   {detail_order.map((item, index) => (
@@ -441,7 +443,7 @@ const OrderDetails: FunctionComponent = () => {
                     >
                       <div className="h-11 flex flex-row items-center justify-center">
                         <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                          {item.quantity} pcs
+                          {item.quantity} รายการ
                         </div>
                       </div>
                     </div>
@@ -454,7 +456,7 @@ const OrderDetails: FunctionComponent = () => {
                 <div className="flex flex-col items-start justify-start">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Price
+                      ราคา
                     </div>
                   </div>
                   {detail_order.map((item, index) => (
@@ -476,7 +478,7 @@ const OrderDetails: FunctionComponent = () => {
           <div className="flex flex-col items-start justify-start gap-[24px]">
             <div className="rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] w-[360px] overflow-hidden flex flex-col items-center justify-start p-6 box-border gap-[18px]">
               <div className="flex-1 relative tracking-[0.01em] leading-[28px] font-semibold inline-block w-[312px] z-[1]">
-                Address
+                ที่อยู่
               </div>
               <div className="flex flex-col items-start justify-start gap-[14px] z-[0] text-sm text-neutral-gray-gray-500">
                 <div className="w-[312px] flex flex-row items-start justify-start gap-[8px]">
@@ -489,7 +491,7 @@ const OrderDetails: FunctionComponent = () => {
                   </div>
                   <div className="flex-1 flex flex-col items-start justify-center gap-[4px]">
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium">
-                      Shipping Address
+                      ที่อยู่จัดส่ง
                     </div>
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px] font-medium text-neutral-black-black-500">
                       {`${address && address.street} ${
@@ -506,19 +508,19 @@ const OrderDetails: FunctionComponent = () => {
               <div className="rounded-lg bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] w-[360px] overflow-hidden flex flex-col items-center justify-start p-6 box-border gap-[18px]">
                 <div className="self-stretch flex flex-row items-center justify-start z-[1]">
                   <div className="flex-1 relative tracking-[0.01em] leading-[28px] font-semibold">
-                    Sumary Order
+                    สรุปคำสั่งซื้อ
                   </div>
                 </div>
                 <div className="self-stretch grid grid-cols-2 items-start justify-start z-[0] text-base gap-[100px] w-full">
                   <div className="self-stretch flex flex-col items-start justify-start gap-[20px]">
                     <div className="self-stretch flex flex-col items-start justify-start font-medium">
-                      Subtotal
+                      รวม
                     </div>
                     <div className="self-stretch flex flex-col items-start justify-start font-medium">
-                      Shipping Rate
+                      ค่าจัดส่ง
                     </div>
                     <div className="self-stretch flex flex-col items-start justify-start font-medium">
-                      Total
+                      ทั้งหมด
                     </div>
                   </div>
                   <div className="self-stretch flex flex-col items-start justify-start gap-[20px] pl-[25px]">

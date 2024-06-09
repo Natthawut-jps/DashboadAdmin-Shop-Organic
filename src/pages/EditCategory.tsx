@@ -61,11 +61,11 @@ const EditCategory: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[1] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
-              Edit Category
+              แก้ไขหมวดหมู่
             </div>
             <div className="flex flex-row items-center justify-start gap-[8px] text-sm text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Dashboard
+                หน้าหลัก
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -73,7 +73,7 @@ const EditCategory: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Categories
+                หมวดหมู่
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -81,7 +81,7 @@ const EditCategory: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
-                Edit Category
+                แก้ไขหมวดหมู่
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@ const EditCategory: FunctionComponent = () => {
                 />
               </div>
               <div className="relative text-neutral-gray-gray-400 tracking-[0.01em] leading-[20px] font-semibold">
-                Cancel
+                ยกเลิก
               </div>
             </a>
             <form
@@ -118,7 +118,7 @@ const EditCategory: FunctionComponent = () => {
                   />
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                  Save Category
+                  บันทึก
                 </div>
               </button>
             </form>
@@ -127,12 +127,12 @@ const EditCategory: FunctionComponent = () => {
         <div className="self-stretch h-[740px] flex flex-row items-start justify-start gap-[24px] z-[0] text-lg">
           <div className="rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] w-[264px] overflow-hidden shrink-0 flex flex-col items-center justify-start p-6 box-border gap-[14px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-              Thumbnail
+              รูปภาพหมวดหมู่
             </div>
             <div className="self-stretch flex flex-col items-start justify-start gap-[4px] z-[0] text-sm text-neutral-black-black-300">
               <div className="self-stretch flex flex-row items-start justify-start">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  Photo
+                  ภาพ
                 </div>
               </div>
               <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-col items-center justify-center pb-9 pt-5 px-3 gap-[16px] text-center text-neutral-gray-gray-400 border-[1px] border-dashed border-neutral-gray-gray-100">
@@ -164,7 +164,8 @@ const EditCategory: FunctionComponent = () => {
                       />
                     </div>
                     <div className="self-stretch relative tracking-[0.01em] leading-[20px]">
-                      Drag and drop image here, or click add image size 600x600
+                      ลากและวางรูปภาพที่นี่ หรือคลิกเพิ่มขนาดรูปภาพที่แนะนำ
+                      600x600
                     </div>
                   </>
                 )}
@@ -184,7 +185,7 @@ const EditCategory: FunctionComponent = () => {
                       accept="image/png, image/jpg, image/jpeg"
                       className="cursor-pointer file:hidden absolute w-full pt-[35px] file:border-none file:m-0 file:p-0 file:bg-transparent file:text-transparent"
                     />
-                    <span className="">Add Image</span>
+                    <span className="">เพิ่มรูปภาพ</span>
                   </div>
                 </div>
               </div>
@@ -192,13 +193,13 @@ const EditCategory: FunctionComponent = () => {
           </div>
           <div className="flex-1 rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-              General Information
+              ข้อมูลทั่วไป
             </div>
             <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm text-neutral-black-black-300">
               <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                 <div className="self-stretch flex flex-row items-start justify-start">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Category Name
+                    ชื่อหมวดหมู่
                     <span className=" text-secondary-red-red-500 relative left-[30px]">
                       {err}
                     </span>
@@ -212,9 +213,9 @@ const EditCategory: FunctionComponent = () => {
                         type="text"
                         form="EditCategory"
                         name="category_name"
-                        placeholder="Type category name here. . ."
+                        placeholder="พิมพ์ชื่อหมวดหมู่ที่นี้. . ."
                         className=" focus:outline-none w-[800px] h-[34px] bg-transparent"
-                        onChange = {(e: React.ChangeEvent<HTMLInputElement>) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setEditCategory({
                             ...category_edit,
                             category_name: e.target.value,
@@ -229,7 +230,7 @@ const EditCategory: FunctionComponent = () => {
               <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                 <div className="self-stretch flex flex-row items-start justify-start">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Description
+                    รายละเอียด (ไม่จำเป็นต้องใส่)
                   </div>
                 </div>
                 <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-black-black-500 border-[1px] border-solid border-neutral-gray-gray-100">
@@ -246,7 +247,7 @@ const EditCategory: FunctionComponent = () => {
                         }
                         name="description"
                         className=" w-[800px] h-[130px] resize-none focus:outline-none bg-transparent"
-                        placeholder="Type category description here. . ."
+                        placeholder="พิมพ์รายละเอียดหมวดหมู่ที่นี้. . ."
                       />
                     </div>
                   </div>

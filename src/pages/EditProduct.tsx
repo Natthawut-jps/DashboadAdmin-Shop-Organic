@@ -106,11 +106,11 @@ const EditProduct: FunctionComponent = () => {
         <div className="self-stretch flex flex-row items-end justify-start gap-[24px] z-[1] text-5xl">
           <div className="flex-1 flex flex-col items-start justify-start gap-[8px]">
             <div className="self-stretch relative tracking-[0.01em] leading-[32px] font-semibold">
-              Edit Product
+              แก้ไขสินค้า
             </div>
             <div className="flex flex-row items-center justify-start gap-[8px] text-sm text-primary-primary-500">
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Dashboard
+                หน้าหลัก
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -118,7 +118,7 @@ const EditProduct: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium">
-                Product List
+                รายการสินค้า
               </div>
               <img
                 className="relative w-4 h-4 overflow-hidden shrink-0"
@@ -126,7 +126,7 @@ const EditProduct: FunctionComponent = () => {
                 src="/img/fisrcaretright.svg"
               />
               <div className="relative tracking-[0.01em] leading-[20px] font-medium text-neutral-gray-gray-500">
-                Edit Product
+                แก้ไขสินค้า
               </div>
             </div>
           </div>
@@ -143,7 +143,7 @@ const EditProduct: FunctionComponent = () => {
                 />
               </div>
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                Cancel
+                ยกเลิก
               </div>
             </a>
             <form
@@ -163,7 +163,7 @@ const EditProduct: FunctionComponent = () => {
                   />
                 </div>
                 <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                  Save Product
+                  บันทึก
                 </div>
               </button>
             </form>
@@ -173,13 +173,13 @@ const EditProduct: FunctionComponent = () => {
           <div className="flex-1 flex flex-col items-start justify-start gap-[24px]">
             <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
               <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-                General Information
+                ข้อมูลทั่วไป
               </div>
               <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm text-neutral-black-black-300">
                 <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Product Name{" "}
+                      ชื่อสินค้า{" "}
                       <span className=" text-secondary-red-red-500 relative left-[15px]">
                         {error_product}
                       </span>
@@ -201,7 +201,7 @@ const EditProduct: FunctionComponent = () => {
                           form="edit_product"
                           name="name"
                           type="text"
-                          placeholder="Type product name here. . ."
+                          placeholder="พิมพ์ชื่อสินค้าที่นี่. . ."
                           className=" w-[800px] h-[30px] focus:outline-none bg-transparent"
                           required
                         />
@@ -212,7 +212,7 @@ const EditProduct: FunctionComponent = () => {
                 <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Description (optional)
+                      รายละเอียด (ไม่จำเป็นต้องใส่)
                     </div>
                   </div>
                   <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
@@ -230,7 +230,7 @@ const EditProduct: FunctionComponent = () => {
                           }}
                           name="description"
                           form="edit_product"
-                          placeholder="Type product description here. . ."
+                          placeholder="พิมพ์รายละเอียดสินค้าที่นี่. . ."
                           className=" w-[800px] h-[135px] focus:outline-none resize-none bg-transparent"
                         ></textarea>
                       </div>
@@ -241,12 +241,12 @@ const EditProduct: FunctionComponent = () => {
             </div>
             <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
               <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-                Media
+                รูปภาพสินค้า
               </div>
               <div className="self-stretch flex flex-col items-start justify-start gap-[4px] z-[0] text-sm text-neutral-black-black-300">
                 <div className="self-stretch flex flex-row items-start justify-start">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Photo
+                    ภาพ
                   </div>
                 </div>
                 <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-col items-center justify-center py-6 px-3 gap-[16px] text-neutral-gray-gray-400 border-[1px] border-dashed border-neutral-gray-gray-100">
@@ -279,7 +279,8 @@ const EditProduct: FunctionComponent = () => {
                   )}
                   {edit_product.imgURL ? null : (
                     <div className="relative tracking-[0.01em] leading-[20px]">
-                      Drag and drop image here, or click add image size 600x600
+                      ลากและวางรูปภาพที่นี่ หรือคลิกเพิ่มขนาดรูปภาพที่แนะนำ
+                      600x600
                     </div>
                   )}
                   <div className="rounded-lg bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 text-primary-primary-500">
@@ -301,7 +302,7 @@ const EditProduct: FunctionComponent = () => {
                         accept="image/png, image/jpg, image/jpeg"
                         className="cursor-pointer file:hidden absolute w-full pt-[35px] file:border-none file:m-0 file:p-0 file:bg-transparent file:text-transparent text-transparent bg-transparent"
                       />
-                      <span>Add Image</span>
+                      <span>เพิ่มรูปภาพ</span>
                     </div>
                   </div>
                 </div>
@@ -309,13 +310,13 @@ const EditProduct: FunctionComponent = () => {
             </div>
             <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
               <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-                Pricing
+                ราคาสินค้า
               </div>
               <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm text-neutral-black-black-300">
                 <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Base Price
+                      ราคา
                     </div>
                   </div>
                   <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 gap-[4px] text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
@@ -349,13 +350,13 @@ const EditProduct: FunctionComponent = () => {
             </div>
             <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
               <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-                Inventory
+                จำนวนสินค้า
               </div>
               <div className="self-stretch overflow-hidden flex flex-row items-start justify-start gap-[14px] z-[0] text-sm text-neutral-black-black-300">
                 <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Quantity
+                      จำนวน
                     </div>
                   </div>
                   <div className="self-stretch rounded-lg bg-neutral-gray-gray-25 overflow-hidden flex flex-row items-center justify-start py-2 px-3 text-neutral-gray-gray-400 border-[1px] border-solid border-neutral-gray-gray-100">
@@ -375,7 +376,7 @@ const EditProduct: FunctionComponent = () => {
                           name="quatity"
                           form="edit_product"
                           className=" w-[820px] h-[30px] focus:outline-none bg-transparent"
-                          placeholder="Type product quantity here. . ."
+                          placeholder="พิมพ์จำนวนสินค้าที่นี้. . ."
                           required
                         />
                       </div>
@@ -388,13 +389,13 @@ const EditProduct: FunctionComponent = () => {
           <div className="w-[264px] flex flex-col items-start justify-start gap-[24px]">
             <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
               <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-                Category
+                หมวดหมู่สินค้า
               </div>
               <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm text-neutral-black-black-300">
                 <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      Product Category
+                      หมวดหมู่
                     </div>
                   </div>
                   <div className="">
@@ -410,9 +411,7 @@ const EditProduct: FunctionComponent = () => {
                           },
                         }}
                       >
-                        <InputLabel id="categories">
-                          Select a category
-                        </InputLabel>
+                        <InputLabel id="categories">เลือกหมวดหมู่</InputLabel>
                         <Select
                           required
                           value={edit_product.categories}
@@ -423,7 +422,7 @@ const EditProduct: FunctionComponent = () => {
                           }}
                           name="categories"
                           labelId="categories"
-                          label="Select a category"
+                          label="เลือกหมวดหมู่"
                           onChange={(e: SelectChangeEvent) => {
                             setEditProduct({
                               ...edit_product,
@@ -444,20 +443,10 @@ const EditProduct: FunctionComponent = () => {
               </div>
             </div>
             <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
-              <div className="self-stretch flex flex-row items-center justify-start gap-[12px] z-[1]">
-                <div className="flex-1 relative tracking-[0.01em] leading-[28px] font-semibold">
-                  Status
-                </div>
-                <div className="rounded-lg bg-neutral-gray-gray-50 flex flex-col items-center justify-center py-1 px-2.5 text-sm text-neutral-gray-gray-500">
-                  <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                    Draft
-                  </div>
-                </div>
-              </div>
               <div className="self-stretch flex flex-col items-start justify-start gap-[4px] z-[0] text-sm text-neutral-black-black-300">
                 <div className="self-stretch flex flex-row items-start justify-start">
                   <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                    Product Status
+                    สถานะสินค้า
                   </div>
                 </div>
                 <div className="">
@@ -473,7 +462,7 @@ const EditProduct: FunctionComponent = () => {
                         },
                       }}
                     >
-                      <InputLabel id="status">Select a Draft</InputLabel>
+                      <InputLabel id="status">เลือกสถานะ</InputLabel>
                       <Select
                         value={String(edit_product.status)}
                         sx={{
@@ -483,7 +472,7 @@ const EditProduct: FunctionComponent = () => {
                         }}
                         name="status"
                         labelId="status"
-                        label="Select a Darft"
+                        label="เลือกสถานะ"
                         onChange={(e: SelectChangeEvent) => {
                           setEditProduct({
                             ...edit_product,

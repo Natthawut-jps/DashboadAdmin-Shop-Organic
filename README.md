@@ -3,7 +3,7 @@
 ## Setup Project
    ### 1. Download Source Code
    ### 2. run "npm install"
-   ### 3. Set File "ENV" 
+   ### 3. Set File ".env.local" 
    * VITE_BASE_API = "http://localhost:8080"
    ### 4. Login at : http://localhost:5174/admin/login
    * username : admin

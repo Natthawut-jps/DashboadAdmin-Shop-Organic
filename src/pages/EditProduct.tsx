@@ -35,7 +35,7 @@ const EditProduct: FunctionComponent = () => {
     status: state_product.status,
   });
   const [error_product, setErrorProduct] = useState<string | null>(null);
-  const status_product = ["Out of Stock", "Low Stock", "Published"];
+  const status_product = ["สินค้าหมด", "เหลือน้อย", "มีสินค้า"];
 
   // edit products
   const handleSubmitEditProduct = async (e: FormEvent) => {
@@ -97,7 +97,6 @@ const EditProduct: FunctionComponent = () => {
     get_category();
   }, []);
 
-  console.log(edit_product);
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-medium">
       <Sidebar />
@@ -480,9 +479,13 @@ const EditProduct: FunctionComponent = () => {
                           });
                         }}
                       >
+                        {edit_product.quantity >= 10 && (
+                          <MenuItem value={3}>{status_product[2]}</MenuItem>
+                        )}
+                        {Boolean(edit_product.quantity) !== false && (
+                          <MenuItem value={2}>{status_product[1]}</MenuItem>
+                        )}
                         <MenuItem value={1}>{status_product[0]}</MenuItem>
-                        <MenuItem value={2}>{status_product[1]}</MenuItem>
-                        <MenuItem value={3}>{status_product[2]}</MenuItem>
                       </Select>
                     </FormControl>
                   </div>

@@ -88,7 +88,7 @@ const AddProduct: FunctionComponent = () => {
   useEffect(() => {
     get_category();
   }, []);
-  
+  console.log(product.quantity);
   return (
     <div className="relative bg-neutral-gray-gray-25 w-full overflow-hidden flex flex-row items-start justify-start text-left text-sm text-neutral-black-black-400 font-text-m-medium">
       <Sidebar />
@@ -160,13 +160,13 @@ const AddProduct: FunctionComponent = () => {
           <div className="flex-1 flex flex-col items-start justify-start gap-[24px]">
             <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
               <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-              ข้อมูลทั่วไป
+                ข้อมูลทั่วไป
               </div>
               <div className="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[14px] z-[0] text-sm text-neutral-black-black-300">
                 <div className="self-stretch flex flex-col items-start justify-start gap-[4px]">
                   <div className="self-stretch flex flex-row items-start justify-start">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                     ชื่อสินค้า{" "}
+                      ชื่อสินค้า{" "}
                       <span className=" text-secondary-red-red-500">
                         {error_product}
                       </span>
@@ -256,7 +256,8 @@ const AddProduct: FunctionComponent = () => {
                   )}
                   {product.product_image ? null : (
                     <div className="relative tracking-[0.01em] leading-[20px]">
-                      ลากและวางรูปภาพที่นี่ หรือคลิกเพิ่มขนาดรูปภาพที่แนะนำ 600x600
+                      ลากและวางรูปภาพที่นี่ หรือคลิกเพิ่มขนาดรูปภาพที่แนะนำ
+                      600x600
                     </div>
                   )}
                   <div className="rounded-lg bg-primary-primary-50 overflow-hidden flex flex-row items-center justify-center py-2.5 px-3.5 text-primary-primary-500">
@@ -323,7 +324,7 @@ const AddProduct: FunctionComponent = () => {
             </div>
             <div className="self-stretch rounded-xl bg-neutral-white shadow-[0px_4px_30px_rgba(46,_45,_116,_0.05)] overflow-hidden flex flex-col items-center justify-start p-6 gap-[14px]">
               <div className="self-stretch relative tracking-[0.01em] leading-[28px] font-semibold z-[1]">
-              จำนวนสินค้า
+                จำนวนสินค้า
               </div>
               <div className="self-stretch overflow-hidden flex flex-row items-start justify-start gap-[14px] z-[0] text-sm text-neutral-black-black-300">
                 <div className="flex-1 flex flex-col items-start justify-start gap-[4px]">
@@ -382,9 +383,7 @@ const AddProduct: FunctionComponent = () => {
                           },
                         }}
                       >
-                        <InputLabel id="categories">
-                          เลือกหมวดหมู่
-                        </InputLabel>
+                        <InputLabel id="categories">เลือกหมวดหมู่</InputLabel>
                         <Select
                           required
                           sx={{
@@ -455,9 +454,13 @@ const AddProduct: FunctionComponent = () => {
                           });
                         }}
                       >
+                        {product.quantity >= 10 && (
+                          <MenuItem value={3}>{status_product[2]}</MenuItem>
+                        )}
+                        {Boolean(product.quantity) !== false && (
+                          <MenuItem value={2}>{status_product[1]}</MenuItem>
+                        )}
                         <MenuItem value={1}>{status_product[0]}</MenuItem>
-                        <MenuItem value={2}>{status_product[1]}</MenuItem>
-                        <MenuItem value={3}>{status_product[2]}</MenuItem>
                       </Select>
                     </FormControl>
                   </div>

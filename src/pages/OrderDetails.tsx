@@ -433,7 +433,7 @@ const OrderDetails: FunctionComponent = () => {
                 <div className="flex-1 flex flex-col items-start justify-start text-neutral-gray-gray-500">
                   <div className="self-stretch bg-neutral-gray-gray-25 flex flex-row items-start justify-start py-[18px] px-[22px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                     <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                      ทั้งหมด
+                      จำนวน
                     </div>
                   </div>
                   {detail_order.map((item, index) => (

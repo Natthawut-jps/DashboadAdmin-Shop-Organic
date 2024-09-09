@@ -273,7 +273,7 @@ const Order: FunctionComponent = () => {
               }
             >
               <div className="relative tracking-[0.01em] leading-[20px] font-semibold">
-                ทั้งหมด
+              ทั้งหมด
               </div>
             </div>
             <div
@@ -666,7 +666,7 @@ const Order: FunctionComponent = () => {
             <div className=" flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  จำนวน
+                  รายการ
                 </div>
               </div>
               {order.map((item, index) => (
@@ -685,7 +685,7 @@ const Order: FunctionComponent = () => {
             <div className=" flex flex-col items-start justify-start">
               <div className="self-stretch bg-neutral-white flex flex-row items-center justify-start py-[18px] px-[22px] gap-[8px] text-neutral-black-black-500 border-b-[1px] border-solid border-neutral-gray-gray-50">
                 <div className="flex-1 relative tracking-[0.01em] leading-[20px] font-medium">
-                  ทั้งหมด
+                จำนวนเงินทั้งหมด
                 </div>
               </div>
               {order.map((item, index) => (

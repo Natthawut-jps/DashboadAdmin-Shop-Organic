@@ -31,7 +31,7 @@
 
 ### 1. ดาวน์โหลด Source Code
 ```bash
-git clone <repository-url>
+git clone https://github.com/Natthawut-jps/DashboadAdmin-Shop-Organic.git
 cd DashboadAdmin-Shop-Organic
 ```
 
